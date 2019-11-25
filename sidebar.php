@@ -1,12 +1,15 @@
-    <!-- [ sidebar menu ] start -->
+<?php
+include 'header.php';
+?>
+<!-- [ sidebar menu ] start -->
     <nav class="pcoded-navbar menu-light active-blue brand-blue">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
-                <a href="https://tarit.in.th/dekhor/" class="b-brand">
-                    <div class="b-bg">
-                        <i class="feather icon-trending-up"></i>
-                    </div>
-                    <span class="b-title">Dek Hor</span>
+                <a href="<?=$dirurl?>" class="b-brand">
+                <img src="<?=$dirurl?>/assets/images/brand_ico.png" width="40px">
+                   <!-- <div class="b-bg">
+                   </div> -->
+                    <span class="b-title"><?=$brand?></span>
                 </a>
                 <!-- <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a> -->
             </div>
