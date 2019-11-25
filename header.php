@@ -1,8 +1,15 @@
+<?php
+include 'include/database.php';
+session_start();
+if (!$_SESSION["user_id"]) {
+    header("location:" . $dirurl . "/auth-signin.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>DekHor เว็บแอพลิเคชั่นจดบันทึกรายรับ-รายจ่ายสำหรับเด็กหอ</title>
+    <title><?=$title?></title>
     <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 11]>
@@ -13,11 +20,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="Free Datta Able Admin Template come up with latest Bootstrap 4 framework with basic components, form elements and lots of pre-made layout options" />
-    <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template, free admin theme, free dashboard template"/>
+    <meta name="description" content="" />
+    <meta name="keywords" content=""/>
     <meta name="author" content="CodedThemes"/>
     <meta name="theme-color" content="#04a9f5">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/app/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/images/app/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/app/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/app/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/app/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/app/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/app/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/app/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/app/apple-icon-180x180.png">
+    <link rel="manifest" href="assets/images/app/manifest.json">
+    <meta name="msapplication-TileColor" content="#04a9f5">
+    <meta name="msapplication-TileImage" content="assets/images/app/ms-icon-144x144.png">
 
     <!-- Favicon icon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
@@ -25,6 +46,14 @@
     <link rel="stylesheet" href="assets/fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->
     <link rel="stylesheet" href="assets/plugins/animation/css/animate.min.css">
+
+    <link rel="stylesheet" href="assets/plugins/modal-window-effects/css/md-modal.css">
+
+    <link rel="stylesheet" href="assets/plugins/smart-wizard/css/smart_wizard.min.css">
+    <link rel="stylesheet" href="assets/plugins/smart-wizard/css/smart_wizard_theme_arrows.min.css">
+    <link rel="stylesheet" href="assets/plugins/smart-wizard/css/smart_wizard_theme_circles.min.css">
+    <link rel="stylesheet" href="assets/plugins/smart-wizard/css/smart_wizard_theme_dots.min.css">
+
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -48,7 +77,3 @@
       z-index: 1030;
     }
   </style>
-<?php
-include 'sidebar.php';
-include 'navbar.php';
-?>
