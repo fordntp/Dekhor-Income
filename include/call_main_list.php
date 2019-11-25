@@ -2,6 +2,7 @@
 
 include 'database.php';
 
+session_start();
 $user_id = $_SESSION['user_id'];
 $dayNew = 0;
 $dayOld = 0;
@@ -16,17 +17,18 @@ $DayArr = array();
 WHERE /*a.wallet_id a.user_id = '1' AND Month(a.create_date) = '11'
 ORDER BY Date(a.create_date) DESC;";*/
 
-$cmd = "SELECT * , Day(a.create_date) as day FROM dekhor_record a JOIN dekhor_category b ON a.category_id = b.id
-            WHERE /*a.wallet_id*/ a.user_id = '1' AND Month(a.create_date) = '$get_month'
-            ORDER BY Date(a.create_date) DESC;";
+$cmd = "SELECT * , day(a.create_date) as day FROM dekhor_record a JOIN dekhor_category b ON a.category_id = b.id
+            WHERE /*a.wallet_id*/ a.user_id = '$user_id' AND month(a.create_date) = month(now())
+            ORDER BY a.create_date DESC;";
 
 $qry = mysqli_query($conn, $cmd);
 $numRows = mysqli_num_rows($qry);
 while ($data = mysqli_fetch_array($qry)) {
     $dayNew = $data['day'];
     $create_date = $data['create_date'];
-    $create_date = date("d/m/Y", strtotime($create_date));
+    $create_date = date("d/m/y", strtotime($create_date));
     $category_icon = $data['category_icon'];
+    $category_theme = $data['category_theme'];
     $category_name = $data['category_name'];
     $type = $data['type'];
     $memo = $data['memo'];
@@ -35,6 +37,7 @@ while ($data = mysqli_fetch_array($qry)) {
     $infoArr = array(
         "create_date" => $create_date,
         "category_icon" => $category_icon,
+        "category_theme" => $category_theme,
         "category_name" => $category_name,
         "type" => $type,
         "memo" => $memo,
@@ -100,4 +103,7 @@ echo "<pre>";
 print_r($MonthArr);
 echo "<pre>";
 
-echo json_encode($MonthArr, JSON_UNESCAPED_UNICODE);
+$json_arr = json_encode($MonthArr, JSON_UNESCAPED_UNICODE);
+echo $json_arr;
+
+// echo json_encode($MonthArr, JSON_UNESCAPED_UNICODE);
