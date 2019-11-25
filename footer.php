@@ -1,4 +1,5 @@
     <!-- Required Js -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="assets/js/vendor-all.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
@@ -14,6 +15,9 @@
     <script src="assets/plugins/inputmask/js/autoNumeric.js"></script>
 
     <script src="assets/js/pages/form-masking-custom.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.css" id="theme-styles">
 
 </body>
 </html>
