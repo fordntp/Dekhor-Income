@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (isset($_SESSION["user_id"])) {
+    header("location:index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,6 +35,25 @@
 </head>
 
 <body>
+<style type="text/css">
+    @font-face {
+      font-family: sukhumvit;
+      src: url('./assets/fonts/SukhumvitSet-Text.ttf');
+    }
+
+    body {
+      color: var(--default-black);
+      font-size: var(--default-size);
+      font-family: sukhumvit, Prompt, 'Prompt';
+    }
+    .fixed-m {
+      position: fixed;
+      right: 1em;
+      bottom: 1em;
+      /* left: 0; */
+      z-index: 1030;
+    }
+  </style>
     <div class="auth-wrapper">
         <div class="auth-content">
             <div class="auth-bg">
@@ -44,18 +69,18 @@
                     </div>
                     <h3 class="mb-4">Login</h3>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Username">
                     </div>
                     <div class="input-group mb-4">
-                        <input type="password" class="form-control" placeholder="password">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="password">
                     </div>
-                    <div class="form-group text-left">
+                    <!-- <div class="form-group text-left">
                         <div class="checkbox checkbox-fill d-inline">
                             <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="">
                             <label for="checkbox-fill-a1" class="cr"> Save Details</label>
                         </div>
-                    </div>
-                    <button class="btn btn-primary shadow-2 mb-4">Login</button>
+                    </div> -->
+                    <button class="btn btn-primary shadow-2 mb-4" onclick="return do_login();">Login</button>
                     <p class="mb-2 text-muted">Forgot password? <a href="auth-reset-password.html">Reset</a></p>
                     <p class="mb-0 text-muted">Don’t have an account? <a href="auth-signup.html">Signup</a></p>
                 </div>
@@ -65,7 +90,46 @@
 
     <!-- Required Js -->
 <script src="assets/js/vendor-all.min.js"></script>
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.css" id="theme-styles">
+<script>
+  /* ajax */
+function do_login(){
+    var username = $("#username").val();
+    var password = $("#password").val();
+    if (username != "" && password != ""){
+      $.ajax({
+        type: "POST",
+        url: "include/call_auth.php",
+        //data: $("#myform").serialize(),
+        data: { username: username, password: password },
+        success: function(result) {
+            //alert(result);
+            if (result == 1) {
 
+              window.location.href = "https://tarit.in.th/dekhor/";
+            } else if (result == 0) {
+              Swal.fire({
+                  icon: 'error',
+                  title: 'ลงชื่อเข้าใช้ไม่สำเร็จ',
+                  text: 'ชื่อผู้ใช้งาน หรือ รหัสผ่านไม่ถูกต้อง',
+                  timer: 3000
+              });
+              //alert(result);
+            }
+        }
+    });
+    }
+    else{
+      Swal.fire({
+          icon: 'warning',
+          title: 'กรุณากรอกข้อมูลผู้ใช้',
+          text: 'ชื่อผู้ใช้งาน หรือ รหัสผ่านไม่ถูกต้อง',
+          timer: 3000
+      });
+    }
+}
+</script>
 </body>
 </html>
