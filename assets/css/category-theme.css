@@ -1,0 +1,155 @@
+.yellow {
+    color: #37474f;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.yellow.active {
+    color: #fff;
+    background-color: #ffcc00;
+    border-color: #ffcc00;
+}
+
+.deepskyblue {
+    color: #37474f;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.deepskyblue.active {
+    color: #fff;
+    background-color: #00BFFF;
+    border-color: #00BFFF;
+}
+
+.hotpink {
+    color: #37474f;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.hotpink.active {
+    color: #fff;
+    background-color: #FF69B4;
+    border-color: #FF69B4;
+}
+
+.red {
+    color: #37474f;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.red.active {
+    color: #fff;
+    background-color: #ff5050;
+    border-color: #ff5050;
+}
+
+.salmon {
+    color: #37474f;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.salmon.active {
+    color: #fff;
+    background-color: #FA8072;
+    border-color: #FA8072;
+}
+
+.limegreen {
+    color: #37474f;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.limegreen.active {
+    color: #fff;
+    background-color: #32CD32;
+    border-color: #32CD32;
+}
+
+.mediumpurple {
+    color: #37474f;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.mediumpurple.active {
+    color: #fff;
+    background-color: #9370DB;
+    border-color: #9370DB;
+}
+
+.mediumorchid {
+    color: #37474f;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.mediumorchid.active {
+    color: #fff;
+    background-color: #BA55D3;
+    border-color: #BA55D3;
+}
+
+.goldenrod {
+    color: #37474f;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.goldenrod.active {
+    color: #fff;
+    background-color: #DAA520;
+    border-color: #DAA520;
+}
+
+.thistle {
+    color: #37474f;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.thistle.active {
+    color: #fff;
+    background-color: #D8BFD8;
+    border-color: #D8BFD8;
+}
+
+.sandybrown {
+    color: #37474f;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.sandybrown.active {
+    color: #fff;
+    background-color: #F4A460;
+    border-color: #F4A460;
+}
+
+.orange {
+    color: #37474f;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.orange.active {
+    color: #fff;
+    background-color: #FF792C;
+    border-color: #FF792C;
+}
+
+.lime {
+    color: #37474f;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.lime.active {
+    color: #fff;
+    background-color: #2DDAA6;
+    border-color: #2DDAA6;
+}

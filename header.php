@@ -56,6 +56,7 @@ if (!$_SESSION["user_id"]) {
 
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/category-theme.css">
 </head>
 <body>
 <style type="text/css">
