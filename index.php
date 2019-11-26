@@ -20,7 +20,7 @@ include 'navbar.php';
                                         <div class="card-block text-center">
                                             <div class="row card-active">
                                                 <div class="col-md-4 col-4">
-                                                    <h5 id="sum_in">00.00</h5>
+                                                    <h5 id="sum_in">0.00</h5>
                                                     <span class="text-muted">รายรับ</span>
                                                 </div>
                                                 <div class="col-md-4 col-4">
