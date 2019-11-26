@@ -1,7 +1,7 @@
 <?php
 include 'include/database.php';
 session_start();
-if (!$_SESSION["user_id"]) {
+if (!isset($_SESSION["user_id"])) {
     header("location:" . $dirurl . "/auth-signin.php");
 }
 ?>
@@ -76,5 +76,15 @@ if (!$_SESSION["user_id"]) {
       bottom: 1em;
       /* left: 0; */
       z-index: 1030;
+    }
+    @media screen and (min-width: 320px) {
+      div.balance-header {
+        font-size: 3.5vw;
+      }
+    }
+    @media screen and (min-width: 768px) {
+      div.balance-header {
+        font-size: 1.5vw;
+      }
     }
   </style>
