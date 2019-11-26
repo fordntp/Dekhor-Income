@@ -2,7 +2,7 @@
 include 'include/database.php';
 session_start();
 if (!isset($_SESSION["user_id"])) {
-    header("location:" . $dirurl . "/auth-signin.php");
+    header("location:" . $dirurl . "/auth-signin");
 }
 ?>
 <!DOCTYPE html>
@@ -86,5 +86,8 @@ if (!isset($_SESSION["user_id"])) {
       div.balance-header {
         font-size: 1.5vw;
       }
+    }
+    .form-rounded {
+      border-radius: 1rem;
     }
   </style>
