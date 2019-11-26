@@ -2,7 +2,7 @@
 include 'include/database.php';
 session_start();
 if (isset($_SESSION["user_id"])) {
-    header("location:index.php");
+    header("location:" . $dirurl . "");
 }
 ?>
 <!DOCTYPE html>
@@ -79,17 +79,17 @@ if (isset($_SESSION["user_id"])) {
                 <span class="r s"></span>
                 <span class="r"></span>
             </div> -->
-            <div class="card">
+            <div class="card shadow-5">
                 <div class="card-body text-center">
                     <div class="mb-4">
                         <img src="assets/images/brand_ico.png" alt="brand">
                     </div>
-                    <h3 class="mb-4">Login</h3>
+                    <h3 class="mb-4">เข้าสู่ระบบ เด็กหอ</h3>
                     <div class="input-group mb-3">
-                        <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+                        <input type="text" name="username" id="username" class="form-control" placeholder="ชื่อผู้ใช้">
                     </div>
                     <div class="input-group mb-4">
-                        <input type="password" name="password" id="password" class="form-control" placeholder="password">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="รหัสผ่าน">
                     </div>
                     <!-- <div class="form-group text-left">
                         <div class="checkbox checkbox-fill d-inline">
@@ -97,7 +97,7 @@ if (isset($_SESSION["user_id"])) {
                             <label for="checkbox-fill-a1" class="cr"> Save Details</label>
                         </div>
                     </div> -->
-                    <button class="btn btn-primary shadow-2 mb-4" onclick="return do_login();">Login</button>
+                    <button class="btn btn-primary shadow-2 mb-4" onclick="return do_login();">เข้าสู่ระบบ</button>
                     <!-- <p class="mb-2 text-muted">Forgot password? <a href="auth-reset-password.html">Reset</a></p>
                     <p class="mb-0 text-muted">Don’t have an account? <a href="auth-signup.html">Signup</a></p> -->
                 </div>
