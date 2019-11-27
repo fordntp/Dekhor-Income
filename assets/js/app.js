@@ -35,7 +35,7 @@ function addExpenses() {
     if (expensesMemo != "" && expensesValue != "") {
         $.ajax({
             type: "POST",
-            url: "include/add_transactions.php",
+            url: "../../include/add_transactions.php",
             data: {
                 textmemo: expensesMemo,
                 value: expensesValue,
@@ -72,7 +72,7 @@ function addIncome() {
     if (incomeMemo != "" && incomeValue != "") {
         $.ajax({
             type: "POST",
-            url: "include/add_transactions.php",
+            url: "../../include/add_transactions.php",
             data: {
                 textmemo: incomeMemo,
                 value: incomeValue,
@@ -125,7 +125,7 @@ function selectCategory(id, type) {
 function loadmainHeader() {
     $.ajax({
         type: "POST",
-        url: "include/call_main_header.php",
+        url: "../../include/call_main_header.php",
         data: "",
         success: function(result) {
             let data = jQuery.parseJSON(result);
@@ -139,7 +139,7 @@ function loadmainHeader() {
 function loadTransactions() {
     $.ajax({
         type: "POST",
-        url: "include/call_main_transactions.php",
+        url: "../../include/call_main_transactions.php",
         data: "",
         success: function(result) {
             let Obj = jQuery.parseJSON(result);
