@@ -48,6 +48,41 @@ include 'navbar.php';
                             <div id="myTabContent">
                                 <div class="tab-pane fade show active" id="transaction" role="tabpanel" aria-labelledby="transaction-tab">
                                     <div id="transactionsShow" class="row"></div>
+                                    <!-- <div class="row">
+                                        <div class="col-xl-12">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h5>15/11/62 ศ.</h5>
+                                                    <span class="text-muted float-right">รายรับ: 10,249.95 | รายจ่าย: 2,942.32</span>
+                                                </div>
+                                                <div class="card-block">
+                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-primary btn-circle btn-circle-sm"><i class="fa fa-shopping-cart"></i></button> ช๊อปปิ้ง <span class="float-right">- 1,439.32‬</span></h5>
+                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-warning btn-circle btn-circle-sm"><i class="fas fa-utensils"></i></button> ชานมไข่มุก <span class="float-right">- 40</span></h5>
+                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-warning btn-circle btn-circle-sm"><i class="fas fa-utensils"></i></button> ข้าว <span class="float-right">- 55</span></h5>
+                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-primary btn-circle btn-circle-sm"><i class="fa fa-shopping-cart"></i></button> ช๊อปปิ้ง <span class="float-right">- 940</span></h5>
+                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-primary btn-circle btn-circle-sm"><i class="fa fa-shopping-cart"></i></button> ช๊อปปิ้ง <span class="float-right">- 468</span></h5>
+                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-danger btn-circle btn-circle-sm"><i class="fas fa-piggy-bank"></i></button> เงินรายเดือน <span class="float-right">10,249.95</span></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-12">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h5>15/11/62 ศ.</h5>
+                                                    <span class="text-muted float-right">รายรับ: 10,249.95 | รายจ่าย: 2,942.32</span>
+                                                </div>
+                                                <div class="card-block">
+                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-primary btn-circle btn-circle-sm"><i class="fa fa-shopping-cart"></i></button> ช๊อปปิ้ง <span class="float-right">- 1,439.32‬</span></h5>
+                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-warning btn-circle btn-circle-sm"><i class="fas fa-utensils"></i></button> ชานมไข่มุก <span class="float-right">- 40</span></h5>
+                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-warning btn-circle btn-circle-sm"><i class="fas fa-utensils"></i></button> ข้าว <span class="float-right">- 55</span></h5>
+                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-primary btn-circle btn-circle-sm"><i class="fa fa-shopping-cart"></i></button> ช๊อปปิ้ง <span class="float-right">- 940</span></h5>
+                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-primary btn-circle btn-circle-sm"><i class="fa fa-shopping-cart"></i></button> ช๊อปปิ้ง <span class="float-right">- 468</span></h5>
+                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-danger btn-circle btn-circle-sm"><i class="fas fa-piggy-bank"></i></button> เงินรายเดือน <span class="float-right">10,249.95</span></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
                                     <div class="btn-group dropup fixed-m">
                                         <button class="btn btn-icon btn-rounded btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="feather icon-plus"></i>
@@ -204,3 +239,198 @@ include 'navbar.php';
     <?php
 include 'footer.php';
 ?>
+        <script>
+
+            let categoryID;
+            let removeExSelected = document.querySelectorAll('.select-ex-category');
+            let removeInSelected = document.querySelectorAll('.select-in-category');
+
+            function unselectCategory(type){
+                if (type == 'OUT') {
+                    /* loop to remove selected category*/
+                    for (i = 0; i < removeExSelected.length; i++) {
+                        $(removeExSelected[i]).removeClass('active');
+                    }
+                    categoryID = "";
+                    /* hide expenses input */
+                    $("#showupExpenses").slideUp("fast");
+                    /* set input to blank*/
+                    $("#expensesMemo").val("");
+                    $("#expensesValue").val("");
+                }
+                else if (type == 'IN') {
+                    /* loop to remove selected category*/
+                    for (i = 0; i < removeInSelected.length; i++) {
+                        $(removeInSelected[i]).removeClass('active');
+                    }
+                    categoryID = "";
+                    /* hide income input */
+                    $("#showupIncome").slideUp("fast");
+                    /* set input to blank*/
+                    $("#incomeMemo").val("");
+                    $("#incomeValue").val("");
+                }
+            }
+            function addExpenses() {
+                let expensesMemo = $("#expensesMemo").val();
+                let expensesValue = $("#expensesValue").val();
+                let type = "OUT";
+                if (expensesMemo != "" && expensesValue != "") {
+                    $.ajax({
+                        type: "POST",
+                        url: "include/add_transactions.php",
+                        data: {
+                            textmemo: expensesMemo,
+                            value: expensesValue,
+                            categoryid: categoryID,
+                            type: type
+                        },
+                        success: function(result) {
+                            if (result == 1) {
+                                /* load lasted balance data */
+                                loadmainHeader();
+                                loadTransactions();
+                                /* unselect category */
+                                unselectCategory(type);
+                                /* close modal dialog */
+                                $("[data-dismiss=modal]").trigger({
+                                    type: "click"
+                                });
+                                /* alert success */
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'เพิ่มรายจ่ายเรียบร้อย',
+                                    timer: 3000
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+
+            function addIncome() {
+                let incomeMemo = $("#incomeMemo").val();
+                let incomeValue = $("#incomeValue").val();
+                let type = "IN";
+                if (incomeMemo != "" && incomeValue != "") {
+                    $.ajax({
+                        type: "POST",
+                        url: "include/add_transactions.php",
+                        data: {
+                            textmemo: incomeMemo,
+                            value: incomeValue,
+                            categoryid: categoryID,
+                            type: type
+                        },
+                        success: function(result) {
+                            if (result == 1) {
+                                /* load lasted balance data */
+                                loadmainHeader();
+                                loadTransactions();
+                                /* unselect category */
+                                unselectCategory(type);
+                                /* close modal dialog */
+                                $("[data-dismiss=modal]").trigger({
+                                    type: "click"
+                                });
+                                /* alert success */
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'เพิ่มรายรับเรียบร้อย',
+                                    timer: 3000
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+
+            function selectCategory(id, type) {
+                if (type == "OUT") {
+                    for (i = 0; i < removeExSelected.length; i++) {
+                        $(removeExSelected[i]).removeClass('active');
+                    }
+                    $(".select-ex-category").click(function() {
+                        $(this).addClass('active');
+                        categoryID = id;
+                    });
+                } else if (type == "IN") {
+                    for (i = 0; i < removeInSelected.length; i++) {
+                        $(removeInSelected[i]).removeClass('active');
+                    }
+                    $(".select-in-category").click(function() {
+                        $(this).addClass('active');
+                        categoryID = id;
+                    });
+                }
+            }
+
+            function loadmainHeader() {
+                $.ajax({
+                    type: "POST",
+                    url: "include/call_main_header.php",
+                    data: "",
+                    success: function(result) {
+                        let data = jQuery.parseJSON(result);
+                        $("#sum_in").html(data["sum_IN"]);
+                        $("#sum_out").html(data["sum_OUT"]);
+                        $("#sum_balance").html(data["balance"]);
+                    }
+                });
+            }
+
+            function loadTransactions() {
+                $.ajax({
+                    type: "POST",
+                    url: "include/call_main_transactions.php",
+                    data: "",
+                    success: function(result) {
+                        let Obj = jQuery.parseJSON(result);
+                        let card = "";
+                        // alert(Obj[0][Obj[0].length - 1]["sum_IN"]);
+                        for(i = 0; i < Obj.length; i++){
+                            card += '<div class="col-xl-12">\
+                                        <div class="card">\
+                                            <div class="card-header">\
+                                                <h5>'+Obj[i][0]["create_date"]+'</h5>\
+                                                <span class="text-muted float-right">รายรับ: '+Obj[i][Obj[i].length - 1]["sum_IN"]+' <br> รายจ่าย: '+Obj[i][Obj[i].length - 1]["sum_OUT"]+'</span>\
+                                            </div>\
+                                            <div class="card-block">\
+                                            ';
+                            for(j = 0; j < Obj[i].length - 1; j++){
+                                card += '<h5 class="text-muted f-w-300 mt-4">\
+                                            <button class="btn '+Obj[i][j]["category_theme"]+' btn-circle btn-circle-sm active"><i class="'+Obj[i][j]["category_icon"]+'"></i></button> '+Obj[i][j]["memo"]+' \
+                                            <span class="float-right">'+Obj[i][j]["value"]+'</span>\
+                                        </h5>';
+                                //console.log(Obj[i][j]["sum_IN"]);
+                            }
+                            card += '</div>\
+                                </div>\
+                            </div>';
+                        }
+                        $('#transactionsShow').html(card);
+                    }
+                });
+            }
+            $(document).ready(function() {
+                loadTransactions();
+                loadmainHeader();
+
+                var $window = $(window);
+                var nav = $('.fixed-m');
+                $window.scroll(function() {
+                    if ($window.scrollTop() <= 10) {
+                        nav.fadeIn("fast");
+                    } else {
+                        nav.fadeOut("fast");
+                    }
+                });
+
+                $(".select-ex-category").click(function() {
+                    $("#showupExpenses").slideDown("fast");
+                });
+                $(".select-in-category").click(function() {
+                    $("#showupIncome").slideDown("fast");
+                });
+            });
+        </script>

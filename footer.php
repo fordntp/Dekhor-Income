@@ -1,5 +1,6 @@
+
     <!-- App Js -->
-    <script src="assets/js/app.js"></script>
+    <!-- <script type="text/javascript" src="assets/js/app.js"></script> -->
 
     <!-- Required Js -->
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
