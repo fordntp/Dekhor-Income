@@ -125,7 +125,7 @@ function do_login(){
             //alert(result);
             if (result == 1) {
 
-              window.location.href = "https://tarit.in.th/dekhor/";
+              window.location.href = "http://localhost/dekhor/";
             } else if (result == 0) {
               Swal.fire({
                   icon: 'error',
