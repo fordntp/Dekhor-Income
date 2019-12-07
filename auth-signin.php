@@ -125,7 +125,7 @@ function do_login(){
             //alert(result);
             if (result == 1) {
 
-              window.location.href = "http://localhost/dekhor/";
+              window.location.href = "<?=$dirurl?>";
             } else if (result == 0) {
               Swal.fire({
                   icon: 'error',
