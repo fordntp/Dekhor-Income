@@ -47,12 +47,19 @@ if (!isset($_SESSION["user_id"])) {
     <!-- animation css -->
     <link rel="stylesheet" href="assets/plugins/animation/css/animate.min.css">
 
+    <!--modal-md-style-->
     <link rel="stylesheet" href="assets/plugins/modal-window-effects/css/md-modal.css">
 
+    <!--SmartWizard-->
     <link rel="stylesheet" href="assets/plugins/smart-wizard/css/smart_wizard.min.css">
     <link rel="stylesheet" href="assets/plugins/smart-wizard/css/smart_wizard_theme_arrows.min.css">
     <link rel="stylesheet" href="assets/plugins/smart-wizard/css/smart_wizard_theme_circles.min.css">
     <link rel="stylesheet" href="assets/plugins/smart-wizard/css/smart_wizard_theme_dots.min.css">
+
+    <!--Datetime Picker-->
+    <link rel="stylesheet" href="assets/plugins/material-datetimepicker/css/bootstrap-material-datetimepicker.css">
+    <link rel="stylesheet" href="assets/plugins/bootstrap-datetimepicker/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" href="assets/fonts/material/css/materialdesignicons.min.css">
 
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">

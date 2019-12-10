@@ -27,5 +27,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.css" id="theme-styles">
 
+    <!--DateTime-->
+    <script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <script src="assets/plugins/material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="assets/js/pages/form-picker-custom.js"></script>
+
 </body>
 </html>

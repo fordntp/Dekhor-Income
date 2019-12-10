@@ -91,6 +91,9 @@ include 'navbar.php';
                                 <button class="btn btn-primary" onclick="addExpenses();"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <input type="text" id="date" class="expenses-date form-control" value="<?=date('Y-m-d')?>" placeholder="วันที่ทำรายการ">
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-2 col-3 mb-2 text-center">
@@ -166,6 +169,9 @@ include 'navbar.php';
                             <div class="input-group-append">
                                 <button class="btn btn-primary" onclick="addIncome();"><i class="fas fa-check"></i></button>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="date" class="income-date form-control" value="<?=date('Y-m-d')?>" placeholder="วันที่ทำรายการ">
                         </div>
                     </div>
                     <div class="row">
