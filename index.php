@@ -96,7 +96,7 @@ include 'navbar.php';
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="iconCalendar"><i class="far fa-calendar-alt"></i></span>
                                 </div>
-                                <input type="text" id="date" aria-describedby="iconCalendar" class="expenses-date form-control" value="<?=date('Y-m-d')?>" placeholder="วันที่ทำรายการ">
+                                <input type="text" id="expensesDate" aria-describedby="iconCalendar" class="date-input form-control" value="<?=date('Y-m-d')?>" placeholder="วันที่ทำรายการ">
                             </div>
                         </div>
                     </div>
@@ -180,7 +180,7 @@ include 'navbar.php';
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="iconCalendar"><i class="far fa-calendar-alt"></i></span>
                                 </div>
-                                <input type="text" id="date" aria-describedby="iconCalendar" class="income-date form-control" value="<?=date('Y-m-d')?>" placeholder="วันที่ทำรายการ">
+                                <input type="text" id="incomeDate" aria-describedby="iconCalendar" class="date-input form-control" value="<?=date('Y-m-d')?>" placeholder="วันที่ทำรายการ">
                             </div>
                         </div>
                     </div>
