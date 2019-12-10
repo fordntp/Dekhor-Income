@@ -228,26 +228,26 @@ include 'footer.php';
 
             function unselectCategory(type){
                 if (type == 'OUT') {
-                    /* loop to remove selected category*/
+                    // loop to remove selected category
                     for (i = 0; i < removeExSelected.length; i++) {
                         $(removeExSelected[i]).removeClass('active');
                     }
                     categoryID = "";
-                    /* hide expenses input */
+                    // hide expenses input
                     $("#showupExpenses").slideUp("fast");
-                    /* set input to blank*/
+                    // set input to blank
                     $("#expensesMemo").val("");
                     $("#expensesValue").val("");
                 }
                 else if (type == 'IN') {
-                    /* loop to remove selected category*/
+                    // loop to remove selected category
                     for (i = 0; i < removeInSelected.length; i++) {
                         $(removeInSelected[i]).removeClass('active');
                     }
                     categoryID = "";
-                    /* hide income input */
+                    // hide income input
                     $("#showupIncome").slideUp("fast");
-                    /* set input to blank*/
+                    // set input to blank
                     $("#incomeMemo").val("");
                     $("#incomeValue").val("");
                 }
@@ -268,16 +268,16 @@ include 'footer.php';
                         },
                         success: function(result) {
                             if (result == 1) {
-                                /* load lasted balance data */
+                                // load lasted balance data
                                 loadmainHeader();
                                 loadTransactions();
-                                /* unselect category */
+                                // unselect category
                                 unselectCategory(type);
-                                /* close modal dialog */
+                                // close modal dialog
                                 $("[data-dismiss=modal]").trigger({
                                     type: "click"
                                 });
-                                /* alert success */
+                                // alert success
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'เพิ่มรายจ่ายเรียบร้อย',
@@ -305,16 +305,16 @@ include 'footer.php';
                         },
                         success: function(result) {
                             if (result == 1) {
-                                /* load lasted balance data */
+                                // load lasted balance data
                                 loadmainHeader();
                                 loadTransactions();
-                                /* unselect category */
+                                // unselect category
                                 unselectCategory(type);
-                                /* close modal dialog */
+                                // close modal dialog
                                 $("[data-dismiss=modal]").trigger({
                                     type: "click"
                                 });
-                                /* alert success */
+                                // alert success
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'เพิ่มรายรับเรียบร้อย',
