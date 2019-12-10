@@ -305,7 +305,7 @@ include 'footer.php';
                         },
                         success: function(result) {
                             if (result == 1) {
-                                // load lasted balance data
+                                // load lasted balance data 1
                                 loadmainHeader();
                                 loadTransactions();
                                 // unselect category
