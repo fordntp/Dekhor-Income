@@ -21,44 +21,51 @@ include 'navbar.php';
                                 </div>
                             </div>
                             <div id="selectMonth" class="form-group" style="display: none">
-                                <ul class="nav nav-pills align-items-center justify-content-center" id="pills-tab2" role="tablist">
-                                <li class="nav-item">
-                                <a class="nav-link show" id="pills-view-jan" data-toggle="pill" href="#view-jan" role="tab" aria-controls="view-jan" aria-selected="false">Jan</a>
-                                </li><li class="nav-item">
-                                <a class="nav-link show" id="pills-view-feb" data-toggle="pill" href="#view-feb" role="tab" aria-controls="view-feb" aria-selected="false">Feb</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link show" id="pills-view-mar" data-toggle="pill" href="#view-mar" role="tab" aria-controls="view-mar" aria-selected="false">Mar</a>
-                                </li>
+                                <div class="card bg-white earning-date">
+                                    <div class="card-block">
+                                        <div class="bd-example bd-example-tabs">
+                                            <ul class="nav nav-pills align-items-center justify-content-center" id="pills-tab2" role="tablist">
+                                            <li class="nav-item">
+                                            <a class="nav-link show" id="pills-view-jan" data-toggle="pill" href="#view-jan" role="tab" aria-controls="view-jan" aria-selected="false">Jan</a>
+                                            </li><li class="nav-item">
+                                            <a class="nav-link show" id="pills-view-feb" data-toggle="pill" href="#view-feb" role="tab" aria-controls="view-feb" aria-selected="false">Feb</a>
+                                            </li>
+                                            <li class="nav-item">
+                                            <a class="nav-link show" id="pills-view-mar" data-toggle="pill" href="#view-mar" role="tab" aria-controls="view-mar" aria-selected="false">Mar</a>
+                                            </li>
 
-                                <li class="nav-item">
-                                <a class="nav-link show" id="pills-view-apr" data-toggle="pill" href="#view-apr" role="tab" aria-controls="view-apr" aria-selected="false">Apr</a>
-                                </li><li class="nav-item">
-                                <a class="nav-link show" id="pills-view-may" data-toggle="pill" href="#view-may" role="tab" aria-controls="view-may" aria-selected="false">May</a>
-                                </li>
+                                            <li class="nav-item">
+                                            <a class="nav-link show" id="pills-view-apr" data-toggle="pill" href="#view-apr" role="tab" aria-controls="view-apr" aria-selected="false">Apr</a>
+                                            </li><li class="nav-item">
+                                            <a class="nav-link show" id="pills-view-may" data-toggle="pill" href="#view-may" role="tab" aria-controls="view-may" aria-selected="false">May</a>
+                                            </li>
 
-                                <li class="nav-item">
-                                <a class="nav-link show" id="pills-view-jun" data-toggle="pill" href="#view-jun" role="tab" aria-controls="view-jun" aria-selected="false">Jun</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link show" id="pills-view-jul" data-toggle="pill" href="#view-jul" role="tab" aria-controls="view-jul" aria-selected="false">Jul</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link show" id="pills-view-aug" data-toggle="pill" href="#view-aug" role="tab" aria-controls="view-aug" aria-selected="false">Aug</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link show" id="pills-view-sep" data-toggle="pill" href="#view-sep" role="tab" aria-controls="view-sep" aria-selected="false">Sep</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link show" id="pills-view-oct" data-toggle="pill" href="#view-oct" role="tab" aria-controls="view-oct" aria-selected="false">Oct</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link show" id="pills-view-nov" data-toggle="pill" href="#view-nov" role="tab" aria-controls="view-nov" aria-selected="false">Nov</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link show active" id="pills-view-dec" data-toggle="pill" href="#view-dec" role="tab" aria-controls="view-dec" aria-selected="true">Dec</a>
-                                </li>
-                                </ul>
+                                            <li class="nav-item">
+                                            <a class="nav-link show" id="pills-view-jun" data-toggle="pill" href="#view-jun" role="tab" aria-controls="view-jun" aria-selected="false">Jun</a>
+                                            </li>
+                                            <li class="nav-item">
+                                            <a class="nav-link show" id="pills-view-jul" data-toggle="pill" href="#view-jul" role="tab" aria-controls="view-jul" aria-selected="false">Jul</a>
+                                            </li>
+                                            <li class="nav-item">
+                                            <a class="nav-link show" id="pills-view-aug" data-toggle="pill" href="#view-aug" role="tab" aria-controls="view-aug" aria-selected="false">Aug</a>
+                                            </li>
+                                            <li class="nav-item">
+                                            <a class="nav-link show" id="pills-view-sep" data-toggle="pill" href="#view-sep" role="tab" aria-controls="view-sep" aria-selected="false">Sep</a>
+                                            </li>
+                                            <li class="nav-item">
+                                            <a class="nav-link show" id="pills-view-oct" data-toggle="pill" href="#view-oct" role="tab" aria-controls="view-oct" aria-selected="false">Oct</a>
+                                            </li>
+                                            <li class="nav-item">
+                                            <a class="nav-link show" id="pills-view-nov" data-toggle="pill" href="#view-nov" role="tab" aria-controls="view-nov" aria-selected="false">Nov</a>
+                                            </li>
+                                            <li class="nav-item">
+                                            <a class="nav-link show active" id="pills-view-dec" data-toggle="pill" href="#view-dec" role="tab" aria-controls="view-dec" aria-selected="true">Dec</a>
+                                            </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="row">
                                 <!--[ daily sales section ] start-->

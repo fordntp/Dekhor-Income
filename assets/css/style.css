@@ -7810,14 +7810,14 @@ body.layout-8 .card:hover {
 .earning-date .bd-example .nav-pills .nav-link {
     min-width: auto;
     padding: 6px 20px;
-    color: #fff;
+    color: #626262;
 }
 
 .earning-date .bd-example .nav-pills .nav-link.active {
-    background: #fff;
+    background: #04a9f5;
     -webkit-box-shadow: none;
     box-shadow: none;
-    color: #000;
+    color: #fff;
 }
 
 .earning-date .bd-example .nav-pills .nav-link.active:after {
@@ -7825,7 +7825,7 @@ body.layout-8 .card:hover {
     position: absolute;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 5px solid #fff;
+    border-bottom: 5px solid #04a9f5;
     top: -5px;
     left: 0;
     right: 0;
