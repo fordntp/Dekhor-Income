@@ -12,8 +12,53 @@ include 'navbar.php';
                     <div class="main-body">
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
-                            <div class="form-group text-right">
-                                <a class="text-c-red" href="logout"><i class="feather icon-log-out"></i> ออกจากระบบ</a>
+                            <div class="form-group row">
+                                <div class="col-6">
+                                    <a class="btn btn-outline-primary" onclick="selectMonth();" href="#!">Dec <i class="fas fa-sort-down"></i></a>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <a class="text-c-red" href="logout"><i class="feather icon-log-out"></i> ออกจากระบบ</a>
+                                </div>
+                            </div>
+                            <div id="selectMonth" class="form-group" style="display: none">
+                                <ul class="nav nav-pills align-items-center justify-content-center" id="pills-tab2" role="tablist">
+                                <li class="nav-item">
+                                <a class="nav-link show" id="pills-view-mon" data-toggle="pill" href="#view-mon" role="tab" aria-controls="view-mon" aria-selected="false">Jan</a>
+                                </li><li class="nav-item">
+                                <a class="nav-link show" id="pills-view-tue" data-toggle="pill" href="#view-tue" role="tab" aria-controls="view-tue" aria-selected="false">Feb</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link show" id="pills-view-tue" data-toggle="pill" href="#view-tue" role="tab" aria-controls="view-tue" aria-selected="false">Mar</a>
+                                </li>
+
+                                <li class="nav-item">
+                                <a class="nav-link show" id="pills-view-tue" data-toggle="pill" href="#view-tue" role="tab" aria-controls="view-tue" aria-selected="false">Apr</a>
+                                </li><li class="nav-item">
+                                <a class="nav-link show" id="pills-view-tue" data-toggle="pill" href="#view-tue" role="tab" aria-controls="view-tue" aria-selected="false">May</a>
+                                </li>
+
+                                <li class="nav-item">
+                                <a class="nav-link show" id="pills-view-wed" data-toggle="pill" href="#view-wed" role="tab" aria-controls="view-wed" aria-selected="false">Jun</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link show" id="pills-view-thu" data-toggle="pill" href="#view-thu" role="tab" aria-controls="view-thu" aria-selected="false">Jul</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link show" id="pills-view-fri" data-toggle="pill" href="#view-fri" role="tab" aria-controls="view-fri" aria-selected="false">Aug</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link show" id="pills-view-sat" data-toggle="pill" href="#view-sat" role="tab" aria-controls="view-sat" aria-selected="false">Sep</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link show" id="pills-view-sun" data-toggle="pill" href="#view-sun" role="tab" aria-controls="view-sun" aria-selected="false">Oct</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link show" id="pills-view-sun" data-toggle="pill" href="#view-sun" role="tab" aria-controls="view-sun" aria-selected="false">Nov</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link show active" id="pills-view-sun" data-toggle="pill" href="#view-sun" role="tab" aria-controls="view-sun" aria-selected="true">Dec</a>
+                                </li>
+                                </ul>
                             </div>
                             <div class="row">
                                 <!--[ daily sales section ] start-->
@@ -224,6 +269,8 @@ include 'footer.php';
 ?>
         <script>
 
+            let monthShow = false;
+
             let categoryID;
             let removeExSelected = document.querySelectorAll('.select-ex-category');
             let removeInSelected = document.querySelectorAll('.select-in-category');
@@ -352,6 +399,17 @@ include 'footer.php';
                         categoryID = id;
                     });
                 }
+            }
+
+            function selectMonth(){
+                if (monthShow != true){
+                    $("#selectMonth").slideDown("fast");
+                    monthShow = true;
+                } else{
+                    $("#selectMonth").slideUp("fast");
+                    monthShow = false;
+                }
+
             }
 
             function loadmainHeader() {
