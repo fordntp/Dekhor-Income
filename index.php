@@ -48,41 +48,6 @@ include 'navbar.php';
                             <div id="myTabContent">
                                 <div class="tab-pane fade show active" id="transaction" role="tabpanel" aria-labelledby="transaction-tab">
                                     <div id="transactionsShow" class="row"></div>
-                                    <!-- <div class="row">
-                                        <div class="col-xl-12">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <h5>15/11/62 ศ.</h5>
-                                                    <span class="text-muted float-right">รายรับ: 10,249.95 | รายจ่าย: 2,942.32</span>
-                                                </div>
-                                                <div class="card-block">
-                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-primary btn-circle btn-circle-sm"><i class="fa fa-shopping-cart"></i></button> ช๊อปปิ้ง <span class="float-right">- 1,439.32‬</span></h5>
-                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-warning btn-circle btn-circle-sm"><i class="fas fa-utensils"></i></button> ชานมไข่มุก <span class="float-right">- 40</span></h5>
-                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-warning btn-circle btn-circle-sm"><i class="fas fa-utensils"></i></button> ข้าว <span class="float-right">- 55</span></h5>
-                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-primary btn-circle btn-circle-sm"><i class="fa fa-shopping-cart"></i></button> ช๊อปปิ้ง <span class="float-right">- 940</span></h5>
-                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-primary btn-circle btn-circle-sm"><i class="fa fa-shopping-cart"></i></button> ช๊อปปิ้ง <span class="float-right">- 468</span></h5>
-                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-danger btn-circle btn-circle-sm"><i class="fas fa-piggy-bank"></i></button> เงินรายเดือน <span class="float-right">10,249.95</span></h5>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-12">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <h5>15/11/62 ศ.</h5>
-                                                    <span class="text-muted float-right">รายรับ: 10,249.95 | รายจ่าย: 2,942.32</span>
-                                                </div>
-                                                <div class="card-block">
-                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-primary btn-circle btn-circle-sm"><i class="fa fa-shopping-cart"></i></button> ช๊อปปิ้ง <span class="float-right">- 1,439.32‬</span></h5>
-                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-warning btn-circle btn-circle-sm"><i class="fas fa-utensils"></i></button> ชานมไข่มุก <span class="float-right">- 40</span></h5>
-                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-warning btn-circle btn-circle-sm"><i class="fas fa-utensils"></i></button> ข้าว <span class="float-right">- 55</span></h5>
-                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-primary btn-circle btn-circle-sm"><i class="fa fa-shopping-cart"></i></button> ช๊อปปิ้ง <span class="float-right">- 940</span></h5>
-                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-primary btn-circle btn-circle-sm"><i class="fa fa-shopping-cart"></i></button> ช๊อปปิ้ง <span class="float-right">- 468</span></h5>
-                                                    <h5 class="text-muted f-w-300 mt-4"><button class="btn btn-danger btn-circle btn-circle-sm"><i class="fas fa-piggy-bank"></i></button> เงินรายเดือน <span class="float-right">10,249.95</span></h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="btn-group dropup fixed-m">
                                         <button class="btn btn-icon btn-rounded btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="feather icon-plus"></i>
