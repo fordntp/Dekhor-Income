@@ -1,6 +1,8 @@
 <?php
 include 'config.php';
 
+date_default_timezone_set("Asia/Bangkok");
+
 $conn = mysqli_connect("$host", "$dbuser", "$dbpass", "$dbtable");
 mysqli_query($conn, "SET NAMES UTF8");
 
