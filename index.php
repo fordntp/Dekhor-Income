@@ -12,10 +12,12 @@ include 'navbar.php';
                     <div class="main-body">
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
+                            <div class="form-group text-right">
+                                <a class="text-c-red" href="logout"><i class="feather icon-log-out"></i> ออกจากระบบ</a>
+                            </div>
                             <div class="row">
                                 <!--[ daily sales section ] start-->
                                 <div class="col-md-12 col-xl-12">
-
                                     <div class="card Active-visitor">
                                         <div class="card-block text-center">
                                             <div class="row card-active">
