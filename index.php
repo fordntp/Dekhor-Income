@@ -12,7 +12,7 @@ include 'navbar.php';
                     <div class="main-body">
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
-                            <div class="form-group row">
+                            <div class="row">
                                 <div class="col-6">
                                     <a class="btn text-c-gray" onclick="selectMonth();" href="#!">Dec <i class="fas fa-sort-down"></i></a>
                                 </div>
