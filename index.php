@@ -430,11 +430,11 @@ include 'footer.php';
 
             }
 
-            function loadmainHeader() {
+            function loadmainHeader(month, year) {
                 $.ajax({
                     type: "POST",
                     url: "include/call_main_header.php",
-                    data: "",
+                    data: {month: month, year: year},
                     success: function(result) {
                         let data = jQuery.parseJSON(result);
                         $("#sum_in").html(data["sum_IN"]);
@@ -444,11 +444,11 @@ include 'footer.php';
                 });
             }
 
-            function loadTransactions() {
+            function loadTransactions(month, year) {
                 $.ajax({
                     type: "POST",
                     url: "include/call_main_transactions.php",
-                    data: "",
+                    data: {month: month, year: year},
                     success: function(result) {
                         let Obj = jQuery.parseJSON(result);
                         let card = "";
@@ -478,8 +478,9 @@ include 'footer.php';
                 });
             }
             $(document).ready(function() {
-                loadTransactions();
-                loadmainHeader();
+
+                loadTransactions(12,2019);
+                loadmainHeader(12,2019);
 
                 var $window = $(window);
                 var nav = $('.fixed-m');
