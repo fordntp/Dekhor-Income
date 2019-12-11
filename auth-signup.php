@@ -112,6 +112,7 @@ if (isset($_SESSION["user_id"])) {
 function do_register(){
     var username = $("#username").val();
     var password = $("#password_1").val();
+    var re_password = $("#password_2").val();
     if (username != "" && password != ""){
       $.ajax({
         type: "POST",
@@ -135,11 +136,11 @@ function do_register(){
         }
     });
     }
-    else{
+    else if (password != re_password){
       Swal.fire({
           icon: 'warning',
-          title: 'กรุณากรอกข้อมูลผู้ใช้',
-          text: 'ชื่อผู้ใช้งาน หรือ รหัสผ่านไม่ถูกต้อง',
+          title: 'ข้อมูลผู้ใช้ไม่ถูกต้อง',
+          text: 'รหัสผ่านไม่ถูกต้อง',
           timer: 3000
       });
     }
