@@ -362,6 +362,7 @@ include 'footer.php';
             function addExpenses() {
                 let expensesMemo = $("#expensesMemo").val();
                 let expensesValue = $("#expensesValue").val();
+                let expensesdate = $("#expensesDate").val();
                 let type = "OUT";
                 if (expensesMemo != "" && expensesValue != "") {
                     $.ajax({
@@ -371,6 +372,7 @@ include 'footer.php';
                             textmemo: expensesMemo,
                             value: expensesValue,
                             categoryid: categoryID,
+                            date: expensesdate,
                             type: type
                         },
                         success: function(result) {
@@ -399,6 +401,7 @@ include 'footer.php';
             function addIncome() {
                 let incomeMemo = $("#incomeMemo").val();
                 let incomeValue = $("#incomeValue").val();
+                let incomedate = $("#incomeDate").val();
                 let type = "IN";
                 if (incomeMemo != "" && incomeValue != "") {
                     $.ajax({
@@ -408,6 +411,7 @@ include 'footer.php';
                             textmemo: incomeMemo,
                             value: incomeValue,
                             categoryid: categoryID,
+                            date: incomedate,
                             type: type
                         },
                         success: function(result) {

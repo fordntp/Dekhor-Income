@@ -9,6 +9,8 @@ $memo = mysqli_real_escape_string($conn, $_REQUEST['textmemo']);
 $categoryID = mysqli_real_escape_string($conn, $_REQUEST['categoryid']);
 $value = mysqli_real_escape_string($conn, $_REQUEST['value']);
 $type = mysqli_real_escape_string($conn, $_REQUEST['type']);
+$date = mysqli_real_escape_string($conn, $_REQUEST['date']);
+$date = $date . " " . date("H:i:s");
 $value = normalizeDecimal($value);
 
 /*echo $memo."<br>";
@@ -17,7 +19,7 @@ echo $value."<br>";
 echo $type."<br>";*/
 
 //ADD to dekhor_record
-$cmd = "INSERT INTO dekhor_record (user_id,type,category_id,wallet_id,memo,value,create_date) VALUES ('$user_id','$type','$categoryID','$wallet_id','$memo','$value','$get_date');";
+$cmd = "INSERT INTO dekhor_record (user_id,type,category_id,wallet_id,memo,value,create_date) VALUES ('$user_id','$type','$categoryID','$wallet_id','$memo','$value','$date');";
 $qry = mysqli_query($conn, $cmd);
 
 /*-----------------------BALANCE Calculation----------------------------------------------------------------------------*/
