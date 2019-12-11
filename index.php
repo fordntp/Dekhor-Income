@@ -438,7 +438,7 @@ include 'footer.php';
                 $.ajax({
                     type: "POST",
                     url: "include/call_main_header.php",
-                    data: {month: month, year: year},
+                    data: { month: month, year: year },
                     success: function(result) {
                         let data = jQuery.parseJSON(result);
                         $("#sum_in").html(data["sum_IN"]);
@@ -452,7 +452,7 @@ include 'footer.php';
                 $.ajax({
                     type: "POST",
                     url: "include/call_main_transactions.php",
-                    data: {month: month, year: year},
+                    data: { month: month, year: year },
                     success: function(result) {
                         let Obj = jQuery.parseJSON(result);
                         let card = "";
@@ -489,6 +489,7 @@ include 'footer.php';
 
             $(document).ready(function() {
 
+                alert(<?=$_SESSION['wallet_id']?>);
                 //load Header & Transactions
                 loadData(month, year);
 
