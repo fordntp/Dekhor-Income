@@ -38,7 +38,7 @@ if ($type == "IN") {
 } else if ($type == "OUT") {
     $NewBalance = $Balance - $value;
 
-    $update = "UPDATE dekhor_wallet SET balance = '$NewBalance', last_update = '$get_date' WHERE id = '$walletID' AND user_id = '$user_id';";
+    $update = "UPDATE dekhor_wallet SET balance = '$NewBalance', last_update = '$get_date' WHERE id = '$wallet_id' AND user_id = '$user_id';";
     $qry2 = mysqli_query($conn, $update);
 
 } else if ($type == "TRF") {
