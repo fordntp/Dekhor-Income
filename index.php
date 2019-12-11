@@ -14,7 +14,7 @@ include 'navbar.php';
                             <!-- [ Main Content ] start -->
                             <div class="form-group row">
                                 <div class="col-6">
-                                    <a class="btn btn-outline-primary" onclick="selectMonth();" href="#!">Dec <i class="fas fa-sort-down"></i></a>
+                                    <a class="btn text-c-gray" onclick="selectMonth();" href="#!">Dec <i class="fas fa-sort-down"></i></a>
                                 </div>
                                 <div class="col-6 text-right">
                                     <a class="text-c-red" href="logout"><i class="feather icon-log-out"></i> ออกจากระบบ</a>
