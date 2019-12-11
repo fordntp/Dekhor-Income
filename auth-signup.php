@@ -113,7 +113,7 @@ function do_register(){
     var username = $("#username").val();
     var password = $("#password_1").val();
     var re_password = $("#password_2").val();
-    if (username != "" && password != ""){
+    if (username != "" && password != "" && password == re_password){
       $.ajax({
         type: "POST",
         url: "include/call_signup.php",
@@ -141,6 +141,14 @@ function do_register(){
           icon: 'warning',
           title: 'ข้อมูลผู้ใช้ไม่ถูกต้อง',
           text: 'ยืนยันรหัสผ่านไม่ถูกต้อง',
+          timer: 3000
+      });
+    }
+    else {
+      Swal.fire({
+          icon: 'warning',
+          title: 'ข้อมูลผู้ใช้ไม่ถูกต้อง',
+          text: 'ชื่อผู้ใช้งาน หรือ รหัสผ่านไม่ถูกต้อง',
           timer: 3000
       });
     }
