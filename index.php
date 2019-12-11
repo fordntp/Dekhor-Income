@@ -14,7 +14,7 @@ include 'navbar.php';
                             <!-- [ Main Content ] start -->
                             <div class="row">
                                 <div class="col-6">
-                                    <a class="btn text-c-gray" onclick="selectMonth();" href="#!">Dec <i class="fas fa-sort-down"></i></a>
+                                    <a class="btn text-c-gray" id="currentMonth" onclick="selectMonth();" href="#!"></a>
                                 </div>
                                 <div class="col-6 text-right">
                                     <a class="text-c-red" href="logout"><i class="feather icon-log-out"></i> ออกจากระบบ</a>
@@ -289,11 +289,14 @@ include 'footer.php';
 
             //select month & year to show transaction
             let monthShow = false;
+            let arrayMonth = ["","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
             let date = new Date();
             let month = date.getMonth()+1;
             let year = date.getFullYear();
+
             $("#select-year").html(year);
+            $("#currentMonth").html(""+arrayMonth[month]+" <i class=\"fas fa-sort-down\"></i>");
             console.log('current'+month+''+year+'');
 
             function selectMonth(){
@@ -324,6 +327,7 @@ include 'footer.php';
             function monthValue(m){
                 month = m;
                 console.log('monthValue'+month+''+year+'');
+                $("#currentMonth").html(""+arrayMonth[month]+" <i class=\"fas fa-sort-down\"></i>");
                 loadData(month, year);
                 selectMonth();
             }
