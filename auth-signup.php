@@ -107,5 +107,43 @@ if (isset($_SESSION["user_id"])) {
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.css" id="theme-styles">
+<script>
+  /* ajax */
+function do_register(){
+    var username = $("#username").val();
+    var password = $("#password_1").val();
+    if (username != "" && password != ""){
+      $.ajax({
+        type: "POST",
+        url: "include/call_signup.php",
+        //data: $("#myform").serialize(),
+        data: { username: username, password: password },
+        success: function(result) {
+            //alert(result);
+            if (result == 1) {
+
+              window.location.href = "<?=$dirurl?>";
+            } else if (result == 0) {
+              Swal.fire({
+                  icon: 'error',
+                  title: 'สมัครสมาชิกไม่สำเร็จ',
+                  text: 'ชื่อผู้ใช้งานนี้มีอยู่แล้วในระบบ',
+                  timer: 3000
+              });
+              //alert(result);
+            }
+        }
+    });
+    }
+    else{
+      Swal.fire({
+          icon: 'warning',
+          title: 'กรุณากรอกข้อมูลผู้ใช้',
+          text: 'ชื่อผู้ใช้งาน หรือ รหัสผ่านไม่ถูกต้อง',
+          timer: 3000
+      });
+    }
+}
+</script>
 </body>
 </html>

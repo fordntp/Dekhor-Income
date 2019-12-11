@@ -489,7 +489,6 @@ include 'footer.php';
 
             $(document).ready(function() {
 
-                alert(<?=$_SESSION['wallet_id']?>);
                 //load Header & Transactions
                 loadData(month, year);
 
