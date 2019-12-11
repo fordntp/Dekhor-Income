@@ -19,7 +19,7 @@ include 'header.php';
                         <label>Navigation</label>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item active">
-                        <a href="https://tarit.in.th/dekhor/" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">หน้าหลัก</span></a>
+                        <a href="<?=$dirurl?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">หน้าหลัก</span></a>
                     </li>
                     <!-- <li class="nav-item pcoded-menu-caption">
                         <label>UI Element</label>
