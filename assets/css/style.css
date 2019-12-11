@@ -7821,7 +7821,7 @@ body.layout-8 .card:hover {
 }
 
 .earning-date .bd-example .nav-pills .nav-link.active:after {
-    content: "";
+    /* content: ""; */
     position: absolute;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
@@ -11687,7 +11687,7 @@ div.code-toolbar>.toolbar span:hover {
     border: 0;
     border-radius: 0;
     line-height: 18px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-size: 12px;
     font-weight: 500;
     min-width: 100px;
