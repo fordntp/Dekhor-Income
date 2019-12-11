@@ -73,12 +73,6 @@ if (isset($_SESSION["user_id"])) {
   </style>
     <div class="auth-wrapper" style="background-color:#04a9f5;">
         <div class="auth-content">
-            <!-- <div class="auth-bg">
-                <span class="r"></span>
-                <span class="r s"></span>
-                <span class="r s"></span>
-                <span class="r"></span>
-            </div> -->
             <div class="card shadow-5">
                 <div class="card-body text-center">
                     <div class="mb-4">
@@ -98,8 +92,8 @@ if (isset($_SESSION["user_id"])) {
                         </div>
                     </div> -->
                     <button class="btn btn-primary shadow-2 mb-4" onclick="return do_login();">เข้าสู่ระบบ</button>
-                    <!-- <p class="mb-2 text-muted">Forgot password? <a href="auth-reset-password.html">Reset</a></p>
-                    <p class="mb-0 text-muted">Don’t have an account? <a href="auth-signup.html">Signup</a></p> -->
+                    <!-- <p class="mb-2 text-muted">Forgot password? <a href="auth-reset-password.html">Reset</a></p> -->
+                    <p class="mb-0 text-muted">ยังไม่มีบัญชีผู้ใช้งาน ? <a href="auth-signup">สมัครสมาชิก</a></p>
                 </div>
             </div>
         </div>
