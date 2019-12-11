@@ -7,13 +7,14 @@
     $user = mysqli_real_escape_string($conn,$user);
     $pass = mysqli_real_escape_string($conn,$pass);
     $info = array();
-    $cmd = "SELECT * FROM dekhor_user WHERE username='$user' && password = '$pass';";
+    $cmd = "SELECT *,b.id as wallet_id FROM dekhor_user a JOIN dekhor_wallet b ON a.id = b.user_id WHERE username='$user' && password = '$pass' ORDER BY b.id ASC;";
     $qry = mysqli_query($conn,$cmd);
     $RowCheck = mysqli_num_rows($qry);
     if($RowCheck > 0)
     {
         $data = mysqli_fetch_array($qry);
         $_SESSION['user_id'] = $data['id'];
+        $_SESSION['wallet_id'] = $data['wallet_id'];
         echo 1;
     }
     else
