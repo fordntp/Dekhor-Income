@@ -17,7 +17,7 @@ echo $value."<br>";
 echo $type."<br>";*/
 
 //ADD to dekhor_record
-$cmd = "INSERT INTO dekhor_record (user_id,type,category_id,wallet_id,memo,value,create_date) VALUES ('$user_id','$type','$categoryID','$walletID','$memo','$value','$get_date');";
+$cmd = "INSERT INTO dekhor_record (user_id,type,category_id,wallet_id,memo,value,create_date) VALUES ('$user_id','$type','$categoryID','$wallet_id','$memo','$value','$get_date');";
 $qry = mysqli_query($conn, $cmd);
 
 /*-----------------------BALANCE Calculation----------------------------------------------------------------------------*/
