@@ -3,8 +3,8 @@
 include 'database.php';
 session_start();
 $user_id = $_SESSION['user_id'];
-//$walletID = mysqli_real_escape_string($conn,$_REQUEST['walletID']);
-$walletID = 1;
+$walletID = mysqli_real_escape_string($conn,$_REQUEST['walletID']);
+//$walletID = 1;
 $memo = mysqli_real_escape_string($conn, $_REQUEST['textmemo']);
 $categoryID = mysqli_real_escape_string($conn, $_REQUEST['categoryid']);
 $value = mysqli_real_escape_string($conn, $_REQUEST['value']);
