@@ -128,7 +128,7 @@ function do_register(){
               Swal.fire({
                   icon: 'error',
                   title: 'สมัครสมาชิกไม่สำเร็จ',
-                  text: 'ชื่อผู้ใช้งานนี้มีอยู่แล้วในระบบ',
+                  text: 'มีชื่อผู้ใช้งานนี้ในระบบ',
                   timer: 3000
               });
               //alert(result);
@@ -140,7 +140,7 @@ function do_register(){
       Swal.fire({
           icon: 'warning',
           title: 'ข้อมูลผู้ใช้ไม่ถูกต้อง',
-          text: 'รหัสผ่านไม่ถูกต้อง',
+          text: 'ยืนยันรหัสผ่านไม่ถูกต้อง',
           timer: 3000
       });
     }
