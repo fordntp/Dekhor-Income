@@ -24,7 +24,7 @@
                 $user_id = $data['id'];
             }
 
-            $cmd_insert2 = "INSERT INTO dekhor_wallet (type,user_id,wallet_name,balance,create_date) ('wallet','$user_id','PiggyBank','0.00',now());";
+            $cmd_insert2 = "INSERT INTO dekhor_wallet (type,user_id,wallet_name,balance,create_date) VALUES ('wallet','$user_id','PiggyBank','0.00',now());";
             $qry_select2 = mysqli_query($conn,$cmd_insert2);
 
             echo 1 // complete
