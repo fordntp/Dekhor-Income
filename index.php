@@ -325,6 +325,7 @@ include 'footer.php';
                 month = m;
                 console.log('monthValue'+month+''+year+'');
                 loadData(month, year);
+                selectMonth();
             }
 
             //select category object
