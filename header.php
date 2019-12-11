@@ -88,10 +88,16 @@ if (!isset($_SESSION["user_id"])) {
       div.balance-header {
         font-size: 3.5vw;
       }
+      div.select-year-header {
+        font-size: 6vw;
+      }
     }
     @media screen and (min-width: 768px) {
       div.balance-header {
         font-size: 1.5vw;
+      }
+      div.select-year-header {
+        font-size: 1.8vw;
       }
     }
     .form-rounded {
