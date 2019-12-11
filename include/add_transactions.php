@@ -21,7 +21,7 @@ $cmd = "INSERT INTO dekhor_record (user_id,type,category_id,wallet_id,memo,value
 $qry = mysqli_query($conn, $cmd);
 
 /*-----------------------BALANCE Calculation----------------------------------------------------------------------------*/
-$select = "SELECT * FROM dekhor_wallet WHERE id = '$wallet_id' AND user_id = '$user_id';";
+$select = "SELECT * FROM dekhor_wallet WHERE id = '$wallet_id' ;";
 $qry3 = mysqli_query($conn, $select);
 while ($data = mysqli_fetch_array($qry3)) {
     $Balance = $data['balance'];
@@ -32,13 +32,13 @@ while ($data = mysqli_fetch_array($qry3)) {
 if ($type == "IN") {
     $NewBalance = $Balance + $value;
 
-    $update = "UPDATE dekhor_wallet SET balance = '$NewBalance', last_update = '$get_date' WHERE id = '$wallet_id' AND user_id = '$user_id';";
+    $update = "UPDATE dekhor_wallet SET balance = '$NewBalance', last_update = '$get_date' WHERE id = '$wallet_id';";
     $qry2 = mysqli_query($conn, $update);
 
 } else if ($type == "OUT") {
     $NewBalance = $Balance - $value;
 
-    $update = "UPDATE dekhor_wallet SET balance = '$NewBalance', last_update = '$get_date' WHERE id = '$wallet_id' AND user_id = '$user_id';";
+    $update = "UPDATE dekhor_wallet SET balance = '$NewBalance', last_update = '$get_date' WHERE id = '$wallet_id';";
     $qry2 = mysqli_query($conn, $update);
 
 } else if ($type == "TRF") {
