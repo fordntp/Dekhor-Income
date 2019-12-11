@@ -287,8 +287,12 @@ include 'footer.php';
 ?>
         <script>
 
+            //select month & year to show transaction
             let monthShow = false;
+            let month = 12;
+            let year = 2019;
 
+            //select category object
             let categoryID;
             let removeExSelected = document.querySelectorAll('.select-ex-category');
             let removeInSelected = document.querySelectorAll('.select-in-category');
@@ -336,8 +340,8 @@ include 'footer.php';
                         success: function(result) {
                             if (result == 1) {
                                 // load lasted balance data
-                                loadmainHeader();
-                                loadTransactions();
+                                //load Header & Transactions
+                                loadData(month, year);
                                 // unselect category
                                 unselectCategory(type);
                                 // close modal dialog
@@ -373,8 +377,8 @@ include 'footer.php';
                         success: function(result) {
                             if (result == 1) {
                                 // load lasted balance data
-                                loadmainHeader();
-                                loadTransactions();
+                                //load Header & Transactions
+                                loadData(month, year);
                                 // unselect category
                                 unselectCategory(type);
                                 // close modal dialog
@@ -477,11 +481,18 @@ include 'footer.php';
                     }
                 });
             }
+
+            function loadData(month, year){
+                loadTransactions(month, year);
+                loadmainHeader(month, year);
+            }
+
             $(document).ready(function() {
 
-                loadTransactions(12,2019);
-                loadmainHeader(12,2019);
+                //load Header & Transactions
+                loadData(month, year);
 
+                //fix button add transaction & animate
                 var $window = $(window);
                 var nav = $('.fixed-m');
                 $window.scroll(function() {
@@ -492,6 +503,7 @@ include 'footer.php';
                     }
                 });
 
+                //when select category show transaction form input
                 $(".select-ex-category").click(function() {
                     $("#showupExpenses").slideDown("fast");
                 });
