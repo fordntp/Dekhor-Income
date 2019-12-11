@@ -5,11 +5,15 @@ include 'database.php';
 $sum_IN = 0;
 $sum_OUT = 0;
 $sum_ALL = 0;
+$month = $_REQUEST['month'];
+$year = $_REQUEST['year'];
 
 session_start();
 $user_id = $_SESSION['user_id'];
+$wallet_id = $_SESSION['wallet_id'];
 
-$cmd = "SELECT * FROM dekhor_record WHERE /*wallet_id = */ user_id = '$user_id' and month(create_date)=month(now());";
+
+$cmd = "SELECT * FROM dekhor_record WHERE wallet_id = '$wallet_id' /*user_id = */ and ( month(create_date)='$month' && year(create_date)='$year' );";
 $qry = mysqli_query($conn, $cmd);
 while ($data = mysqli_fetch_array($qry)) {
     $type = $data['type'];
@@ -23,7 +27,7 @@ while ($data = mysqli_fetch_array($qry)) {
 
 $sum_ALL = $sum_IN - $sum_OUT;
 
-$cmd2 = "SELECT balance FROM dekhor_wallet WHERE /*id =  AND*/ user_id = '$user_id';";
+$cmd2 = "SELECT balance FROM dekhor_wallet WHERE id = '$wallet_id' AND user_id = '$user_id';";
 $qry2 = mysqli_query($conn, $cmd2);
 while ($data2 = mysqli_fetch_array($qry2)) {
     $balance = $data2['balance'];
