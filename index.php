@@ -25,52 +25,52 @@ include 'navbar.php';
                                     <div class="card-block">
                                         <div class="row">
                                             <div class="col-4">
-                                                <a href="#!" class="btn btn-lg btn-block text-c-gray"><i class="fas fa-angle-left f-40"></i></a>
+                                                <a href="#!" onclick="yearValue('minus');" class="btn btn-lg btn-block text-c-gray"><i class="fas fa-angle-left f-40"></i></a>
                                             </div>
                                             <div class="col-4">
-                                                <div class="select-year-header text-center">2019</div>
+                                                <div id="select-year" class="select-year-header text-center"></div>
                                             </div>
                                             <div class="col-4">
-                                                <a href="#!" class="btn btn-lg btn-block text-c-gray"><i class="fas fa-angle-right f-40"></i></a>
+                                                <a href="#!" onclick="yearValue('plus');" class="btn btn-lg btn-block text-c-gray"><i class="fas fa-angle-right f-40"></i></a>
                                             </div>
                                         </div>
                                         <div class="bd-example bd-example-tabs">
                                             <ul class="nav nav-pills align-items-center justify-content-center" id="pills-tab2" role="tablist">
                                                 <li class="nav-item">
-                                                    <a class="nav-link show" id="pills-view-jan" data-toggle="pill" href="#view-jan" role="tab" aria-controls="view-jan" aria-selected="false">Jan</a>
+                                                    <a class="nav-link show" onclick="monthValue(1);" id="pills-view-jan" data-toggle="pill" href="#view-jan" role="tab" aria-controls="view-jan" aria-selected="false">Jan</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link show" id="pills-view-feb" data-toggle="pill" href="#view-feb" role="tab" aria-controls="view-feb" aria-selected="false">Feb</a>
+                                                    <a class="nav-link show" onclick="monthValue(2);" id="pills-view-feb" data-toggle="pill" href="#view-feb" role="tab" aria-controls="view-feb" aria-selected="false">Feb</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link show" id="pills-view-mar" data-toggle="pill" href="#view-mar" role="tab" aria-controls="view-mar" aria-selected="false">Mar</a>
+                                                    <a class="nav-link show" onclick="monthValue(3);" id="pills-view-mar" data-toggle="pill" href="#view-mar" role="tab" aria-controls="view-mar" aria-selected="false">Mar</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link show" id="pills-view-apr" data-toggle="pill" href="#view-apr" role="tab" aria-controls="view-apr" aria-selected="false">Apr</a>
+                                                    <a class="nav-link show" onclick="monthValue(4);" id="pills-view-apr" data-toggle="pill" href="#view-apr" role="tab" aria-controls="view-apr" aria-selected="false">Apr</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link show" id="pills-view-may" data-toggle="pill" href="#view-may" role="tab" aria-controls="view-may" aria-selected="false">May</a>
+                                                    <a class="nav-link show" onclick="monthValue(5);" id="pills-view-may" data-toggle="pill" href="#view-may" role="tab" aria-controls="view-may" aria-selected="false">May</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link show" id="pills-view-jun" data-toggle="pill" href="#view-jun" role="tab" aria-controls="view-jun" aria-selected="false">Jun</a>
+                                                    <a class="nav-link show" onclick="monthValue(6);" id="pills-view-jun" data-toggle="pill" href="#view-jun" role="tab" aria-controls="view-jun" aria-selected="false">Jun</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link show" id="pills-view-jul" data-toggle="pill" href="#view-jul" role="tab" aria-controls="view-jul" aria-selected="false">Jul</a>
+                                                    <a class="nav-link show" onclick="monthValue(7);" id="pills-view-jul" data-toggle="pill" href="#view-jul" role="tab" aria-controls="view-jul" aria-selected="false">Jul</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link show" id="pills-view-aug" data-toggle="pill" href="#view-aug" role="tab" aria-controls="view-aug" aria-selected="false">Aug</a>
+                                                    <a class="nav-link show" onclick="monthValue(8);" id="pills-view-aug" data-toggle="pill" href="#view-aug" role="tab" aria-controls="view-aug" aria-selected="false">Aug</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link show" id="pills-view-sep" data-toggle="pill" href="#view-sep" role="tab" aria-controls="view-sep" aria-selected="false">Sep</a>
+                                                    <a class="nav-link show" onclick="monthValue(9);" id="pills-view-sep" data-toggle="pill" href="#view-sep" role="tab" aria-controls="view-sep" aria-selected="false">Sep</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link show" id="pills-view-oct" data-toggle="pill" href="#view-oct" role="tab" aria-controls="view-oct" aria-selected="false">Oct</a>
+                                                    <a class="nav-link show" onclick="monthValue(10);" id="pills-view-oct" data-toggle="pill" href="#view-oct" role="tab" aria-controls="view-oct" aria-selected="false">Oct</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link show" id="pills-view-nov" data-toggle="pill" href="#view-nov" role="tab" aria-controls="view-nov" aria-selected="false">Nov</a>
+                                                    <a class="nav-link show" onclick="monthValue(11);" id="pills-view-nov" data-toggle="pill" href="#view-nov" role="tab" aria-controls="view-nov" aria-selected="false">Nov</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link show active" id="pills-view-dec" data-toggle="pill" href="#view-dec" role="tab" aria-controls="view-dec" aria-selected="true">Dec</a>
+                                                    <a class="nav-link show active" onclick="monthValue(12);" id="pills-view-dec" data-toggle="pill" href="#view-dec" role="tab" aria-controls="view-dec" aria-selected="true">Dec</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -289,8 +289,43 @@ include 'footer.php';
 
             //select month & year to show transaction
             let monthShow = false;
-            let month = 12;
-            let year = 2019;
+
+            let date = new Date();
+            let month = date.getMonth()+1;
+            let year = date.getFullYear();
+            $("#select-year").html(year);
+            console.log('current'+month+''+year+'');
+
+            function selectMonth(){
+                if (monthShow != true){
+                    $("#selectMonth").slideDown("fast");
+                    monthShow = true;
+                } else{
+                    $("#selectMonth").slideUp("fast");
+                    monthShow = false;
+                }
+
+            }
+            function yearValue(type){
+                if (type == 'minus'){
+                    year -= 1;
+                    $("#select-year").html(year);
+                    //load Header & Transactions
+                    loadData(month, year);
+                    console.log('yearValue minus'+month+''+year+'');
+                }else{
+                    year += 1;
+                    $("#select-year").html(year);
+                    //load Header & Transactions
+                    loadData(month, year);
+                    console.log('yearValue plus'+month+''+year+'');
+                }
+            }
+            function monthValue(m){
+                month = m;
+                console.log('monthValue'+month+''+year+'');
+                loadData(month, year);
+            }
 
             //select category object
             let categoryID;
@@ -423,18 +458,8 @@ include 'footer.php';
                 }
             }
 
-            function selectMonth(){
-                if (monthShow != true){
-                    $("#selectMonth").slideDown("fast");
-                    monthShow = true;
-                } else{
-                    $("#selectMonth").slideUp("fast");
-                    monthShow = false;
-                }
-
-            }
-
             function loadmainHeader(month, year) {
+                console.log('loadMain'+month+''+year+'');
                 $.ajax({
                     type: "POST",
                     url: "include/call_main_header.php",
@@ -449,6 +474,7 @@ include 'footer.php';
             }
 
             function loadTransactions(month, year) {
+                console.log('loadTrans'+month+''+year+'');
                 $.ajax({
                     type: "POST",
                     url: "include/call_main_transactions.php",
@@ -483,6 +509,7 @@ include 'footer.php';
             }
 
             function loadData(month, year){
+                console.log('loadData'+month+''+year+'');
                 loadTransactions(month, year);
                 loadmainHeader(month, year);
             }
