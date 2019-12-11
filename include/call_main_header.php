@@ -27,7 +27,7 @@ while ($data = mysqli_fetch_array($qry)) {
 
 $sum_ALL = $sum_IN - $sum_OUT;
 
-$cmd2 = "SELECT balance FROM dekhor_wallet WHERE id = '$wallet_id' AND user_id = '$user_id';";
+$cmd2 = "SELECT balance FROM dekhor_wallet WHERE id = '$wallet_id';";
 $qry2 = mysqli_query($conn, $cmd2);
 while ($data2 = mysqli_fetch_array($qry2)) {
     $balance = $data2['balance'];
