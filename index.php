@@ -23,6 +23,17 @@ include 'navbar.php';
                             <div id="selectMonth" class="form-group" style="display: none">
                                 <div class="card bg-white earning-date">
                                     <div class="card-block">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <a href="#!" class="btn btn-lg btn-block text-c-gray"><i class="fas fa-angle-left f-40"></i></a>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="select-year-header text-center">2019</div>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="#!" class="btn btn-lg btn-block text-c-gray"><i class="fas fa-angle-right f-40"></i></a>
+                                            </div>
+                                        </div>
                                         <div class="bd-example bd-example-tabs">
                                             <ul class="nav nav-pills align-items-center justify-content-center" id="pills-tab2" role="tablist">
                                                 <li class="nav-item">
