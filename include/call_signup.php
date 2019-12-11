@@ -2,8 +2,8 @@
     include 'database.php';
 
     $username = $_REQUEST['username'];
-    $password_1 = $_REQUEST['password_1'];
-    $password_2 = $_REQUEST['password_2'];
+    $password = $_REQUEST['password'];
+
 
     $cmd_check = "SELECT username FROM dekhor_user WHERE username = '$username';";
     $qry_check = mysqli_query($conn,$cmd_check);
@@ -13,7 +13,7 @@
     else
     {
 
-            $cmd_insert = "INSERT INTO dekhor_user (username,password,role) VALUES ('$username','$password_1',1);";
+            $cmd_insert = "INSERT INTO dekhor_user (username,password,role) VALUES ('$username','$password',1);";
             $qry_insert = mysqli_query($conn,$cmd_insert);
 
             // AUTO CREATE WALLET
@@ -26,7 +26,7 @@
 
             $cmd_insert2 = "INSERT INTO dekhor_wallet (type,user_id,wallet_name,balance,create_date) ('wallet','$user_id','PiggyBank','0.00',now());";
             $qry_select2 = mysqli_query($conn,$cmd_insert2);
-             
+
             echo 1 // complete
 
 
