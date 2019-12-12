@@ -610,10 +610,10 @@ include 'navbar.php';
             url: "include/call_main_transactions.php",
             data: { month: month, year: year },
             success: function(result) {
-                let Obj = jQuery.parseJSON(result);
                 let card = "";
                 // alert(Obj[0][Obj[0].length - 1]["sum_IN"]);
                 if (result != "0"){
+                    let Obj = jQuery.parseJSON(result);
                     for(i = 0; i < Obj.length; i++){
                         card += '<div class="col-xl-12">\
                                     <div class="card">\
