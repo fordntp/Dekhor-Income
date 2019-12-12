@@ -96,7 +96,7 @@ if (isset($_SESSION["user_id"])) {
                     </div> -->
                     <button class="btn btn-primary shadow-2 mb-4" onclick="return do_register();">สมัครสมาชิก</button>
                     <!-- <p class="mb-2 text-muted">Forgot password? <a href="auth-reset-password.html">Reset</a></p> -->
-                    <p class="mb-0 text-muted">มีบัญชีผู้ใช้งานอยู่แล้ว ? <a href="auth-signin">เข้าสู่ระบบ</a></p>
+                    <p class="mb-0 text-muted">มีบัญชีผู้ใช้งานแล้ว ? <a href="auth-signin">เข้าสู่ระบบ</a></p>
                 </div>
             </div>
         </div>
