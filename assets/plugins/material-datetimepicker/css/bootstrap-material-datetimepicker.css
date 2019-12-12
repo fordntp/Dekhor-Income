@@ -118,8 +118,8 @@
 .dtp .dtp-picker-time>a {
     color: #212121;
     text-decoration: none;
-    padding: 10px 10px 10px 10px;
-    border-radius: 50%!important;
+    padding: 10px;
+    /* border-radius: 50%!important; */
 }
 
 .dtp table.dtp-picker-days tr>td>a.selected {
