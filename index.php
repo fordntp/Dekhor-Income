@@ -12,12 +12,13 @@ include 'navbar.php';
                     <div class="main-body">
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
-                            <div class="row">
+                            <div class="row mb-2">
                                 <div class="col-6">
                                     <a class="btn text-darklight text-c-gray" id="currentMonth" onclick="selectMonth();" href="#!"></a>
                                 </div>
                                 <div class="col-6 text-right">
-                                    <a class="text-c-red" href="logout"><i class="feather icon-log-out"></i> ออกจากระบบ</a>
+                                    <a class="text-c-red" href="logout"><i class="feather icon-log-out"></i> ออกจากระบบ</a><br>
+                                    <small class="text-muted"><?=$_SESSION['uname']?></small>
                                 </div>
                             </div>
                             <div id="selectMonth" class="form-group" style="display: none">

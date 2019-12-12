@@ -14,6 +14,7 @@ if ($RowCheck > 0) {
     $data = mysqli_fetch_array($qry);
     $_SESSION['user_id'] = $data['user_id'];
     $_SESSION['wallet_id'] = $data['wallet_id'];
+    $_SESSION['uname'] = $data['username'];
     echo 1;
 } else {
     echo 0;
