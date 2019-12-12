@@ -2,6 +2,7 @@
     include 'database.php';
     $month = $_REQUEST['month'];
     $year = $_REQUEST['year'];
+    $type = "OUT" //$_REQUEST['type'];
     $month = mysqli_real_escape_string($conn,$month);
     $year = mysqli_real_escape_string($conn,$year);
     $BIG_ARR = array();
@@ -11,7 +12,7 @@
     $sum = 0;
 
     $cmd = "SELECT * FROM dekhor_record a JOIN dekhor_category b ON a.category_id = b.id 
-            WHERE month(create_date)=$month AND year(create_date)=$year 
+            WHERE ( month(create_date)=$month AND year(create_date)=$year ) AND a.type=$type 
             ORDER BY a.category_id ASC;";
     $qry = mysqli_query($conn,$cmd);
     $numRows = mysqli_num_rows($qry);
