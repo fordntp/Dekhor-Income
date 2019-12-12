@@ -112,7 +112,7 @@ include 'navbar.php';
                             </ul>
                             <div id="myTabContent">
                                 <div class="tab-pane fade show active" id="transaction" role="tabpanel" aria-labelledby="transaction-tab">
-                                    <div id="transactionsShow" class="row"></div>
+                                    <div id="transactionsShow" class="row" style="display: none;"></div>
                                     <div class="btn-group dropup fixed-m">
                                         <button class="btn btn-icon btn-rounded btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="feather icon-plus"></i>
@@ -522,6 +522,7 @@ include 'footer.php';
                                     </div>';
                         }
                         $('#transactionsShow').html(card);
+                        $('#transactionsShow').fadeIn("fast");
                     }
                 });
             }
