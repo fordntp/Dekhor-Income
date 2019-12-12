@@ -26,87 +26,92 @@ $cmd = "SELECT * , day(a.create_date) as day FROM dekhor_record a JOIN dekhor_ca
 
 $qry = mysqli_query($conn, $cmd);
 $numRows = mysqli_num_rows($qry);
-while ($data = mysqli_fetch_array($qry)) {
-    $dayNew = $data['day'];
-    $create_date = $data['create_date'];
-    $create_date = date("d/m/y", strtotime($create_date));
-    $category_icon = $data['category_icon'];
-    $category_theme = $data['category_theme'];
-    $category_name = $data['category_name'];
-    $type = $data['type'];
-    $memo = $data['memo'];
-    $value = $data['value'];
 
-    $infoArr = array(
-        "create_date" => $create_date,
-        "category_icon" => $category_icon,
-        "category_theme" => $category_theme,
-        "category_name" => $category_name,
-        "type" => $type,
-        "memo" => $memo,
-        "value" => ($type == "OUT" ? '- ' . number_format($value, 2) . '' : number_format($value, 2)),
-    );
+if($numRows > 0)
+{
+    while ($data = mysqli_fetch_array($qry)) {
+        $dayNew = $data['day'];
+        $create_date = $data['create_date'];
+        $create_date = date("d/m/y", strtotime($create_date));
+        $category_icon = $data['category_icon'];
+        $category_theme = $data['category_theme'];
+        $category_name = $data['category_name'];
+        $type = $data['type'];
+        $memo = $data['memo'];
+        $value = $data['value'];
 
-    if (($dayNew == $dayOld) || ($dayOld == 0)) {
-
-        array_push($DayArr, $infoArr);
-
-        if ($type == "IN") {
-            $sum_IN = $sum_IN + $value;
-        } else if ($type == "OUT") {
-            $sum_OUT = $sum_OUT + $value;
-        } else if ($type == "TRF") {
-            $sum_TRF = $sum_TRF + $value;
-        }
-
-        $dayOld = $dayNew;
-    } else {
-        $SumArr = array(
-            "sum_IN" => number_format($sum_IN, 2),
-            "sum_OUT" => number_format($sum_OUT, 2),
-            "sum_TRF" => number_format($sum_TRF, 2),
+        $infoArr = array(
+            "create_date" => $create_date,
+            "category_icon" => $category_icon,
+            "category_theme" => $category_theme,
+            "category_name" => $category_name,
+            "type" => $type,
+            "memo" => $memo,
+            "value" => ($type == "OUT" ? '- ' . number_format($value, 2) . '' : number_format($value, 2)),
         );
 
-        array_push($DayArr, $SumArr);
-        array_push($MonthArr, $DayArr);
+        if (($dayNew == $dayOld) || ($dayOld == 0)) {
 
-        unset($DayArr);
-        $DayArr = array();
-        unset($SumArr);
-        $SumArr = array();
-        $sum_TRF = 0;
-        $sum_OUT = 0;
-        $sum_IN = 0;
+            array_push($DayArr, $infoArr);
 
-        array_push($DayArr, $infoArr);
+            if ($type == "IN") {
+                $sum_IN = $sum_IN + $value;
+            } else if ($type == "OUT") {
+                $sum_OUT = $sum_OUT + $value;
+            } else if ($type == "TRF") {
+                $sum_TRF = $sum_TRF + $value;
+            }
 
-        if ($type == "IN") {
-            $sum_IN = $sum_IN + $value;
-        } else if ($type == "OUT") {
-            $sum_OUT = $sum_OUT + $value;
-        } else if ($type == "TRF") {
-            $sum_TRF = $sum_TRF + $value;
-        }
+            $dayOld = $dayNew;
+        } else {
+            $SumArr = array(
+                "sum_IN" => number_format($sum_IN, 2),
+                "sum_OUT" => number_format($sum_OUT, 2),
+                "sum_TRF" => number_format($sum_TRF, 2),
+            );
+
+            array_push($DayArr, $SumArr);
+            array_push($MonthArr, $DayArr);
+
+            unset($DayArr);
+            $DayArr = array();
+            unset($SumArr);
+            $SumArr = array();
+            $sum_TRF = 0;
+            $sum_OUT = 0;
+            $sum_IN = 0;
+
+            array_push($DayArr, $infoArr);
+
+            if ($type == "IN") {
+                $sum_IN = $sum_IN + $value;
+            } else if ($type == "OUT") {
+                $sum_OUT = $sum_OUT + $value;
+            } else if ($type == "TRF") {
+                $sum_TRF = $sum_TRF + $value;
+            }
 
         $dayOld = $dayNew;
+        }
+
     }
 
-}
+    $SumArr = array(
+        "sum_IN" => number_format($sum_IN, 2),
+        "sum_OUT" => number_format($sum_OUT, 2),
+        "sum_TRF" => number_format($sum_TRF, 2),
+    );
 
-$SumArr = array(
-    "sum_IN" => number_format($sum_IN, 2),
-    "sum_OUT" => number_format($sum_OUT, 2),
-    "sum_TRF" => number_format($sum_TRF, 2),
-);
-
-array_push($DayArr, $SumArr);
-array_push($MonthArr, $DayArr);
+    array_push($DayArr, $SumArr);
+    array_push($MonthArr, $DayArr);
 
 // echo "<pre>";
 // print_r($MonthArr);
 // echo "<pre>";
 
-$json_arr = json_encode($MonthArr, JSON_UNESCAPED_UNICODE);
-echo $json_arr;
+    $json_arr = json_encode($MonthArr, JSON_UNESCAPED_UNICODE);
+    echo $json_arr;
+}
+
 
 // echo json_encode($MonthArr, JSON_UNESCAPED_UNICODE);
