@@ -83,7 +83,7 @@ if (!isset($_SESSION["user_id"])) {
         font-size: 3.5vw;
       }
       div.select-year-header {
-        font-size: 6vw;
+        font-size: 5vw;
       }
     }
     @media screen and (min-width: 768px) {
