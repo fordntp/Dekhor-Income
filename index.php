@@ -110,7 +110,7 @@ include 'navbar.php';
                                     <a class="nav-link" id="graph-tab" data-toggle="tab" href="#graph" role="tab" aria-controls="graph" aria-selected="false">กราฟ</a>
                                 </li>
                             </ul>
-                            <div id="myTabContent">
+                            <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="transaction" role="tabpanel" aria-labelledby="transaction-tab">
                                     <div id="transactionsShow" class="row" style="display: none;"></div>
                                     <div class="btn-group dropup fixed-m" style="display: none;">
@@ -124,7 +124,38 @@ include 'navbar.php';
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="graph" role="tabpanel" aria-labelledby="graph-tab">
-                                    <p class="mb-0"></p>
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div class="card">
+                                                <div class="card-block">
+                                                    <canvas id="myChart" width="300" height="300"></canvas>
+                                                </div>
+                                            </div>
+
+                                            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+                                            <script>var ctx = document.getElementById("myChart");
+                                                var myChart = new Chart(ctx, {
+                                                type: 'pie',
+                                                data: {
+                                                    labels: ['OK', 'WARNING', 'CRITICAL'],
+                                                    datasets: [{
+                                                    label: '# of Tomatoes',
+                                                    data: [12, 19, 3],
+                                                    backgroundColor: [
+                                                        'rgb(255, 99, 132)',
+                                                        'rgb(54, 162, 235)',
+                                                        'rgb(255, 205, 86)'
+                                                    ]
+                                                    }]
+                                                },
+                                                options: {
+                                                    cutoutPercentage: 40,
+                                                    responsive: true,
+                                                }
+                                                });
+                                            </script>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
