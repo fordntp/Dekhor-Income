@@ -516,7 +516,7 @@ include 'footer.php';
                         } else {
                             card += '<div class="col-xl-12 p-5">\
                                         <div class="text-center">\
-                                            <h1 class="mb-4">Oops!</h1>\
+                                            <h1 class="text-muted mb-4"><i class="fas fa-list"></i></h1>\
                                             <h5 class="text-muted mb-4">No transaction list.</h5>\
                                         </div>\
                                     </div>';
