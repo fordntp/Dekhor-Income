@@ -63,7 +63,7 @@ if (!isset($_SESSION["user_id"])) {
 <style type="text/css">
     @font-face {
       font-family: sukhumvit;
-      src: url('./assets/fonts/SukhumvitSet-Text.ttf');
+      src: url('assets/fonts/SukhumvitSet-Text.ttf');
     }
 
     body {
