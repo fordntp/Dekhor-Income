@@ -14,32 +14,38 @@
             WHERE month(create_date)=$month AND year(create_date)=$year 
             ORDER BY a.category_id ASC;";
     $qry = mysqli_query($conn,$cmd);
-    while($data = mysqli_fetch_array($qry))
+    $numRows = mysqli_num_rows($qry);
+    if($numRows > 0)
     {
-        $cat_name = $data['category_name'];
-        $cat_id = $data['category_id'];
-        $cat_color = $data['category_color'];
-        $value = $data['value'];
-        $sum = $sum + $value;
-        //ARRAY CATEGORY
-        if(!in_array($cat_name,$cat_arr))
+        while($data = mysqli_fetch_array($qry))
         {
-            array_push($cat_arr,$cat_name);
-            array_push($color_arr,$cat_color);
-            array_push($sum_arr,$sum);
-            $sum = 0;
+            $cat_name = $data['category_name'];
+            $cat_id = $data['category_id'];
+            $cat_color = $data['category_color'];
+            $value = $data['value'];
+            $sum = $sum + $value;
+            //ARRAY CATEGORY
+            if(!in_array($cat_name,$cat_arr))
+            {
+                array_push($cat_arr,$cat_name);
+                array_push($color_arr,$cat_color);
+                array_push($sum_arr,$sum);
+                $sum = 0;
+            }
         }
+        array_push($BIG_ARR,$cat_arr);
+        array_push($BIG_ARR,$sum_arr);
+        array_push($BIG_ARR,$color_arr);
+
+        array_multisort($BIG_ARR[1],SORT_DESC,$BIG_ARR[2],$BIG_ARR[0]);
+
+        /*echo "<pre>";
+        print_r($BIG_ARR);
+        echo "<pre>";*/
+
+        $BIG_ARR = json_encode($BIG_ARR, JSON_UNESCAPED_UNICODE);
+        echo $BIG_ARR;
     }
-    array_push($BIG_ARR,$cat_arr);
-    array_push($BIG_ARR,$sum_arr);
-    array_push($BIG_ARR,$color_arr);
-
-    array_multisort($BIG_ARR[1],SORT_DESC,$BIG_ARR[2],$BIG_ARR[0]);
-
-     echo "<pre>";
-     print_r($BIG_ARR);
-     echo "<pre>";
-
-    $BIG_ARR = json_encode($BIG_ARR, JSON_UNESCAPED_UNICODE);
-    echo $BIG_ARR;
+    else
+        echo 0;
 ?>
