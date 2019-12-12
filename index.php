@@ -14,9 +14,6 @@ include 'navbar.php';
                             <!-- [ Main Content ] start -->
                             <div class="row">
                                 <div class="col-6">
-                                <h5>Date Picker</h5>
-<hr>
-<input type="text" id="date" class="form-control" placeholder="Date" data-dtp="dtp_iKYEP">
                                     <a class="btn text-darklight text-c-gray" id="currentMonth" onclick="selectMonth();" href="#!"></a>
                                 </div>
                                 <div class="col-6 text-right">
