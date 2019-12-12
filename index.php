@@ -507,7 +507,7 @@ include 'footer.php';
                                                     <h5>'+Obj[i][0]["create_date"]+'</h5>\
                                                     <span class="text-muted float-right">รายรับ: '+Obj[i][Obj[i].length - 1]["sum_IN"]+' <br> รายจ่าย: '+Obj[i][Obj[i].length - 1]["sum_OUT"]+'</span>\
                                                 </div>\
-                                                <div class="card-block">\
+                                                <div class="card-block p-4">\
                                                 ';
                                 for(j = 0; j < Obj[i].length - 1; j++){
                                     card += '<h5 class="text-muted f-w-300 mt-4 mb-4">\
