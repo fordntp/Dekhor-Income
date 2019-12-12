@@ -202,6 +202,7 @@ include 'navbar.php';
                                                     options: {
                                                         cutoutPercentage: 40,
                                                         responsive: true,
+                                                        onAnimationComplete: addText,
                                                         tooltips: {
                                                             enabled: false
                                                         },
@@ -223,6 +224,18 @@ include 'navbar.php';
                                                         }
                                                     },
                                                 });
+                                                function addText() {
+                                                    alert("test");
+                                                    var cx = canvas.width / 2;
+                                                    var cy = canvas.height / 2;
+
+                                                    ctx.textAlign = 'center';
+                                                    ctx.textBaseline = 'middle';
+                                                    ctx.font = '14px verdana';
+                                                    ctx.fillStyle = 'black';
+                                                    ctx.fillText("Text Here", cx, cy);
+
+                                                }
                                             </script>
                                         </div>
                                     </div>
@@ -600,7 +613,7 @@ include 'navbar.php';
                 let Obj = jQuery.parseJSON(result);
                 let card = "";
                 // alert(Obj[0][Obj[0].length - 1]["sum_IN"]);
-                if (Obj.length > 1){
+                if (Obj.length > 0){
                     for(i = 0; i < Obj.length; i++){
                         card += '<div class="col-xl-12">\
                                     <div class="card">\
