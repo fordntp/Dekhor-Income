@@ -25,13 +25,13 @@ include 'navbar.php';
                                     <div class="card-block">
                                         <div class="row">
                                             <div class="col-4">
-                                                <a href="#!" onclick="yearValue('minus');" class="btn btn-lg btn-block text-c-gray"><i class="fas fa-angle-left f-40"></i></a>
+                                                <a href="#!" onclick="yearValue('minus');" class="btn btn-lg btn-block text-c-gray p-3"><i class="fas fa-angle-left f-40"></i></a>
                                             </div>
                                             <div class="col-4">
-                                                <div id="select-year" class="select-year-header text-center"></div>
+                                                <div id="select-year" class="select-year-header text-center p-3"></div>
                                             </div>
                                             <div class="col-4">
-                                                <a href="#!" onclick="yearValue('plus');" class="btn btn-lg btn-block text-c-gray"><i class="fas fa-angle-right f-40"></i></a>
+                                                <a href="#!" onclick="yearValue('plus');" class="btn btn-lg btn-block text-c-gray p-3"><i class="fas fa-angle-right f-40"></i></a>
                                             </div>
                                         </div>
                                         <div class="bd-example bd-example-tabs">
