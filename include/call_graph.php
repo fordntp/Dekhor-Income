@@ -46,7 +46,7 @@
         array_push($BIG_ARR,$icon_arr);
         array_push($BIG_ARR,$theme_arr);
 
-        array_multisort($BIG_ARR[1],SORT_DESC,$BIG_ARR[2],$BIG_ARR[0]);
+        array_multisort($BIG_ARR[1],SORT_DESC,$BIG_ARR[2],$BIG_ARR[0],$BIG_ARR[3],$BIG_ARR[4]);
 
         /*echo "<pre>";
         print_r($BIG_ARR);
