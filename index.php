@@ -134,8 +134,20 @@ include 'navbar.php';
                                                             <canvas id="myChart" width="300" height="300"></canvas>
                                                         </div>
                                                         <div class="col-xl-4 col-12"></div>
+                                                    </div>
+                                                    <h5 class="text-muted f-w-300 mt-4 mb-4">
+                                                        <button class="btn deepskyblue btn-circle btn-circle-sm active"><i class="fas fa-bolt"></i></button> บิล <small>( 57.77% )</small>
+                                                        <span class="float-right">2,900</span>
+                                                    </h5>
+                                                    <h5 class="text-muted f-w-300 mt-4 mb-4">
+                                                        <button class="btn yellow btn-circle btn-circle-sm active"><i class="fas fa-utensils"></i></button> อาหาร <small>( 31.08% )</small>
+                                                        <span class="float-right">1,560</span>
+                                                    </h5>
+                                                    <h5 class="text-muted f-w-300 mt-4 mb-4">
+                                                        <button class="btn lime btn-circle btn-circle-sm active"><i class="fas fa-taxi"></i></button> เดินทาง <small>( 11.16% )</small>
+                                                        <span class="float-right">560</span>
+                                                    </h5>
                                                 </div>
-                                            </div>
                                             <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
                                             <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
@@ -183,47 +195,61 @@ include 'navbar.php';
                                                 //     },
                                                 //         options: options
                                                 // });
+                                                function loadGraph(){
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "include/call_graph.php",
+                                                        data: { month: "12", year: "2019" },
+                                                        success: function(result) {
+                                                            console.log(result);
+                                                            result = [["อาหาร"],[111],["#ffcc00"]];
+                                                            // if(result != "0"){
+                                                            //     var Obj = [['OK', 'WARNING', 'CRITICAL'],[12, 19, 3],[ 'rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)']];
+                                                            //     var Obj = jQuery.parseJSON(result);
+                                                            //     console.log(Obj);
+                                                            //     var ctx = document.getElementById("myChart").getContext('2d');
+                                                            //     var myChart = new Chart(ctx, {
+                                                            //         type: 'pie',
+                                                            //         data: {
+                                                            //             labels: Obj[0],
+                                                            //             datasets: [{
+                                                            //             label: '# of Tomatoes',
+                                                            //             data: Obj[1],
+                                                            //             backgroundColor: Obj[2]
+                                                            //             }]
+                                                            //         },
+                                                            //         options: {
+                                                            //             cutoutPercentage: 40,
+                                                            //             responsive: true,
+                                                            //             onAnimationComplete: addText,
+                                                            //             tooltips: {
+                                                            //                 enabled: false
+                                                            //             },
+                                                            //             plugins: {
+                                                            //                 datalabels: {
+                                                            //                     formatter: (value, ctx) => {
 
-                                                var ctx = document.getElementById("myChart").getContext('2d');
-                                                var myChart = new Chart(ctx, {
-                                                    type: 'pie',
-                                                    data: {
-                                                        labels: ['OK', 'WARNING', 'CRITICAL'],
-                                                        datasets: [{
-                                                        label: '# of Tomatoes',
-                                                        data: [12, 19, 3],
-                                                        backgroundColor: [
-                                                            'rgb(255, 99, 132)',
-                                                            'rgb(54, 162, 235)',
-                                                            'rgb(255, 205, 86)'
-                                                        ]
-                                                        }]
-                                                    },
-                                                    options: {
-                                                        cutoutPercentage: 40,
-                                                        responsive: true,
-                                                        onAnimationComplete: addText,
-                                                        tooltips: {
-                                                            enabled: false
-                                                        },
-                                                        plugins: {
-                                                            datalabels: {
-                                                                formatter: (value, ctx) => {
+                                                            //                     let sum = 0;
+                                                            //                     let dataArr = ctx.chart.data.datasets[0].data;
+                                                            //                     dataArr.map(data => {
+                                                            //                         sum += data;
+                                                            //                     });
+                                                            //                     let percentage = (value*100 / sum).toFixed(2)+"%";
+                                                            //                     return percentage;
 
-                                                                let sum = 0;
-                                                                let dataArr = ctx.chart.data.datasets[0].data;
-                                                                dataArr.map(data => {
-                                                                    sum += data;
-                                                                });
-                                                                let percentage = (value*100 / sum).toFixed(2)+"%";
-                                                                return percentage;
-
-                                                                },
-                                                                color: '#fff',
-                                                            }
+                                                            //                     },
+                                                            //                     color: '#fff',
+                                                            //                 }
+                                                            //             }
+                                                            //         },
+                                                            //     });
+                                                            // }
                                                         }
-                                                    },
-                                                });
+                                                    });
+                                                }
+
+                                                loadGraph();
+
                                                 function addText() {
                                                     alert("test");
                                                     var cx = canvas.width / 2;
