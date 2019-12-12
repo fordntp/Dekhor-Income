@@ -9,6 +9,8 @@
     $cat_arr = array();
     $sum_arr = array();
     $color_arr = array();
+    $icon_arr = array();
+    $theme_arr = array();
     $sum = 0;
 
     $cmd = "SELECT * FROM dekhor_record a JOIN dekhor_category b ON a.category_id = b.id 
@@ -24,6 +26,8 @@
             $cat_id = $data['category_id'];
             $cat_color = $data['category_color'];
             $value = $data['value'];
+            $cat_theme = $data['category_theme'];
+            $cat_icon = $data['category_icon'];
             $sum = $sum + $value;
             //ARRAY CATEGORY
             if(!in_array($cat_name,$cat_arr))
@@ -31,12 +35,16 @@
                 array_push($cat_arr,$cat_name);
                 array_push($color_arr,$cat_color);
                 array_push($sum_arr,$sum);
+                array_push($icon_arr,$cat_icon);
+                array_push($theme_arr,$cat_theme);
                 $sum = 0;
             }
         }
         array_push($BIG_ARR,$cat_arr);
         array_push($BIG_ARR,$sum_arr);
         array_push($BIG_ARR,$color_arr);
+        array_push($BIG_ARR,$icon_arr);
+        array_push($BIG_ARR,$theme_arr);
 
         array_multisort($BIG_ARR[1],SORT_DESC,$BIG_ARR[2],$BIG_ARR[0]);
 
