@@ -289,14 +289,21 @@ include 'footer.php';
 
             //select month & year to show transaction
             let monthShow = false;
-            let arrayMonth = ["","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+            // Strings and translations
+            let monthsFull = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October','November', 'December'];
+            let monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            let weekdaysFull = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            let weekdaysShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+            //define date
             let date = new Date();
             let month = date.getMonth()+1;
             let year = date.getFullYear();
 
+            //update html year & month value
             $("#select-year").html(year);
-            $("#currentMonth").html(""+arrayMonth[month]+" <i class=\"fas fa-sort-down\"></i>");
+            $("#currentMonth").html(""+monthsShort[month-1]+" <i class=\"fas fa-sort-down\"></i>");
             console.log('current'+month+''+year+'');
 
             function selectMonth(){
@@ -327,7 +334,7 @@ include 'footer.php';
             function monthValue(m){
                 month = m;
                 console.log('monthValue'+month+''+year+'');
-                $("#currentMonth").html(""+arrayMonth[month]+" <i class=\"fas fa-sort-down\"></i>");
+                $("#currentMonth").html(""+monthsShort[month-1]+" <i class=\"fas fa-sort-down\"></i>");
                 loadData(month, year);
                 selectMonth();
             }
