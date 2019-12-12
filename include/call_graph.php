@@ -30,21 +30,16 @@
             $sum = 0;
         }
 
-        array_push($BIG_ARR,$cat_arr);
-        array_push($BIG_ARR,$sum_arr);
-        array_push($BIG_ARR,$color_arr);
-
-         echo "<pre>";
-         print_r($BIG_ARR);
-         echo "<pre>";
-
-        $BIG_ARR = json_encode($BIG_ARR, JSON_UNESCAPED_UNICODE);
-        echo $BIG_ARR;
-
-
-
-
-
 
     }
+    array_push($BIG_ARR,$cat_arr);
+    array_push($BIG_ARR,$sum_arr);
+    array_push($BIG_ARR,$color_arr);
+
+     echo "<pre>";
+     print_r($BIG_ARR);
+     echo "<pre>";
+
+    $BIG_ARR = json_encode($BIG_ARR, JSON_UNESCAPED_UNICODE);
+    echo $BIG_ARR;
 ?>
