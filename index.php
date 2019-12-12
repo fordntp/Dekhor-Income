@@ -103,7 +103,7 @@ include 'navbar.php';
                                 </div>
                             </div>
 
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist" style="display: none;">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="transaction-tab" data-toggle="tab" href="#transaction" role="tab" aria-controls="transaction" aria-selected="true">รายการ</a>
                                 </li>
@@ -524,6 +524,7 @@ include 'navbar.php';
                 let card = "";
                 // alert(Obj[0][Obj[0].length - 1]["sum_IN"]);
                 if (result != "0"){
+                    $("#myTab").fadeIn();
                     let Obj = jQuery.parseJSON(result);
                     for(i = 0; i < Obj.length; i++){
                         card += '<div class="col-xl-12">\
