@@ -510,7 +510,7 @@ include 'footer.php';
                                                 <div class="card-block">\
                                                 ';
                                 for(j = 0; j < Obj[i].length - 1; j++){
-                                    card += '<h5 class="text-muted f-w-300 mt-4">\
+                                    card += '<h5 class="text-muted f-w-300 mt-4 mb-4">\
                                                 <button class="btn '+Obj[i][j]["category_theme"]+' btn-circle btn-circle-sm active"><i class="'+Obj[i][j]["category_icon"]+'"></i></button> '+Obj[i][j]["memo"]+' \
                                                 <span class="float-right">'+Obj[i][j]["value"]+'</span>\
                                             </h5>';
@@ -541,7 +541,6 @@ include 'footer.php';
             }
 
             $(document).ready(function() {
-
                 //load Header & Transactions
                 loadData(month, year);
 
