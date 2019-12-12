@@ -561,16 +561,19 @@ include 'navbar.php';
     }
 
     function loadGraph(month, year){
+        var canvas = document.getElementById('myChart');
+        var context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
         $.ajax({
             type: "POST",
             url: "include/call_graph.php",
             data: { month: month, year: year },
             success: function(result) {
-                console.log(result);
+                // console.log(result);
                 if(result != "0"){
                     var Obj = jQuery.parseJSON(result);
-                    console.log(Obj);
-                    var ctx = document.getElementById("myChart").getContext('2d');
+                    // console.log(Obj);
+                    var ctx = canvas.getContext('2d');
                     var myChart = new Chart(ctx, {
                         type: 'pie',
                         data: {
