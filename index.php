@@ -492,25 +492,34 @@ include 'footer.php';
                         let Obj = jQuery.parseJSON(result);
                         let card = "";
                         // alert(Obj[0][Obj[0].length - 1]["sum_IN"]);
-                        for(i = 0; i < Obj.length; i++){
-                            card += '<div class="col-xl-12">\
-                                        <div class="card">\
-                                            <div class="card-header">\
-                                                <h5>'+Obj[i][0]["create_date"]+'</h5>\
-                                                <span class="text-muted float-right">รายรับ: '+Obj[i][Obj[i].length - 1]["sum_IN"]+' <br> รายจ่าย: '+Obj[i][Obj[i].length - 1]["sum_OUT"]+'</span>\
-                                            </div>\
-                                            <div class="card-block">\
-                                            ';
-                            for(j = 0; j < Obj[i].length - 1; j++){
-                                card += '<h5 class="text-muted f-w-300 mt-4">\
-                                            <button class="btn '+Obj[i][j]["category_theme"]+' btn-circle btn-circle-sm active"><i class="'+Obj[i][j]["category_icon"]+'"></i></button> '+Obj[i][j]["memo"]+' \
-                                            <span class="float-right">'+Obj[i][j]["value"]+'</span>\
-                                        </h5>';
-                                //console.log(Obj[i][j]["sum_IN"]);
+                        if (Obj.length > 1){
+                            for(i = 0; i < Obj.length; i++){
+                                card += '<div class="col-xl-12">\
+                                            <div class="card">\
+                                                <div class="card-header">\
+                                                    <h5>'+Obj[i][0]["create_date"]+'</h5>\
+                                                    <span class="text-muted float-right">รายรับ: '+Obj[i][Obj[i].length - 1]["sum_IN"]+' <br> รายจ่าย: '+Obj[i][Obj[i].length - 1]["sum_OUT"]+'</span>\
+                                                </div>\
+                                                <div class="card-block">\
+                                                ';
+                                for(j = 0; j < Obj[i].length - 1; j++){
+                                    card += '<h5 class="text-muted f-w-300 mt-4">\
+                                                <button class="btn '+Obj[i][j]["category_theme"]+' btn-circle btn-circle-sm active"><i class="'+Obj[i][j]["category_icon"]+'"></i></button> '+Obj[i][j]["memo"]+' \
+                                                <span class="float-right">'+Obj[i][j]["value"]+'</span>\
+                                            </h5>';
+                                    //console.log(Obj[i][j]["sum_IN"]);
+                                }
+                                card += '</div>\
+                                    </div>\
+                                </div>';
                             }
-                            card += '</div>\
-                                </div>\
-                            </div>';
+                        } else {
+                            card += '<div class="col-xl-12 p-5">\
+                                        <div class="text-center">\
+                                            <h1 class="mb-4">Oops!</h1>\
+                                            <h5 class="text-muted mb-4">No transaction list.</h5>\
+                                        </div>\
+                                    </div>';
                         }
                         $('#transactionsShow').html(card);
                     }
