@@ -29,12 +29,12 @@
             array_push($sum_arr,$sum);
             $sum = 0;
         }
-
-
     }
     array_push($BIG_ARR,$cat_arr);
     array_push($BIG_ARR,$sum_arr);
     array_push($BIG_ARR,$color_arr);
+
+    array_multisort($BIG_ARR[1],$BIG_ARR[2],$BIG_ARR[0]);
 
      echo "<pre>";
      print_r($BIG_ARR);
