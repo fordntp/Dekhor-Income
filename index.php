@@ -150,21 +150,6 @@ include 'navbar.php';
                                                 </div>
                                             <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
                                             <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
-
-                                            <script>
-                                                function addText() {
-                                                    alert("test");
-                                                    var cx = canvas.width / 2;
-                                                    var cy = canvas.height / 2;
-
-                                                    ctx.textAlign = 'center';
-                                                    ctx.textBaseline = 'middle';
-                                                    ctx.font = '14px verdana';
-                                                    ctx.fillStyle = 'black';
-                                                    ctx.fillText("Text Here", cx, cy);
-
-                                                }
-                                            </script>
                                         </div>
                                     </div>
                                 </div>
@@ -599,7 +584,7 @@ include 'navbar.php';
                         options: {
                             cutoutPercentage: 40,
                             responsive: true,
-                            onAnimationComplete: addText,
+                            // onAnimationComplete: addText,
                             tooltips: {
                                 enabled: false
                             },
