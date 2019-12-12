@@ -356,6 +356,7 @@ include 'footer.php';
                     // set input to blank
                     $("#expensesMemo").val("");
                     $("#expensesValue").val("");
+                    $("#expensesDate").val("<?=date('Y-m-d')?>");
                 }
                 else if (type == 'IN') {
                     // loop to remove selected category
@@ -368,6 +369,7 @@ include 'footer.php';
                     // set input to blank
                     $("#incomeMemo").val("");
                     $("#incomeValue").val("");
+                    $("#incomeDate").val("<?=date('Y-m-d')?>");
                 }
             }
             function addExpenses() {
