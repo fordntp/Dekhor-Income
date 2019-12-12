@@ -137,25 +137,92 @@ include 'navbar.php';
                                                 </div>
                                             </div>
                                             <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-                                            <script>var ctx = document.getElementById("myChart");
+                                            <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+                                            <script>
+                                                //  var data = [{
+                                                //     data: [50, 55, 60, 33],
+                                                //     labels: ["India", "China", "US", "Canada"],
+                                                //     backgroundColor: [
+                                                //         "#4b77a9",
+                                                //         "#5f255f",
+                                                //         "#d21243",
+                                                //         "#B27200"
+                                                //     ],
+                                                //     borderColor: "#fff"
+                                                // }];
+
+                                                // var options = {
+                                                //     tooltips: {
+                                                //     enabled: false
+                                                //     },
+                                                //     plugins: {
+                                                //     datalabels: {
+                                                //     formatter: (value, ctx) => {
+
+                                                //     let sum = 0;
+                                                //     let dataArr = ctx.chart.data.datasets[0].data;
+                                                //     dataArr.map(data => {
+                                                //         sum += data;
+                                                //     });
+                                                //     let percentage = (value*100 / sum).toFixed(2)+"%";
+                                                //     return percentage;
+
+
+                                                //     },
+                                                //     color: '#fff',
+                                                //         }
+                                                //     }
+                                                // };
+
+                                                // var ctx = document.getElementById("myChart").getContext('2d');
+                                                // var myChart = new Chart(ctx, {
+                                                //     type: 'pie',
+                                                //     data: {
+                                                //         datasets: data
+                                                //     },
+                                                //         options: options
+                                                // });
+
+                                                var ctx = document.getElementById("myChart").getContext('2d');
                                                 var myChart = new Chart(ctx, {
-                                                type: 'pie',
-                                                data: {
-                                                    labels: ['OK', 'WARNING', 'CRITICAL'],
-                                                    datasets: [{
-                                                    label: '# of Tomatoes',
-                                                    data: [12, 19, 3],
-                                                    backgroundColor: [
-                                                        'rgb(255, 99, 132)',
-                                                        'rgb(54, 162, 235)',
-                                                        'rgb(255, 205, 86)'
-                                                    ]
-                                                    }]
-                                                },
-                                                options: {
-                                                    cutoutPercentage: 40,
-                                                    responsive: true,
-                                                }
+                                                    type: 'pie',
+                                                    data: {
+                                                        labels: ['OK', 'WARNING', 'CRITICAL'],
+                                                        datasets: [{
+                                                        label: '# of Tomatoes',
+                                                        data: [12, 19, 3],
+                                                        backgroundColor: [
+                                                            'rgb(255, 99, 132)',
+                                                            'rgb(54, 162, 235)',
+                                                            'rgb(255, 205, 86)'
+                                                        ]
+                                                        }]
+                                                    },
+                                                    options: {
+                                                        cutoutPercentage: 40,
+                                                        responsive: true,
+                                                        tooltips: {
+                                                            enabled: false
+                                                        },
+                                                        plugins: {
+                                                            datalabels: {
+                                                                formatter: (value, ctx) => {
+
+                                                                let sum = 0;
+                                                                let dataArr = ctx.chart.data.datasets[0].data;
+                                                                dataArr.map(data => {
+                                                                    sum += data;
+                                                                });
+                                                                let percentage = (value*100 / sum).toFixed(2)+"%";
+                                                                return percentage;
+
+
+                                                                },
+                                                                color: '#fff',
+                                                                    }
+                                                        }
+                                                    },
                                                 });
                                             </script>
                                         </div>
