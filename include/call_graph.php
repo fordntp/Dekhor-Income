@@ -12,7 +12,7 @@
     $sum = 0;
 
     $cmd = "SELECT * FROM dekhor_record a JOIN dekhor_category b ON a.category_id = b.id 
-            WHERE ( month(create_date)=$month AND year(create_date)=$year ) AND a.type=$type 
+            WHERE ( month(create_date)='$month' AND year(create_date)='$year' ) AND a.type='$type' 
             ORDER BY a.category_id ASC;";
     $qry = mysqli_query($conn,$cmd);
     $numRows = mysqli_num_rows($qry);
