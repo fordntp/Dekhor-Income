@@ -3,18 +3,10 @@
     <!-- <script type="text/javascript" src="assets/js/app.js"></script> -->
 
     <!-- Required Js -->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
     <script src="assets/js/vendor-all.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
-
-    <!--Modal Effect-->
-    <script src="assets/plugins/modal-window-effects/js/classie.js"></script>
-    <script src="assets/plugins/modal-window-effects/js/modalEffects.js"></script>
-
-    <!--Smart Wizard-->
-    <script src="assets/plugins/smart-wizard/js/jquery.smartWizard.min.js"></script>
-    <script src="assets/js/pages/wizard-custom.js"></script>
 
     <!--InputMask-->
     <script src="assets/plugins/inputmask/js/inputmask.min.js"></script>
@@ -30,7 +22,9 @@
     <!--DateTime-->
     <script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
     <script src="assets/plugins/material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="assets/plugins/mini-color/js/jquery.minicolors.min.js"></script>
     <script src="assets/js/pages/form-picker-custom.js"></script>
 
+</body>
 </body>
 </html>
