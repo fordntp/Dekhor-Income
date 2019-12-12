@@ -1,3 +1,11 @@
+.text-darklight {
+    color: #37474f;
+}
+
+.text-darklight:hover {
+    color: #37474f;
+}
+
 .yellow {
     color: #37474f;
     background-color: #f2f2f2;
