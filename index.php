@@ -14,6 +14,9 @@ include 'navbar.php';
                             <!-- [ Main Content ] start -->
                             <div class="row">
                                 <div class="col-6">
+                                <h5>Date Picker</h5>
+<hr>
+<input type="text" id="date" class="form-control" placeholder="Date" data-dtp="dtp_iKYEP">
                                     <a class="btn text-darklight text-c-gray" id="currentMonth" onclick="selectMonth();" href="#!"></a>
                                 </div>
                                 <div class="col-6 text-right">
@@ -282,299 +285,296 @@ include 'navbar.php';
     </div>
     <!-- [ addIncome Modal ] end -->
 
-    <?php
-include 'footer.php';
-?>
-        <script>
+    <?php include 'footer.php';?>
+<script>
 
-            //select month & year to show transaction
-            let monthShow = false;
+    //select month & year to show transaction
+    let monthShow = false;
 
-            // Strings and translations
-            let monthsFull = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October','November', 'December'];
-            let monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            let weekdaysFull = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            let weekdaysShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    // Strings and translations
+    let monthsFull = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October','November', 'December'];
+    let monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    let weekdaysFull = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let weekdaysShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-            //define date
-            let date = new Date();
-            let month = date.getMonth()+1;
-            let year = date.getFullYear();
+    //define date
+    let date = new Date();
+    let month = date.getMonth()+1;
+    let year = date.getFullYear();
 
-            //update html year & month value
+    //update html year & month value
+    $("#select-year").html(year);
+    $("#currentMonth").html(""+monthsShort[month-1]+" <i class=\"fas fa-sort-down\"></i>");
+    console.log('current'+month+''+year+'');
+
+    function selectMonth(){
+        if (monthShow != true){
+            $("#selectMonth").slideDown("fast");
+            monthShow = true;
+        } else{
+            $("#selectMonth").slideUp("fast");
+            monthShow = false;
+        }
+
+    }
+    function yearValue(type){
+        if (type == 'minus'){
+            year -= 1;
             $("#select-year").html(year);
-            $("#currentMonth").html(""+monthsShort[month-1]+" <i class=\"fas fa-sort-down\"></i>");
-            console.log('current'+month+''+year+'');
+            //load Header & Transactions
+            loadData(month, year);
+            console.log('yearValue minus'+month+''+year+'');
+        }else{
+            year += 1;
+            $("#select-year").html(year);
+            //load Header & Transactions
+            loadData(month, year);
+            console.log('yearValue plus'+month+''+year+'');
+        }
+    }
+    function monthValue(m){
+        month = m;
+        console.log('monthValue'+month+''+year+'');
+        $("#currentMonth").html(""+monthsShort[month-1]+" <i class=\"fas fa-sort-down\"></i>");
+        loadData(month, year);
+        selectMonth();
+    }
 
-            function selectMonth(){
-                if (monthShow != true){
-                    $("#selectMonth").slideDown("fast");
-                    monthShow = true;
-                } else{
-                    $("#selectMonth").slideUp("fast");
-                    monthShow = false;
-                }
+    //select category object
+    let categoryID;
+    let removeExSelected = document.querySelectorAll('.select-ex-category');
+    let removeInSelected = document.querySelectorAll('.select-in-category');
 
+    function unselectCategory(type){
+        if (type == 'OUT') {
+            // loop to remove selected category
+            for (i = 0; i < removeExSelected.length; i++) {
+                $(removeExSelected[i]).removeClass('active');
             }
-            function yearValue(type){
-                if (type == 'minus'){
-                    year -= 1;
-                    $("#select-year").html(year);
-                    //load Header & Transactions
-                    loadData(month, year);
-                    console.log('yearValue minus'+month+''+year+'');
-                }else{
-                    year += 1;
-                    $("#select-year").html(year);
-                    //load Header & Transactions
-                    loadData(month, year);
-                    console.log('yearValue plus'+month+''+year+'');
-                }
+            categoryID = "";
+            // hide expenses input
+            $("#showupExpenses").slideUp("fast");
+            // set input to blank
+            $("#expensesMemo").val("");
+            $("#expensesValue").val("");
+            $("#expensesDate").val("<?=date('Y-m-d')?>");
+        }
+        else if (type == 'IN') {
+            // loop to remove selected category
+            for (i = 0; i < removeInSelected.length; i++) {
+                $(removeInSelected[i]).removeClass('active');
             }
-            function monthValue(m){
-                month = m;
-                console.log('monthValue'+month+''+year+'');
-                $("#currentMonth").html(""+monthsShort[month-1]+" <i class=\"fas fa-sort-down\"></i>");
-                loadData(month, year);
-                selectMonth();
-            }
-
-            //select category object
-            let categoryID;
-            let removeExSelected = document.querySelectorAll('.select-ex-category');
-            let removeInSelected = document.querySelectorAll('.select-in-category');
-
-            function unselectCategory(type){
-                if (type == 'OUT') {
-                    // loop to remove selected category
-                    for (i = 0; i < removeExSelected.length; i++) {
-                        $(removeExSelected[i]).removeClass('active');
+            categoryID = "";
+            // hide income input
+            $("#showupIncome").slideUp("fast");
+            // set input to blank
+            $("#incomeMemo").val("");
+            $("#incomeValue").val("");
+            $("#incomeDate").val("<?=date('Y-m-d')?>");
+        }
+    }
+    function addExpenses() {
+        let expensesMemo = $("#expensesMemo").val();
+        let expensesValue = $("#expensesValue").val();
+        let expensesdate = $("#expensesDate").val();
+        let type = "OUT";
+        if (expensesMemo != "" && expensesValue != "") {
+            $.ajax({
+                type: "POST",
+                url: "include/add_transactions.php",
+                data: {
+                    textmemo: expensesMemo,
+                    value: expensesValue,
+                    categoryid: categoryID,
+                    date: expensesdate,
+                    type: type
+                },
+                success: function(result) {
+                    if (result == 1) {
+                        // load lasted balance data
+                        //load Header & Transactions
+                        loadData(month, year);
+                        // unselect category
+                        unselectCategory(type);
+                        // close modal dialog
+                        $("[data-dismiss=modal]").trigger({
+                            type: "click"
+                        });
+                        // alert success
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'เพิ่มรายจ่ายเรียบร้อย',
+                            timer: 3000
+                        });
                     }
-                    categoryID = "";
-                    // hide expenses input
-                    $("#showupExpenses").slideUp("fast");
-                    // set input to blank
-                    $("#expensesMemo").val("");
-                    $("#expensesValue").val("");
-                    $("#expensesDate").val("<?=date('Y-m-d')?>");
                 }
-                else if (type == 'IN') {
-                    // loop to remove selected category
-                    for (i = 0; i < removeInSelected.length; i++) {
-                        $(removeInSelected[i]).removeClass('active');
-                    }
-                    categoryID = "";
-                    // hide income input
-                    $("#showupIncome").slideUp("fast");
-                    // set input to blank
-                    $("#incomeMemo").val("");
-                    $("#incomeValue").val("");
-                    $("#incomeDate").val("<?=date('Y-m-d')?>");
-                }
-            }
-            function addExpenses() {
-                let expensesMemo = $("#expensesMemo").val();
-                let expensesValue = $("#expensesValue").val();
-                let expensesdate = $("#expensesDate").val();
-                let type = "OUT";
-                if (expensesMemo != "" && expensesValue != "") {
-                    $.ajax({
-                        type: "POST",
-                        url: "include/add_transactions.php",
-                        data: {
-                            textmemo: expensesMemo,
-                            value: expensesValue,
-                            categoryid: categoryID,
-                            date: expensesdate,
-                            type: type
-                        },
-                        success: function(result) {
-                            if (result == 1) {
-                                // load lasted balance data
-                                //load Header & Transactions
-                                loadData(month, year);
-                                // unselect category
-                                unselectCategory(type);
-                                // close modal dialog
-                                $("[data-dismiss=modal]").trigger({
-                                    type: "click"
-                                });
-                                // alert success
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'เพิ่มรายจ่ายเรียบร้อย',
-                                    timer: 3000
-                                });
-                            }
-                        }
-                    });
-                }
-            }
-
-            function addIncome() {
-                let incomeMemo = $("#incomeMemo").val();
-                let incomeValue = $("#incomeValue").val();
-                let incomedate = $("#incomeDate").val();
-                let type = "IN";
-                if (incomeMemo != "" && incomeValue != "") {
-                    $.ajax({
-                        type: "POST",
-                        url: "include/add_transactions.php",
-                        data: {
-                            textmemo: incomeMemo,
-                            value: incomeValue,
-                            categoryid: categoryID,
-                            date: incomedate,
-                            type: type
-                        },
-                        success: function(result) {
-                            if (result == 1) {
-                                // load lasted balance data
-                                //load Header & Transactions
-                                loadData(month, year);
-                                // unselect category
-                                unselectCategory(type);
-                                // close modal dialog
-                                $("[data-dismiss=modal]").trigger({
-                                    type: "click"
-                                });
-                                // alert success
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'เพิ่มรายรับเรียบร้อย',
-                                    timer: 3000
-                                });
-                            }
-                        }
-                    });
-                }
-            }
-
-            function selectCategory(id, theme, type) {
-                if (type == "OUT") {
-                    //change color addExpensesbtn when select category
-                    $("#addExpensesbtn").attr("class", "btn "+theme+" active");
-
-                    for (i = 0; i < removeExSelected.length; i++) {
-                        $(removeExSelected[i]).removeClass('active');
-                    }
-                    $(".select-ex-category").click(function() {
-                        $(this).addClass('active');
-                        categoryID = id;
-                    });
-                } else if (type == "IN") {
-                    //change color addExpensesbtn when select category
-                    $("#addIncomebtn").attr("class", "btn "+theme+" active");
-
-                    for (i = 0; i < removeInSelected.length; i++) {
-                        $(removeInSelected[i]).removeClass('active');
-                    }
-                    $(".select-in-category").click(function() {
-                        $(this).addClass('active');
-                        categoryID = id;
-                    });
-                }
-            }
-
-            function loadmainHeader(month, year) {
-                console.log('loadMain'+month+''+year+'');
-                $.ajax({
-                    type: "POST",
-                    url: "include/call_main_header.php",
-                    data: { month: month, year: year },
-                    success: function(result) {
-                        let data = jQuery.parseJSON(result);
-                        $("#sum_in").html(data["sum_IN"]);
-                        $("#sum_out").html(data["sum_OUT"]);
-                        $("#sum_balance").html(data["balance"]);
-                    }
-                });
-            }
-
-            function loadTransactions(month, year) {
-                console.log('loadTrans'+month+''+year+'');
-                $.ajax({
-                    type: "POST",
-                    url: "include/call_main_transactions.php",
-                    data: { month: month, year: year },
-                    success: function(result) {
-                        let Obj = jQuery.parseJSON(result);
-                        let card = "";
-                        // alert(Obj[0][Obj[0].length - 1]["sum_IN"]);
-                        if (Obj.length > 1){
-                            for(i = 0; i < Obj.length; i++){
-                                card += '<div class="col-xl-12">\
-                                            <div class="card">\
-                                                <div class="card-header">\
-                                                    <h5>'+Obj[i][0]["create_date"]+'</h5>\
-                                                    <span class="text-muted float-right">รายรับ: '+Obj[i][Obj[i].length - 1]["sum_IN"]+' <br> รายจ่าย: '+Obj[i][Obj[i].length - 1]["sum_OUT"]+'</span>\
-                                                </div>\
-                                                <div class="card-block p-4">\
-                                                ';
-                                for(j = 0; j < Obj[i].length - 1; j++){
-                                    card += '<h5 class="text-muted f-w-300 mt-4 mb-4">\
-                                                <button class="btn '+Obj[i][j]["category_theme"]+' btn-circle btn-circle-sm active"><i class="'+Obj[i][j]["category_icon"]+'"></i></button> '+Obj[i][j]["memo"]+' \
-                                                <span class="float-right">'+Obj[i][j]["value"]+'</span>\
-                                            </h5>';
-                                    //console.log(Obj[i][j]["sum_IN"]);
-                                }
-                                card += '</div>\
-                                    </div>\
-                                </div>';
-                            }
-                        } else {
-                            card += '<div class="col-xl-12 p-5">\
-                                        <div class="text-center">\
-                                            <h1 class="text-muted mb-4"><i class="fas fa-list"></i></h1>\
-                                            <h5 class="text-muted mb-4">No transaction list.</h5>\
-                                        </div>\
-                                    </div>';
-                        }
-                        $('#transactionsShow').html(card);
-                        $('#transactionsShow').fadeIn("fast");
-                    }
-                });
-            }
-
-            function loadData(month, year){
-                console.log('loadData'+month+''+year+'');
-                loadTransactions(month, year);
-                loadmainHeader(month, year);
-            }
-
-            $(document).ready(function() {
-
-                //load Header & Transactions
-                loadData(month, year);
-
-                //fix button add transaction & check is scrolling
-                //ref https://stackoverflow.com/questions/56994840/
-                var $window = $(window);
-                var nav = $('.fixed-m');
-                var scroll_active = false;
-                var scroll_timer = new Date();
-                check_scroll_time();
-
-                $window.scroll(function(){
-                    scroll_timer = new Date();
-                });
-
-                function check_scroll_time(){
-                    now = new Date();
-                    if ((now.getTime() - scroll_timer.getTime())/1000 >= 0.2){
-                        nav.fadeIn(200);
-                    }else{
-                        nav.fadeOut(100);
-                    }
-                    setTimeout(function(){ check_scroll_time() },100);
-                }
-
-                //when select category show transaction form input
-                $(".select-ex-category").click(function() {
-                    $("#showupExpenses").slideDown("fast");
-                });
-                $(".select-in-category").click(function() {
-                    $("#showupIncome").slideDown("fast");
-                });
             });
-        </script>
+        }
+    }
+
+    function addIncome() {
+        let incomeMemo = $("#incomeMemo").val();
+        let incomeValue = $("#incomeValue").val();
+        let incomedate = $("#incomeDate").val();
+        let type = "IN";
+        if (incomeMemo != "" && incomeValue != "") {
+            $.ajax({
+                type: "POST",
+                url: "include/add_transactions.php",
+                data: {
+                    textmemo: incomeMemo,
+                    value: incomeValue,
+                    categoryid: categoryID,
+                    date: incomedate,
+                    type: type
+                },
+                success: function(result) {
+                    if (result == 1) {
+                        // load lasted balance data
+                        //load Header & Transactions
+                        loadData(month, year);
+                        // unselect category
+                        unselectCategory(type);
+                        // close modal dialog
+                        $("[data-dismiss=modal]").trigger({
+                            type: "click"
+                        });
+                        // alert success
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'เพิ่มรายรับเรียบร้อย',
+                            timer: 3000
+                        });
+                    }
+                }
+            });
+        }
+    }
+
+    function selectCategory(id, theme, type) {
+        if (type == "OUT") {
+            //change color addExpensesbtn when select category
+            $("#addExpensesbtn").attr("class", "btn "+theme+" active");
+
+            for (i = 0; i < removeExSelected.length; i++) {
+                $(removeExSelected[i]).removeClass('active');
+            }
+            $(".select-ex-category").click(function() {
+                $(this).addClass('active');
+                categoryID = id;
+            });
+        } else if (type == "IN") {
+            //change color addExpensesbtn when select category
+            $("#addIncomebtn").attr("class", "btn "+theme+" active");
+
+            for (i = 0; i < removeInSelected.length; i++) {
+                $(removeInSelected[i]).removeClass('active');
+            }
+            $(".select-in-category").click(function() {
+                $(this).addClass('active');
+                categoryID = id;
+            });
+        }
+    }
+
+    function loadmainHeader(month, year) {
+        console.log('loadMain'+month+''+year+'');
+        $.ajax({
+            type: "POST",
+            url: "include/call_main_header.php",
+            data: { month: month, year: year },
+            success: function(result) {
+                let data = jQuery.parseJSON(result);
+                $("#sum_in").html(data["sum_IN"]);
+                $("#sum_out").html(data["sum_OUT"]);
+                $("#sum_balance").html(data["balance"]);
+            }
+        });
+    }
+
+    function loadTransactions(month, year) {
+        console.log('loadTrans'+month+''+year+'');
+        $.ajax({
+            type: "POST",
+            url: "include/call_main_transactions.php",
+            data: { month: month, year: year },
+            success: function(result) {
+                let Obj = jQuery.parseJSON(result);
+                let card = "";
+                // alert(Obj[0][Obj[0].length - 1]["sum_IN"]);
+                if (Obj.length > 1){
+                    for(i = 0; i < Obj.length; i++){
+                        card += '<div class="col-xl-12">\
+                                    <div class="card">\
+                                        <div class="card-header">\
+                                            <h5>'+Obj[i][0]["create_date"]+'</h5>\
+                                            <span class="text-muted float-right">รายรับ: '+Obj[i][Obj[i].length - 1]["sum_IN"]+' <br> รายจ่าย: '+Obj[i][Obj[i].length - 1]["sum_OUT"]+'</span>\
+                                        </div>\
+                                        <div class="card-block p-4">\
+                                        ';
+                        for(j = 0; j < Obj[i].length - 1; j++){
+                            card += '<h5 class="text-muted f-w-300 mt-4 mb-4">\
+                                        <button class="btn '+Obj[i][j]["category_theme"]+' btn-circle btn-circle-sm active"><i class="'+Obj[i][j]["category_icon"]+'"></i></button> '+Obj[i][j]["memo"]+' \
+                                        <span class="float-right">'+Obj[i][j]["value"]+'</span>\
+                                    </h5>';
+                            //console.log(Obj[i][j]["sum_IN"]);
+                        }
+                        card += '</div>\
+                            </div>\
+                        </div>';
+                    }
+                } else {
+                    card += '<div class="col-xl-12 p-5">\
+                                <div class="text-center">\
+                                    <h1 class="text-muted mb-4"><i class="fas fa-list"></i></h1>\
+                                    <h5 class="text-muted mb-4">No transaction list.</h5>\
+                                </div>\
+                            </div>';
+                }
+                $('#transactionsShow').html(card);
+                $('#transactionsShow').fadeIn("fast");
+            }
+        });
+    }
+
+    function loadData(month, year){
+        console.log('loadData'+month+''+year+'');
+        loadTransactions(month, year);
+        loadmainHeader(month, year);
+    }
+
+
+    //load Header & Transactions
+    loadData(month, year);
+
+    //fix button add transaction & check is scrolling
+    //ref https://stackoverflow.com/questions/56994840/
+    var $window = $(window);
+    var nav = $('.fixed-m');
+    var scroll_active = false;
+    var scroll_timer = new Date();
+    check_scroll_time();
+
+    $window.scroll(function(){
+        scroll_timer = new Date();
+    });
+
+    function check_scroll_time(){
+        now = new Date();
+        if ((now.getTime() - scroll_timer.getTime())/1000 >= 0.2){
+            nav.fadeIn(200);
+        }else{
+            nav.fadeOut(100);
+        }
+        setTimeout(function(){ check_scroll_time() },100);
+    }
+
+    //when select category show transaction form input
+    $(".select-ex-category").click(function() {
+        $("#showupExpenses").slideDown("fast");
+    });
+    $(".select-in-category").click(function() {
+        $("#showupIncome").slideDown("fast");
+    });
+
+</script>
