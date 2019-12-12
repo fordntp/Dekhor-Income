@@ -118,7 +118,7 @@
 .dtp .dtp-picker-time>a {
     color: #212121;
     text-decoration: none;
-    padding: .5rem .5rem .5rem .5rem;
+    padding: 10px 10px 10px 10px;
     border-radius: 50%!important;
 }
 
