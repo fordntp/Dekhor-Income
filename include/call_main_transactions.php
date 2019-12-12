@@ -112,6 +112,7 @@ if($numRows > 0)
     $json_arr = json_encode($MonthArr, JSON_UNESCAPED_UNICODE);
     echo $json_arr;
 }
-
+else
+    echo 0;
 
 // echo json_encode($MonthArr, JSON_UNESCAPED_UNICODE);
