@@ -134,21 +134,14 @@ include 'navbar.php';
                                                         <div id="showCanvas" class="col-xl-4 col-12"></div>
                                                         <div class="col-xl-4 col-12"></div>
                                                     </div>
-                                                    <!-- <h5 class="text-muted f-w-300 mt-4 mb-4">
-                                                        <button class="btn deepskyblue btn-circle btn-circle-sm active"><i class="fas fa-bolt"></i></button> บิล <small>( 57.77% )</small>
-                                                        <span class="float-right">2,900</span>
-                                                    </h5>
-                                                    <h5 class="text-muted f-w-300 mt-4 mb-4">
-                                                        <button class="btn yellow btn-circle btn-circle-sm active"><i class="fas fa-utensils"></i></button> อาหาร <small>( 31.08% )</small>
-                                                        <span class="float-right">1,560</span>
-                                                    </h5>
-                                                    <h5 class="text-muted f-w-300 mt-4 mb-4">
-                                                        <button class="btn lime btn-circle btn-circle-sm active"><i class="fas fa-taxi"></i></button> เดินทาง <small>( 11.16% )</small>
-                                                        <span class="float-right">560</span>
-                                                    </h5> -->
                                                 </div>
                                             <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
                                             <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="card">
+                                            <div id="showCategoryList" class="card-block"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -327,7 +320,7 @@ include 'navbar.php';
     //update html year & month value
     $("#select-year").html(year);
     $("#currentMonth").html(""+monthsShort[month-1]+" <i class=\"fas fa-sort-down\"></i>");
-    console.log('current'+month+''+year+'');
+    // console.log('current'+month+''+year+'');
 
     function selectMonth(){
         if (monthShow != true){
@@ -345,18 +338,18 @@ include 'navbar.php';
             $("#select-year").html(year);
             //load Header & Transactions
             loadData(month, year);
-            console.log('yearValue minus'+month+''+year+'');
+            // console.log('yearValue minus'+month+''+year+'');
         }else{
             year += 1;
             $("#select-year").html(year);
             //load Header & Transactions
             loadData(month, year);
-            console.log('yearValue plus'+month+''+year+'');
+            // console.log('yearValue plus'+month+''+year+'');
         }
     }
     function monthValue(m){
         month = m;
-        console.log('monthValue'+month+''+year+'');
+        // console.log('monthValue'+month+''+year+'');
         $("#currentMonth").html(""+monthsShort[month-1]+" <i class=\"fas fa-sort-down\"></i>");
         loadData(month, year);
         selectMonth();
@@ -500,7 +493,7 @@ include 'navbar.php';
     }
 
     function loadmainHeader(month, year) {
-        console.log('loadMain'+month+''+year+'');
+        // console.log('loadMain'+month+''+year+'');
         $.ajax({
             type: "POST",
             url: "include/call_main_header.php",
@@ -515,7 +508,7 @@ include 'navbar.php';
     }
 
     function loadTransactions(month, year) {
-        console.log('loadTrans'+month+''+year+'');
+        // console.log('loadTrans'+month+''+year+'');
         $.ajax({
             type: "POST",
             url: "include/call_main_transactions.php",
@@ -565,6 +558,7 @@ include 'navbar.php';
         var canvas = document.getElementById('myChart');
         // var context = canvas.getContext('2d');
         // context.clearRect(0, 0, canvas.width, canvas.height);
+        var Obj;
         $.ajax({
             type: "POST",
             url: "include/call_graph.php",
@@ -572,7 +566,7 @@ include 'navbar.php';
             success: function(result) {
                 // console.log(result);
                 if(result != "0"){
-                    var Obj = jQuery.parseJSON(result);
+                    Obj = jQuery.parseJSON(result);
                     // console.log(Obj);
                     var ctx = canvas.getContext('2d');
                     var myChart = new Chart(ctx, {
@@ -608,23 +602,61 @@ include 'navbar.php';
                             }
                         },
                     });
+                    //code here
+                    //ex Obj = [
+                    //     ["เกม","อาหาร"],
+                    //     [8001,111],
+                    //     ["#ff5050","#ffcc00"],
+                    //     ["fas fa-gamepad","fas fa-utensils"],
+                    //     ["red","yellow"]
+                    // ]
+                    //Obj[4][0] = red
+                    //Obj[0][1] = อาหาร
+
+                    //sum values in array
+                    //ref https://www.w3schools.com/jsref/jsref_reduce.asp
+                    var sum = Obj[1].reduce(myFunc);
+                    function myFunc(total, num) {
+                        return total + num;
+                    }
+
+                    //currencyformat
+                    //ref https://blog.abelotech.com/posts/number-currency-formatting-javascript/
+                    function currencyFormat(num) {
+                        return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                    }
+                    // console.info(currencyFormat(2665))
+
+                    var categoryList = "";
+                    for(i = 0; i < Obj[0].length; i++){
+                        categoryList += '\
+                        <h5 class="text-muted f-w-300 mt-4 mb-4">\
+                            <button class="btn '+Obj[4][i]+' btn-circle btn-circle-sm active">\
+                                <i class="'+Obj[3][i]+'"></i>\
+                            </button> '+Obj[0][i]+' \
+                            <small>( '+(Obj[1][i]*100/sum).toFixed(2)+'% )</small>\
+                            <span class="float-right">'+currencyFormat(Obj[1][i])+'</span>\
+                        </h5>';
+                    }
+                    $("#showCategoryList").html(categoryList);
                 }
             }
         });
     }
 
     function loadData(month, year){
-        console.log('loadData'+month+''+year+'');
+        // console.log('loadData'+month+''+year+'');
         loadTransactions(month, year);
         loadmainHeader(month, year);
         loadGraph(month, year);
     }
 
-
     //load Header & Transactions
     loadData(month, year);
 
-    //fix button add transaction & check is scrolling
+    //fix button add transaction at bottom
+
+    //check user is scrolling
     //ref https://stackoverflow.com/questions/56994840/
     var $window = $(window);
     var nav = $('.fixed-m');
