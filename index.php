@@ -326,55 +326,6 @@ include 'navbar.php';
 
     <?php include 'footer.php';?>
 <script>
-    function loadGraph(month, year){
-        $.ajax({
-            type: "POST",
-            url: "include/call_graph.php",
-            data: { month: month, year: year },
-            success: function(result) {
-                console.log(result);
-                if(result != "0"){
-                    var Obj = jQuery.parseJSON(result);
-                    console.log(Obj);
-                    var ctx = document.getElementById("myChart").getContext('2d');
-                    var myChart = new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: Obj[0],
-                            datasets: [{
-                            label: '# of Tomatoes',
-                            data: Obj[1],
-                            backgroundColor: Obj[2]
-                            }]
-                        },
-                        options: {
-                            cutoutPercentage: 40,
-                            responsive: true,
-                            onAnimationComplete: addText,
-                            tooltips: {
-                                enabled: false
-                            },
-                            plugins: {
-                                datalabels: {
-                                    formatter: (value, ctx) => {
-                                    let sum = 0;
-                                    let dataArr = ctx.chart.data.datasets[0].data;
-                                    dataArr.map(data => {
-                                        sum += data;
-                                    });
-                                    let percentage = (value*100 / sum).toFixed(2)+"%";
-                                    return percentage;
-                                    },
-                                    color: '#fff',
-                                }
-                            }
-                        },
-                    });
-                }
-            }
-        });
-    }
-
     //select month & year to show transaction
     let monthShow = false;
 
@@ -620,6 +571,55 @@ include 'navbar.php';
                 }
                 $('#transactionsShow').html(card);
                 $('#transactionsShow').fadeIn("fast");
+            }
+        });
+    }
+
+    function loadGraph(month, year){
+        $.ajax({
+            type: "POST",
+            url: "include/call_graph.php",
+            data: { month: month, year: year },
+            success: function(result) {
+                console.log(result);
+                if(result != "0"){
+                    var Obj = jQuery.parseJSON(result);
+                    console.log(Obj);
+                    var ctx = document.getElementById("myChart").getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: Obj[0],
+                            datasets: [{
+                            label: '# of Tomatoes',
+                            data: Obj[1],
+                            backgroundColor: Obj[2]
+                            }]
+                        },
+                        options: {
+                            cutoutPercentage: 40,
+                            responsive: true,
+                            onAnimationComplete: addText,
+                            tooltips: {
+                                enabled: false
+                            },
+                            plugins: {
+                                datalabels: {
+                                    formatter: (value, ctx) => {
+                                    let sum = 0;
+                                    let dataArr = ctx.chart.data.datasets[0].data;
+                                    dataArr.map(data => {
+                                        sum += data;
+                                    });
+                                    let percentage = (value*100 / sum).toFixed(2)+"%";
+                                    return percentage;
+                                    },
+                                    color: '#fff',
+                                }
+                            }
+                        },
+                    });
+                }
             }
         });
     }
