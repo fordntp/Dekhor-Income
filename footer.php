@@ -3,7 +3,7 @@
     <!-- <script type="text/javascript" src="assets/js/app.js"></script> -->
 
     <!-- Required Js -->
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="assets/js/vendor-all.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
