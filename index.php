@@ -135,7 +135,7 @@ include 'navbar.php';
                                                         </div>
                                                         <div class="col-xl-4 col-12"></div>
                                                     </div>
-                                                    <h5 class="text-muted f-w-300 mt-4 mb-4">
+                                                    <!-- <h5 class="text-muted f-w-300 mt-4 mb-4">
                                                         <button class="btn deepskyblue btn-circle btn-circle-sm active"><i class="fas fa-bolt"></i></button> บิล <small>( 57.77% )</small>
                                                         <span class="float-right">2,900</span>
                                                     </h5>
@@ -146,7 +146,7 @@ include 'navbar.php';
                                                     <h5 class="text-muted f-w-300 mt-4 mb-4">
                                                         <button class="btn lime btn-circle btn-circle-sm active"><i class="fas fa-taxi"></i></button> เดินทาง <small>( 11.16% )</small>
                                                         <span class="float-right">560</span>
-                                                    </h5>
+                                                    </h5> -->
                                                 </div>
                                             <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
                                             <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
