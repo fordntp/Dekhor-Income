@@ -152,104 +152,6 @@ include 'navbar.php';
                                             <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
                                             <script>
-                                                //  var data = [{
-                                                //     data: [50, 55, 60, 33],
-                                                //     labels: ["India", "China", "US", "Canada"],
-                                                //     backgroundColor: [
-                                                //         "#4b77a9",
-                                                //         "#5f255f",
-                                                //         "#d21243",
-                                                //         "#B27200"
-                                                //     ],
-                                                //     borderColor: "#fff"
-                                                // }];
-
-                                                // var options = {
-                                                //     tooltips: {
-                                                //     enabled: false
-                                                //     },
-                                                //     plugins: {
-                                                //     datalabels: {
-                                                //     formatter: (value, ctx) => {
-
-                                                //     let sum = 0;
-                                                //     let dataArr = ctx.chart.data.datasets[0].data;
-                                                //     dataArr.map(data => {
-                                                //         sum += data;
-                                                //     });
-                                                //     let percentage = (value*100 / sum).toFixed(2)+"%";
-                                                //     return percentage;
-
-
-                                                //     },
-                                                //     color: '#fff',
-                                                //         }
-                                                //     }
-                                                // };
-
-                                                // var ctx = document.getElementById("myChart").getContext('2d');
-                                                // var myChart = new Chart(ctx, {
-                                                //     type: 'pie',
-                                                //     data: {
-                                                //         datasets: data
-                                                //     },
-                                                //         options: options
-                                                // });
-                                                function loadGraph(){
-                                                    $.ajax({
-                                                        type: "POST",
-                                                        url: "include/call_graph.php",
-                                                        data: { month: "12", year: "2019" },
-                                                        success: function(result) {
-                                                            console.log(result);
-                                                            result = [["อาหาร"],[111],["#ffcc00"]];
-                                                            // if(result != "0"){
-                                                            //     var Obj = [['OK', 'WARNING', 'CRITICAL'],[12, 19, 3],[ 'rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)']];
-                                                            //     var Obj = jQuery.parseJSON(result);
-                                                            //     console.log(Obj);
-                                                            //     var ctx = document.getElementById("myChart").getContext('2d');
-                                                            //     var myChart = new Chart(ctx, {
-                                                            //         type: 'pie',
-                                                            //         data: {
-                                                            //             labels: Obj[0],
-                                                            //             datasets: [{
-                                                            //             label: '# of Tomatoes',
-                                                            //             data: Obj[1],
-                                                            //             backgroundColor: Obj[2]
-                                                            //             }]
-                                                            //         },
-                                                            //         options: {
-                                                            //             cutoutPercentage: 40,
-                                                            //             responsive: true,
-                                                            //             onAnimationComplete: addText,
-                                                            //             tooltips: {
-                                                            //                 enabled: false
-                                                            //             },
-                                                            //             plugins: {
-                                                            //                 datalabels: {
-                                                            //                     formatter: (value, ctx) => {
-
-                                                            //                     let sum = 0;
-                                                            //                     let dataArr = ctx.chart.data.datasets[0].data;
-                                                            //                     dataArr.map(data => {
-                                                            //                         sum += data;
-                                                            //                     });
-                                                            //                     let percentage = (value*100 / sum).toFixed(2)+"%";
-                                                            //                     return percentage;
-
-                                                            //                     },
-                                                            //                     color: '#fff',
-                                                            //                 }
-                                                            //             }
-                                                            //         },
-                                                            //     });
-                                                            // }
-                                                        }
-                                                    });
-                                                }
-
-                                                loadGraph();
-
                                                 function addText() {
                                                     alert("test");
                                                     var cx = canvas.width / 2;
@@ -424,7 +326,6 @@ include 'navbar.php';
 
     <?php include 'footer.php';?>
 <script>
-
     //select month & year to show transaction
     let monthShow = false;
 
@@ -674,10 +575,60 @@ include 'navbar.php';
         });
     }
 
+    function loadGraph(month, year){
+        $.ajax({
+            type: "POST",
+            url: "include/call_graph.php",
+            data: { month: month, year: year },
+            success: function(result) {
+                console.log(result);
+                if(result != "0"){
+                    var Obj = jQuery.parseJSON(result);
+                    console.log(Obj);
+                    var ctx = document.getElementById("myChart").getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: Obj[0],
+                            datasets: [{
+                            label: '# of Tomatoes',
+                            data: Obj[1],
+                            backgroundColor: Obj[2]
+                            }]
+                        },
+                        options: {
+                            cutoutPercentage: 40,
+                            responsive: true,
+                            onAnimationComplete: addText,
+                            tooltips: {
+                                enabled: false
+                            },
+                            plugins: {
+                                datalabels: {
+                                    formatter: (value, ctx) => {
+                                    let sum = 0;
+                                    let dataArr = ctx.chart.data.datasets[0].data;
+                                    dataArr.map(data => {
+                                        sum += data;
+                                    });
+                                    let percentage = (value*100 / sum).toFixed(2)+"%";
+                                    return percentage;
+                                    },
+                                    color: '#fff',
+                                }
+                            }
+                        },
+                    });
+                }
+            }
+        });
+    }
+
     function loadData(month, year){
         console.log('loadData'+month+''+year+'');
         loadTransactions(month, year);
         loadmainHeader(month, year);
+        loadGraph(month, year);
     }
 
 
