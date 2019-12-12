@@ -128,7 +128,12 @@ include 'navbar.php';
                                         <div class="col-xl-12">
                                             <div class="card">
                                                 <div class="card-block">
-                                                    <canvas id="myChart" width="300" height="300"></canvas>
+                                                    <div class="row">
+                                                        <div class="col-xl-4 col-12"></div>
+                                                        <div class="col-xl-4 col-12">
+                                                            <canvas id="myChart" width="300" height="300"></canvas>
+                                                        </div>
+                                                        <div class="col-xl-4 col-12"></div>
                                                 </div>
                                             </div>
                                             <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
