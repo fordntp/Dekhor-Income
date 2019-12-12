@@ -18,7 +18,7 @@ include 'navbar.php';
                                 </div>
                                 <div class="col-6 text-right">
                                     <a class="text-c-red" href="logout"><i class="feather icon-log-out"></i> ออกจากระบบ</a><br>
-                                    <small class="text-muted"><?=$_SESSION['uname']?></small>
+                                    <small class="text-muted" style="text-transform: capitalize;"><?=$_SESSION['uname']?></small>
                                 </div>
                             </div>
                             <div id="selectMonth" class="form-group" style="display: none">
