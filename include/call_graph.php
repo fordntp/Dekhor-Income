@@ -2,7 +2,7 @@
     include 'database.php';
     $month = $_REQUEST['month'];
     $year = $_REQUEST['year'];
-    $type = "OUT" //$_REQUEST['type'];
+    $type = "OUT"; //$_REQUEST['type'];
     $month = mysqli_real_escape_string($conn,$month);
     $year = mysqli_real_escape_string($conn,$year);
     $BIG_ARR = array();
