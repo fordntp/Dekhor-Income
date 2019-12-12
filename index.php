@@ -131,7 +131,6 @@ include 'navbar.php';
                                                     <canvas id="myChart" width="300" height="300"></canvas>
                                                 </div>
                                             </div>
-
                                             <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
                                             <script>var ctx = document.getElementById("myChart");
                                                 var myChart = new Chart(ctx, {
