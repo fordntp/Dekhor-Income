@@ -131,9 +131,7 @@ include 'navbar.php';
                                                 <div class="card-block">
                                                     <div class="row">
                                                         <div class="col-xl-4 col-12"></div>
-                                                        <div class="col-xl-4 col-12">
-                                                            <canvas id="myChart" width="300" height="300"></canvas>
-                                                        </div>
+                                                        <div id="showCanvas" class="col-xl-4 col-12"></div>
                                                         <div class="col-xl-4 col-12"></div>
                                                     </div>
                                                     <!-- <h5 class="text-muted f-w-300 mt-4 mb-4">
@@ -562,9 +560,10 @@ include 'navbar.php';
     }
 
     function loadGraph(month, year){
+        $("#showCanvas").html('<canvas id="myChart" width="300" height="300"></canvas>');
         var canvas = document.getElementById('myChart');
-        var context = canvas.getContext('2d');
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        // var context = canvas.getContext('2d');
+        // context.clearRect(0, 0, canvas.width, canvas.height);
         $.ajax({
             type: "POST",
             url: "include/call_graph.php",
