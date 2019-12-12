@@ -113,7 +113,7 @@ include 'navbar.php';
                             <div id="myTabContent">
                                 <div class="tab-pane fade show active" id="transaction" role="tabpanel" aria-labelledby="transaction-tab">
                                     <div id="transactionsShow" class="row" style="display: none;"></div>
-                                    <div class="btn-group dropup fixed-m">
+                                    <div class="btn-group dropup fixed-m" style="display: none;">
                                         <button class="btn btn-icon btn-rounded btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="feather icon-plus"></i>
                                         </button>
@@ -543,19 +543,31 @@ include 'footer.php';
             }
 
             $(document).ready(function() {
+
                 //load Header & Transactions
                 loadData(month, year);
 
-                //fix button add transaction & animate
+                //fix button add transaction & check is scrolling
+                //ref https://stackoverflow.com/questions/56994840/
                 var $window = $(window);
                 var nav = $('.fixed-m');
-                $window.scroll(function() {
-                    if ($window.scrollTop() <= 10) {
-                        nav.fadeIn("fast");
-                    } else {
-                        nav.fadeOut("fast");
-                    }
+                var scroll_active = false;
+                var scroll_timer = new Date();
+                check_scroll_time();
+
+                $window.scroll(function(){
+                    scroll_timer = new Date();
                 });
+
+                function check_scroll_time(){
+                    now = new Date();
+                    if ((now.getTime() - scroll_timer.getTime())/1000 >= 0.2){
+                        nav.fadeIn(200);
+                    }else{
+                        nav.fadeOut(100);
+                    }
+                    setTimeout(function(){ check_scroll_time() },100);
+                }
 
                 //when select category show transaction form input
                 $(".select-ex-category").click(function() {
