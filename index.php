@@ -486,13 +486,12 @@ while ($data = mysqli_fetch_array($qry)) {
                                         <div class="card-block">\
                                             <div class="row">\
                                                 <div class="col-xl-4 col-12"></div>\
-                                                <div id="showCanvas" class="col-xl-4 col-12">\
-                                                </div>\
+                                                <div id="showCanvas" class="col-xl-4 col-12"></div>\
                                                 <div class="col-xl-4 col-12"></div>\
-                                            </div>\
-                                        </div>\
-                                    </div>\
-                                </div>';
+                                            </div> <!-- row -->\
+                                        </div> <!-- card-block -->\
+                                    </div> <!-- card -->\
+                                </div> <!-- col-xl-12 -->';
 
                     //code here
                     //ex Obj = [
@@ -544,7 +543,12 @@ while ($data = mysqli_fetch_array($qry)) {
                     $("#showGraph").html(cardGraph);
                     $('#showGraph').fadeIn("fast");
 
-                    $("#showCanvas").html('<canvas id="myChart" width="300" height="300"></canvas>');
+                    $("#showCanvas").append('<div class="row">\
+                                                <div class="col-6 p-2"><a href="#!" onclick="loadGraph('+month+', '+year+', \'IN\')" class="btn btn-light btn-block">รายรับ</a></div>\
+                                                <div class="col-6 p-2"><a href="#!" onclick="loadGraph('+month+', '+year+', \'OUT\')" class="btn btn-light btn-block">รายจ่าย</a></div>\
+                                            <div>');
+                    $("#showCanvas").append('<canvas id="myChart" width="300" height="300"></canvas>');
+
                     let canvas = document.getElementById('myChart');
                     // let context = canvas.getContext('2d');
                     // context.clearRect(0, 0, canvas.width, canvas.height);
