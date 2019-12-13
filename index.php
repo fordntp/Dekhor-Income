@@ -114,6 +114,7 @@ include 'navbar.php';
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="transaction" role="tabpanel" aria-labelledby="transaction-tab">
                                     <div id="transactionsShow" class="row" style="display: none;"></div>
+
                                     <div class="btn-group dropup fixed-m" style="display: none;">
                                         <button class="btn btn-icon btn-rounded btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="feather icon-plus"></i>
@@ -125,26 +126,10 @@ include 'navbar.php';
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="graph" role="tabpanel" aria-labelledby="graph-tab">
-                                    <div class="row">
-                                        <div class="col-xl-12">
-                                            <div class="card">
-                                                <div class="card-block">
-                                                    <div class="row">
-                                                        <div class="col-xl-4 col-12"></div>
-                                                        <div id="showCanvas" class="col-xl-4 col-12"></div>
-                                                        <div class="col-xl-4 col-12"></div>
-                                                    </div>
-                                                </div>
-                                            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-                                            <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-12">
-                                        <div class="card">
-                                            <div id="showCategoryList" class="card-block"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <div id="showGraph" class="row" style="display: none;"></div>
+
+                                <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+                                <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
                             </div>
 
                             <!-- [ Main Content ] end -->
@@ -554,10 +539,8 @@ include 'navbar.php';
     }
 
     function loadGraph(month, year){
-        $("#showCanvas").html('<canvas id="myChart" width="300" height="300"></canvas>');
-        var canvas = document.getElementById('myChart');
-        // var context = canvas.getContext('2d');
-        // context.clearRect(0, 0, canvas.width, canvas.height);
+
+        var cardGraph = "";
         var Obj;
         $.ajax({
             type: "POST",
@@ -566,8 +549,77 @@ include 'navbar.php';
             success: function(result) {
                 // console.log(result);
                 if(result != "0"){
+
                     Obj = jQuery.parseJSON(result);
                     // console.log(Obj);
+
+                    cardGraph += '<div class="col-xl-12">\
+                                    <div class="card">\
+                                        <div class="card-block">\
+                                            <div class="row">\
+                                                <div class="col-xl-4 col-12"></div>\
+                                                <div id="showCanvas" class="col-xl-4 col-12">\
+                                                </div>\
+                                                <div class="col-xl-4 col-12"></div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>';
+
+                    //code here
+                    //ex Obj = [
+                    //     ["เกม","อาหาร"],
+                    //     [8001,111],
+                    //     ["#ff5050","#ffcc00"],
+                    //     ["fas fa-gamepad","fas fa-utensils"],
+                    //     ["red","yellow"]
+                    // ]
+                    //Obj[4][0] = red
+                    //Obj[0][1] = อาหาร
+
+                    /*------------------------------------------------------------*/
+
+                    //sum values in array
+                    //ref https://www.w3schools.com/jsref/jsref_reduce.asp
+                    var sum = Obj[1].reduce(myFunc);
+                    function myFunc(total, num) {
+                        return total + num;
+                    }
+
+                    //currencyformat
+                    //ref https://blog.abelotech.com/posts/number-currency-formatting-javascript/
+                    function currencyFormat(num) {
+                        return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+                    }
+                    // console.info(currencyFormat(2665))
+
+                    cardGraph += ' <div class="col-xl-12">\
+                                        <div class="card">\
+                                            <div class="card-block">';
+
+                    for(i = 0; i < Obj[0].length; i++){
+                        cardGraph += '\
+                        <h5 class="text-muted f-w-300 mt-4 mb-4">\
+                            <button class="btn '+Obj[4][i]+' btn-circle btn-circle-sm active">\
+                                <i class="'+Obj[3][i]+'"></i>\
+                            </button> '+Obj[0][i]+' \
+                            <small>( '+(Obj[1][i]*100/sum).toFixed(2)+'% )</small>\
+                            <span class="float-right">'+currencyFormat(Obj[1][i])+'</span>\
+                        </h5>';
+                    }
+
+                    cardGraph += '</div>\
+                                </div>\
+                            </div>';
+
+                    // console.log(cardGraph);
+                    $("#showGraph").html(cardGraph);
+                    $('#showGraph').fadeIn("fast");
+
+                    $("#showCanvas").html('<canvas id="myChart" width="300" height="300"></canvas>');
+                    var canvas = document.getElementById('myChart');
+                    // var context = canvas.getContext('2d');
+                    // context.clearRect(0, 0, canvas.width, canvas.height);
                     var ctx = canvas.getContext('2d');
                     var myChart = new Chart(ctx, {
                         type: 'pie',
@@ -602,43 +654,20 @@ include 'navbar.php';
                             }
                         },
                     });
-                    //code here
-                    //ex Obj = [
-                    //     ["เกม","อาหาร"],
-                    //     [8001,111],
-                    //     ["#ff5050","#ffcc00"],
-                    //     ["fas fa-gamepad","fas fa-utensils"],
-                    //     ["red","yellow"]
-                    // ]
-                    //Obj[4][0] = red
-                    //Obj[0][1] = อาหาร
+                } else {
 
-                    //sum values in array
-                    //ref https://www.w3schools.com/jsref/jsref_reduce.asp
-                    var sum = Obj[1].reduce(myFunc);
-                    function myFunc(total, num) {
-                        return total + num;
-                    }
+                    $("#myTab").fadeOut();
 
-                    //currencyformat
-                    //ref https://blog.abelotech.com/posts/number-currency-formatting-javascript/
-                    function currencyFormat(num) {
-                        return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-                    }
-                    // console.info(currencyFormat(2665))
+                    cardGraph += '<div class="col-xl-12 p-5">\
+                                <div class="text-center">\
+                                    <h1 class="text-muted mb-4"><i class="fas fa-list"></i></h1>\
+                                    <h5 class="text-muted mb-4">No transaction list.</h5>\
+                                </div>\
+                            </div>';
 
-                    var categoryList = "";
-                    for(i = 0; i < Obj[0].length; i++){
-                        categoryList += '\
-                        <h5 class="text-muted f-w-300 mt-4 mb-4">\
-                            <button class="btn '+Obj[4][i]+' btn-circle btn-circle-sm active">\
-                                <i class="'+Obj[3][i]+'"></i>\
-                            </button> '+Obj[0][i]+' \
-                            <small>( '+(Obj[1][i]*100/sum).toFixed(2)+'% )</small>\
-                            <span class="float-right">'+currencyFormat(Obj[1][i])+'</span>\
-                        </h5>';
-                    }
-                    $("#showCategoryList").html(categoryList);
+                    // console.log(cardGraph);
+                    $("#showGraph").html(cardGraph);
+                    $('#showGraph').fadeIn("fast");
                 }
             }
         });
