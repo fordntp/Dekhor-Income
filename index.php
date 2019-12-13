@@ -479,7 +479,25 @@ while ($data = mysqli_fetch_array($qry)) {
                 // console.log(result,type);
                 let cardGraph = "";
                 if(result != "0"){
+
                     let Obj = jQuery.parseJSON(result);
+
+                    let inType = Obj[5][0];
+                    let outType = Obj[5][1];
+                    let inState, outState = "";
+
+                    if (inType == 1){
+                        inState = "";
+                    }else{
+                        inState = " disabled";
+                        // console.log("in "+inState);
+                    }
+                    if (outType == 1){
+                        outState = "";
+                    }else{
+                        outState = " disabled";
+                        // console.log("out "+outState);
+                    }
                     // console.log(Obj);
                     cardGraph += '<div class="col-xl-12">\
                                     <div class="card">\
@@ -544,8 +562,8 @@ while ($data = mysqli_fetch_array($qry)) {
                     $('#showGraph').fadeIn("fast");
 
                     $("#showCanvas").append('<div class="row">\
-                                                <div class="col-6 p-2"><a href="#!" onclick="loadGraph('+month+', '+year+', \'IN\')" class="btn btn-light btn-block">รายรับ</a></div>\
-                                                <div class="col-6 p-2"><a href="#!" onclick="loadGraph('+month+', '+year+', \'OUT\')" class="btn btn-light btn-block">รายจ่าย</a></div>\
+                                                <div class="col-6 p-2"><a href="#!" onclick="loadGraph('+month+', '+year+', \'IN\')" class="btn btn-light btn-block'+inState+'">รายรับ</a></div>\
+                                                <div class="col-6 p-2"><a href="#!" onclick="loadGraph('+month+', '+year+', \'OUT\')" class="btn btn-light btn-block'+outState+'">รายจ่าย</a></div>\
                                             <div>');
                     $("#showCanvas").append('<canvas id="myChart" width="300" height="300"></canvas>');
 
@@ -558,7 +576,7 @@ while ($data = mysqli_fetch_array($qry)) {
                         data: {
                             labels: Obj[0],
                             datasets: [{
-                            label: '# of Tomatoes',
+                            label: '# of Transactions',
                             data: Obj[1],
                             backgroundColor: Obj[2]
                             }]

@@ -19,6 +19,26 @@ $theme_arr = array();
 $sum = 0;
 $i = -1;
 
+//check empty type
+$in_type = 0;
+$out_type = 0;
+$notempty_arr = array();
+$cmd = "SELECT * FROM dekhor_record a JOIN dekhor_category b ON a.category_id = b.id
+            WHERE wallet_id = '$wallet_id' AND ( month(create_date)='$month' AND year(create_date)='$year' )
+            ORDER BY a.category_id ASC;";
+$qry = mysqli_query($conn, $cmd);
+$numRows = mysqli_num_rows($qry);
+if ($numRows > 0) {
+    while ($data = mysqli_fetch_array($qry)) {
+        //check empty type
+        if ($data['category_type'] == "IN") {
+            $in_type = 1;
+        } else if ($data['category_type'] == "OUT") {
+            $out_type = 1;
+        }
+    }
+}
+
 $cmd = "SELECT * FROM dekhor_record a JOIN dekhor_category b ON a.category_id = b.id
             WHERE wallet_id = '$wallet_id' AND ( month(create_date)='$month' AND year(create_date)='$year' ) AND a.type='$type'
             ORDER BY a.category_id ASC;";
@@ -53,6 +73,11 @@ if ($numRows > 0) {
     array_push($BIG_ARR, $theme_arr);
 
     array_multisort($BIG_ARR[1], SORT_DESC, $BIG_ARR[2], $BIG_ARR[0], $BIG_ARR[3], $BIG_ARR[4]);
+
+    //for check empty type
+    array_push($notempty_arr, $in_type);
+    array_push($notempty_arr, $out_type);
+    array_push($BIG_ARR, $notempty_arr);
 
     // echo "<pre>";
     // print_r($BIG_ARR);
