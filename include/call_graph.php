@@ -38,6 +38,8 @@ if ($numRows > 0) {
         }
     }
 }
+//check one of $type is empty . define $type to other one.
+$type = ($out_type == 1 ? 'OUT' : 'IN');
 
 $cmd = "SELECT * FROM dekhor_record a JOIN dekhor_category b ON a.category_id = b.id
             WHERE wallet_id = '$wallet_id' AND ( month(create_date)='$month' AND year(create_date)='$year' ) AND a.type='$type'
