@@ -545,10 +545,11 @@ include 'navbar.php';
 
         let cardGraph = "";
         let Obj;
+        let type = "IN";
         $.ajax({
             type: "POST",
             url: "include/call_graph.php",
-            data: { month: month, year: year, type: "OUT" },
+            data: { month: month, year: year, type: type },
             success: function(result) {
                 console.log(result);
                 if(result != "0"){
