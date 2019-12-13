@@ -16,6 +16,7 @@ $color_arr = array();
 $icon_arr = array();
 $theme_arr = array();
 $sum = 0;
+$i = 0;
 
 $cmd = "SELECT * FROM dekhor_record a JOIN dekhor_category b ON a.category_id = b.id
             WHERE wallet_id = '$wallet_id' AND ( month(create_date)='$month' AND year(create_date)='$year' ) AND a.type='$type'
@@ -39,6 +40,11 @@ if ($numRows > 0) {
             array_push($icon_arr, $cat_icon);
             array_push($theme_arr, $cat_theme);
             $sum = 0;
+            $i++;
+        }
+        else
+        {
+            $sum_arr[$i] += $value;
         }
     }
     array_push($BIG_ARR, $cat_arr);
