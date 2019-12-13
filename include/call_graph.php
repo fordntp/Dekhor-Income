@@ -41,10 +41,9 @@ if ($numRows > 0) {
             array_push($theme_arr, $cat_theme);
             $sum = 0;
             $i++;
-        }
-        else
-        {
+        } else {
             $sum_arr[$i] += $value;
+            $sum = 0;
         }
     }
     array_push($BIG_ARR, $cat_arr);
