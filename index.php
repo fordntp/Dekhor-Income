@@ -482,10 +482,10 @@ while ($data = mysqli_fetch_array($qry)) {
 
                     let Obj = jQuery.parseJSON(result);
 
+                    //check empty type
                     let inType = Obj[5][0];
                     let outType = Obj[5][1];
                     let inState, outState = "";
-
                     if (inType == 1){
                         inState = "";
                     }else{
