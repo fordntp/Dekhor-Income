@@ -6,7 +6,7 @@ $wallet_id = $_SESSION['wallet_id'];
 
 $month = $_REQUEST['month'];
 $year = $_REQUEST['year'];
-$type = "OUT"; //$_REQUEST['type'];
+$type = $_REQUEST['type'];
 $month = mysqli_real_escape_string($conn, $month);
 $year = mysqli_real_escape_string($conn, $year);
 $BIG_ARR = array();
@@ -32,7 +32,7 @@ if ($numRows > 0) {
         $cat_theme = $data['category_theme'];
         $cat_icon = $data['category_icon'];
         $value = floatval($value);
-        
+
         //ARRAY CATEGORY
         if (!in_array($cat_name, $cat_arr)) {
             array_push($cat_arr, $cat_name);

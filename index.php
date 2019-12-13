@@ -548,9 +548,9 @@ include 'navbar.php';
         $.ajax({
             type: "POST",
             url: "include/call_graph.php",
-            data: { month: month, year: year },
+            data: { month: month, year: year, type: "OUT" },
             success: function(result) {
-                // console.log(result);
+                console.log(result);
                 if(result != "0"){
 
                     Obj = jQuery.parseJSON(result);
