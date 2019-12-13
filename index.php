@@ -231,16 +231,16 @@ while ($data = mysqli_fetch_array($qry)) {
     for (i = 0; i < monthsShort.length; i++ ){
         if ((i+1) == month){
             monthselect += '<li class="nav-item">\
-                <a class="nav-link show active" onclick="monthValue('+(i+1)+');" id="pills-view-'+monthsShort[i]+'" data-toggle="pill" href="#view-'+monthsShort[i]+'" role="tab" aria-controls="view-'+monthsShort[i]+'" aria-selected="true">'+monthsShort[i]+'</a>\
-            </li>';
+                                <a class="nav-link show active" onclick="monthValue('+(i+1)+');" id="pills-view-'+monthsShort[i]+'" data-toggle="pill" href="#view-'+monthsShort[i]+'" role="tab" aria-controls="view-'+monthsShort[i]+'" aria-selected="true">'+monthsShort[i]+'</a>\
+                            </li>';
         } else {
             monthselect += '<li class="nav-item">\
-                <a class="nav-link show" onclick="monthValue('+(i+1)+');" id="pills-view-'+monthsShort[i]+'" data-toggle="pill" href="#view-'+monthsShort[i]+'" role="tab" aria-controls="view-'+monthsShort[i]+'" aria-selected="false">'+monthsShort[i]+'</a>\
-            </li>';
+                                <a class="nav-link show" onclick="monthValue('+(i+1)+');" id="pills-view-'+monthsShort[i]+'" data-toggle="pill" href="#view-'+monthsShort[i]+'" role="tab" aria-controls="view-'+monthsShort[i]+'" aria-selected="false">'+monthsShort[i]+'</a>\
+                            </li>';
         }
     }
+    //show month tab pill
     $("#pills-tab2").html(monthselect);
-
 
     function selectMonth(){
         if (monthShow != true){
