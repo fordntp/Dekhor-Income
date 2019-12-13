@@ -113,19 +113,12 @@ include 'navbar.php';
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="transaction" role="tabpanel" aria-labelledby="transaction-tab">
+
                                     <div id="transactionsShow" class="row" style="display: none;"></div>
 
-                                    <div class="btn-group dropup fixed-m" style="display: none;">
-                                        <button class="btn btn-icon btn-rounded btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="feather icon-plus"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item md-trigger" data-toggle="modal" data-target="#addExpenses" href="#!">รายจ่าย</a>
-                                            <a class="dropdown-item md-trigger" data-toggle="modal" data-target="#addIncome" href="#!">รายรับ</a>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="graph" role="tabpanel" aria-labelledby="graph-tab">
+
                                     <div id="showGraph" class="row" style="display: none;"></div>
 
                                 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -141,6 +134,18 @@ include 'navbar.php';
         </div>
     </div>
     <!-- [ Main Content ] end -->
+
+    <!-- [ Add Transaction Button ] start -->
+    <div class="btn-group dropup fixed-m" style="display: none;">
+        <button class="btn btn-icon btn-rounded btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="feather icon-plus"></i>
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item md-trigger" data-toggle="modal" data-target="#addExpenses" href="#!">รายจ่าย</a>
+            <a class="dropdown-item md-trigger" data-toggle="modal" data-target="#addIncome" href="#!">รายรับ</a>
+        </div>
+    </div>
+    <!-- [ Add Transaction Button ] end -->
 
     <!-- [ addExpenses Modal ] start -->
     <div id="addExpenses" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addExpenses" aria-hidden="true">
@@ -526,7 +531,7 @@ include 'navbar.php';
                     }
                 } else {
 
-                    $("#myTab").fadeOut("fast");
+                    // $("#myTab").fadeOut("fast");
 
                     card += '<div class="col-xl-12 p-5">\
                                 <div class="text-center">\
@@ -541,17 +546,17 @@ include 'navbar.php';
         });
     }
 
-    function loadGraph(month, year){
+    function loadGraph(month, year, type){
 
         let cardGraph = "";
         let Obj;
-        let type = "IN";
+
         $.ajax({
             type: "POST",
             url: "include/call_graph.php",
             data: { month: month, year: year, type: type },
             success: function(result) {
-                console.log(result);
+                console.log(result,type);
                 if(result != "0"){
 
                     Obj = jQuery.parseJSON(result);
@@ -660,12 +665,12 @@ include 'navbar.php';
                     });
                 } else {
 
-                    $("#myTab").fadeOut("fast");
+                    // $("#myTab").fadeOut("fast");
 
                     cardGraph += '<div class="col-xl-12 p-5">\
                                 <div class="text-center">\
-                                    <h1 class="text-muted mb-4"><i class="fas fa-list"></i></h1>\
-                                    <h5 class="text-muted mb-4">No transaction list.</h5>\
+                                    <h1 class="text-muted mb-4"><i class="fas fa-chart-pie"></i></h1>\
+                                    <h5 class="text-muted mb-4">No data list.</h5>\
                                 </div>\
                             </div>';
 
@@ -681,7 +686,7 @@ include 'navbar.php';
         // console.log('loadData'+month+''+year+'');
         loadTransactions(month, year);
         loadmainHeader(month, year);
-        loadGraph(month, year);
+        loadGraph(month, year, "OUT");
     }
 
     //load Header & Transactions

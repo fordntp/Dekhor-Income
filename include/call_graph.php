@@ -7,6 +7,7 @@ $wallet_id = $_SESSION['wallet_id'];
 $month = $_REQUEST['month'];
 $year = $_REQUEST['year'];
 $type = $_REQUEST['type'];
+// $type = "IN";
 $month = mysqli_real_escape_string($conn, $month);
 $year = mysqli_real_escape_string($conn, $year);
 $BIG_ARR = array();
@@ -53,9 +54,9 @@ if ($numRows > 0) {
 
     array_multisort($BIG_ARR[1], SORT_DESC, $BIG_ARR[2], $BIG_ARR[0], $BIG_ARR[3], $BIG_ARR[4]);
 
-    /*echo "<pre>";
-    print_r($BIG_ARR);
-    echo "<pre>";*/
+    // echo "<pre>";
+    // print_r($BIG_ARR);
+    // echo "<pre>";
 
     $BIG_ARR = json_encode($BIG_ARR, JSON_UNESCAPED_UNICODE);
     echo $BIG_ARR;
