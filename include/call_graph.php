@@ -16,7 +16,7 @@ $color_arr = array();
 $icon_arr = array();
 $theme_arr = array();
 $sum = 0;
-$i = 0;
+$i = -1;
 
 $cmd = "SELECT * FROM dekhor_record a JOIN dekhor_category b ON a.category_id = b.id
             WHERE wallet_id = '$wallet_id' AND ( month(create_date)='$month' AND year(create_date)='$year' ) AND a.type='$type'
