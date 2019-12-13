@@ -543,8 +543,8 @@ include 'navbar.php';
 
     function loadGraph(month, year){
 
-        var cardGraph = "";
-        var Obj;
+        let cardGraph = "";
+        let Obj;
         $.ajax({
             type: "POST",
             url: "include/call_graph.php",
@@ -584,7 +584,7 @@ include 'navbar.php';
 
                     //sum values in array
                     //ref https://www.w3schools.com/jsref/jsref_reduce.asp
-                    var sum = Obj[1].reduce(myFunc);
+                    let sum = Obj[1].reduce(myFunc);
                     function myFunc(total, num) {
                         return total + num;
                     }
@@ -620,11 +620,11 @@ include 'navbar.php';
                     $('#showGraph').fadeIn("fast");
 
                     $("#showCanvas").html('<canvas id="myChart" width="300" height="300"></canvas>');
-                    var canvas = document.getElementById('myChart');
-                    // var context = canvas.getContext('2d');
+                    let canvas = document.getElementById('myChart');
+                    // let context = canvas.getContext('2d');
                     // context.clearRect(0, 0, canvas.width, canvas.height);
-                    var ctx = canvas.getContext('2d');
-                    var myChart = new Chart(ctx, {
+                    let ctx = canvas.getContext('2d');
+                    let myChart = new Chart(ctx, {
                         type: 'pie',
                         data: {
                             labels: Obj[0],
@@ -690,10 +690,10 @@ include 'navbar.php';
 
     //check user is scrolling
     //ref https://stackoverflow.com/questions/56994840/
-    var $window = $(window);
-    var nav = $('.fixed-m');
-    var scroll_active = false;
-    var scroll_timer = new Date();
+    let $window = $(window);
+    let nav = $('.fixed-m');
+    let scroll_active = false;
+    let scroll_timer = new Date();
     check_scroll_time();
 
     $window.scroll(function(){
