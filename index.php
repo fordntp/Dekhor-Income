@@ -469,15 +469,16 @@ while ($data = mysqli_fetch_array($qry)) {
     }
 
     function loadGraph(month, year, type){
+
         $.ajax({
             type: "POST",
             url: "include/call_graph.php",
             data: { month: month, year: year, type: type },
             success: function(result) {
-                // console.log(result,type);
-                if(result != "0"){
 
-                    let cardGraph = "";
+                // console.log(result,type);
+                let cardGraph = "";
+                if(result != "0"){
                     let Obj = jQuery.parseJSON(result);
                     // console.log(Obj);
                     cardGraph += '<div class="col-xl-12">\
