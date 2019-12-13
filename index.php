@@ -108,7 +108,7 @@ include 'navbar.php';
                                     <a class="nav-link active" id="transaction-tab" data-toggle="tab" href="#transaction" role="tab" aria-controls="transaction" aria-selected="true">รายการ</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="graph-tab" data-toggle="tab" href="#graph" role="tab" aria-controls="graph" aria-selected="false">กราฟ</a>
+                                    <a class="nav-link" id="graph-tab" data-toggle="tab" href="#graph" role="tab" aria-controls="graph" aria-selected="false">ภาพรวม</a>
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
@@ -175,55 +175,19 @@ include 'navbar.php';
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn yellow btn-circle btn-circle-lg select-ex-category" onclick="selectCategory(1, 'yellow', 'OUT');"><i class="fas fa-utensils f-20"></i></button>
-                            <div class="h6 text-c-gray">อาหาร</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn deepskyblue btn-circle btn-circle-lg select-ex-category" onclick="selectCategory(2, 'deepskyblue', 'OUT');"><i class="fas fa-bolt f-20"></i></button>
-                            <div class="h6 text-c-gray">บิล</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn lime btn-circle btn-circle-lg select-ex-category" onclick="selectCategory(3, 'lime', 'OUT');"><i class="fas fa-taxi f-20"></i></button>
-                            <div class="h6 text-c-gray">เดินทาง</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn orange btn-circle btn-circle-lg select-ex-category" onclick="selectCategory(4, 'orange', 'OUT');"><i class="fa fa-shopping-cart f-20"></i></button>
-                            <div class="h6 text-c-gray">ช้อปปิ้ง</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn sandybrown btn-circle btn-circle-lg select-ex-category" onclick="selectCategory(5, 'sandybrown', 'OUT');"><i class="fas fa-graduation-cap f-20"></i></button>
-                            <div class="h6 text-c-gray">การศึกษา</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn hotpink btn-circle btn-circle-lg select-ex-category" onclick="selectCategory(6, 'hotpink', 'OUT');"><i class="fas fa-briefcase-medical f-20"></i></button>
-                            <div class="h6 text-c-gray">สุขภาพ</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn mediumpurple btn-circle btn-circle-lg select-ex-category" onclick="selectCategory(7, 'mediumpurple', 'OUT');"><i class="fas fa-plane f-20"></i></button>
-                            <div class="h6 text-c-gray">ท่องเที่ยว</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn limegreen btn-circle btn-circle-lg select-ex-category" onclick="selectCategory(8, 'limegreen', 'OUT');"><i class="fas fa-laptop f-20"></i></button>
-                            <div class="h6 text-c-gray">งาน</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn thistle btn-circle btn-circle-lg select-ex-category" onclick="selectCategory(9, 'thistle', 'OUT');"><i class="fas fa-book f-20"></i></button>
-                            <div class="h6 text-c-gray">หนังสือ</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn goldenrod btn-circle btn-circle-lg select-ex-category" onclick="selectCategory(10, 'goldenrod', 'OUT');"><i class="fas fa-beer f-20"></i></button>
-                            <div class="h6 text-c-gray">ปาร์ตี้</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn red btn-circle btn-circle-lg select-ex-category" onclick="selectCategory(11, 'red', 'OUT');"><i class="fas fa-gamepad f-20"></i></button>
-                            <div class="h6 text-c-gray">เกม</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn salmon btn-circle btn-circle-lg select-ex-category" onclick="selectCategory(12, 'salmon', 'OUT');"><i class="fas fa-ellipsis-h f-20"></i></button>
-                            <div class="h6 text-c-gray">อื่น ๆ</div>
-                        </div>
-                    </div>
+
+                    <?php
+$cmd = "SELECT * ,dekhor_category.id as category_id FROM dekhor_category WHERE category_type = 'OUT' ORDER BY id ASC;";
+$qry = mysqli_query($conn, $cmd);
+while ($data = mysqli_fetch_array($qry)) {
+    echo "<div class=\"col-lg-2 col-3 mb-2 text-center\">
+            <button class=\"btn " . $data["category_theme"] . " btn-circle btn-circle-lg select-ex-category\" onclick=\"selectCategory(" . $data["category_id"] . ", '" . $data["category_theme"] . "', '" . $data["category_type"] . "');\"><i class=\"" . $data["category_icon"] . " f-20\"></i></button>
+            <div class=\"h6 text-c-gray\">" . $data["category_name"] . "</div>
+        </div>";
+}
+?>
+
+                    </div> <!--row-->
 
                 </div>
             </div>
@@ -259,31 +223,17 @@ include 'navbar.php';
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn mediumpurple btn-circle btn-circle-lg select-in-category" onclick="selectCategory(13, 'mediumpurple', 'IN');"><i class="fas fa-wallet f-20"></i></button>
-                            <div class="h6 text-c-gray">เงินเดือน</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn yellow btn-circle btn-circle-lg select-in-category" onclick="selectCategory(14, 'yellow', 'IN');"><i class="fas fa-calendar f-20"></i></button>
-                            <div class="h6 text-c-gray">เงินสัปดาห์</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn lime btn-circle btn-circle-lg select-in-category" onclick="selectCategory(15, 'lime', 'IN');"><i class="fas fa-bolt f-20"></i></button>
-                            <div class="h6 text-c-gray">รายได้เสริม</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn deepskyblue btn-circle btn-circle-lg select-in-category" onclick="selectCategory(16, 'deepskyblue', 'IN');"><i class="fas fa-hand-holding-usd f-20"></i></button>
-                            <div class="h6 text-c-gray">ขายของ</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn limegreen btn-circle btn-circle-lg select-in-category" onclick="selectCategory(17, 'limegreen', 'IN');"><i class="fas fa-chart-line f-20"></i></button>
-                            <div class="h6 text-c-gray">ลงทุน</div>
-                        </div>
-                        <div class="col-lg-2 col-3 mb-2 text-center">
-                            <button class="btn salmon btn-circle btn-circle-lg select-in-category" onclick="selectCategory(18, 'salmon', 'IN');"><i class="fas fa-ellipsis-h f-20"></i></button>
-                            <div class="h6 text-c-gray">อื่น ๆ</div>
-                        </div>
-                    </div>
+                    <?php
+$cmd = "SELECT * ,dekhor_category.id as category_id FROM dekhor_category WHERE category_type = 'IN' ORDER BY id ASC;";
+$qry = mysqli_query($conn, $cmd);
+while ($data = mysqli_fetch_array($qry)) {
+    echo "<div class=\"col-lg-2 col-3 mb-2 text-center\">
+            <button class=\"btn " . $data["category_theme"] . " btn-circle btn-circle-lg select-in-category\" onclick=\"selectCategory(" . $data["category_id"] . ", '" . $data["category_theme"] . "', '" . $data["category_type"] . "');\"><i class=\"" . $data["category_icon"] . " f-20\"></i></button>
+            <div class=\"h6 text-c-gray\">" . $data["category_name"] . "</div>
+        </div>";
+}
+?>
+                    </div> <!--row-->
 
                 </div>
             </div>
