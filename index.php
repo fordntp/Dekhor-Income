@@ -77,21 +77,13 @@ include 'navbar.php';
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="transaction" role="tabpanel" aria-labelledby="transaction-tab">
-
                                     <div id="transactionsShow" class="row" style="display: none;"></div>
-
                                 </div>
                                 <div class="tab-pane fade" id="graph" role="tabpanel" aria-labelledby="graph-tab">
-
                                     <div id="showGraph" class="row" style="display: none;"></div>
-
-                                <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-                                <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
-                            </div>
-
+                                </div>
                             <!-- [ Main Content ] end -->
-
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>

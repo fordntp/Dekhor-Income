@@ -53,6 +53,9 @@ if (!isset($_SESSION["user_id"])) {
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/category-theme.css">
+    <!--ChartJS-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
 </head>
 <body>
 <style type="text/css">
