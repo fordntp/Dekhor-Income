@@ -486,7 +486,7 @@ while ($data = mysqli_fetch_array($qry)) {
             url: "include/call_graph.php",
             data: { month: month, year: year, type: type },
             success: function(result) {
-                console.log(result,type);
+                // console.log(result,type);
                 if(result != "0"){
 
                     Obj = jQuery.parseJSON(result);
