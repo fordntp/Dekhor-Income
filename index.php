@@ -525,6 +525,9 @@ include 'navbar.php';
                         </div>';
                     }
                 } else {
+
+                    $("#myTab").fadeOut("fast");
+
                     card += '<div class="col-xl-12 p-5">\
                                 <div class="text-center">\
                                     <h1 class="text-muted mb-4"><i class="fas fa-list"></i></h1>\
@@ -656,7 +659,7 @@ include 'navbar.php';
                     });
                 } else {
 
-                    $("#myTab").fadeOut();
+                    $("#myTab").fadeOut("fast");
 
                     cardGraph += '<div class="col-xl-12 p-5">\
                                 <div class="text-center">\
