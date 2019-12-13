@@ -31,19 +31,18 @@ if ($numRows > 0) {
         $value = $data['value'];
         $cat_theme = $data['category_theme'];
         $cat_icon = $data['category_icon'];
-        $sum = $sum + $value;
+        //$sum = $sum + $value;
         //ARRAY CATEGORY
         if (!in_array($cat_name, $cat_arr)) {
             array_push($cat_arr, $cat_name);
             array_push($color_arr, $cat_color);
-            array_push($sum_arr, $sum);
+            array_push($sum_arr, $value);
             array_push($icon_arr, $cat_icon);
             array_push($theme_arr, $cat_theme);
             $sum = 0;
             $i++;
         } else {
             $sum_arr[$i] += $value;
-            $sum = 0;
         }
     }
     array_push($BIG_ARR, $cat_arr);
