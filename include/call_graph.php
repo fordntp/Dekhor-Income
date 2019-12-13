@@ -6,7 +6,7 @@ $wallet_id = $_SESSION['wallet_id'];
 
 $month = $_REQUEST['month'];
 $year = $_REQUEST['year'];
-$type = $_REQUEST['type'];
+$request_type = $_REQUEST['type'];
 // $type = "IN";
 $month = mysqli_real_escape_string($conn, $month);
 $year = mysqli_real_escape_string($conn, $year);
@@ -39,7 +39,14 @@ if ($numRows > 0) {
     }
 }
 //check one of $type is empty . define $type to other one.
-$type = ($out_type == 1 ? 'OUT' : 'IN');
+// $type = ($out_type == 1 ? 'OUT' : 'IN');
+if ($out_type == 1 && $in_type == 1) {
+    $type = $request_type;
+} else if ($out_type == 1) {
+    $type = "OUT";
+} else {
+    $type = "IN";
+}
 
 $cmd = "SELECT * FROM dekhor_record a JOIN dekhor_category b ON a.category_id = b.id
             WHERE wallet_id = '$wallet_id' AND ( month(create_date)='$month' AND year(create_date)='$year' ) AND a.type='$type'
