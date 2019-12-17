@@ -6,7 +6,7 @@ $password = $_REQUEST['password'];
 
 $username = mysqli_real_escape_string($conn, $username);
 $password = mysqli_real_escape_string($conn, $password);
-$password_encrypt = md5(openssl_encrypt($password, $encrypt_method, $key, 0, $iv));
+$password_encrypt = encryptPass($password);
 
 $cmd_check = "SELECT username FROM dekhor_user WHERE username = '$username';";
 $qry_check = mysqli_query($conn, $cmd_check);

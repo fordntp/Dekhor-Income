@@ -10,7 +10,7 @@ $password = $_REQUEST['password'];
 
 $username = mysqli_real_escape_string($conn, $username);
 $password = mysqli_real_escape_string($conn, $password);
-$password_encrypt = md5(openssl_encrypt($password, $encrypt_method, $key, 0, $iv));
+$password_encrypt = encryptPass($password);
 
 $info = array();
 
