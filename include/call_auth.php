@@ -2,13 +2,19 @@
 
 include 'database.php';
 session_start();
+
 $ip = getRealip();
-$user = $_REQUEST['username'];
-$pass = $_REQUEST['password'];
-$user = mysqli_real_escape_string($conn, $user);
-$pass = mysqli_real_escape_string($conn, $pass);
+
+$username = $_REQUEST['username'];
+$password = $_REQUEST['password'];
+
+$username = mysqli_real_escape_string($conn, $username);
+$password = mysqli_real_escape_string($conn, $password);
+$password_encrypt = md5(openssl_encrypt($password, $encrypt_method, $key, 0, $iv));
+
 $info = array();
-$cmd = "SELECT *, b.id as wallet_id, a.id as user_id FROM dekhor_user a JOIN dekhor_wallet b ON a.id = b.user_id WHERE username='$user' && password = '$pass' ORDER BY b.id ASC;";
+
+$cmd = "SELECT *, b.id as wallet_id, a.id as user_id FROM dekhor_user a JOIN dekhor_wallet b ON a.id = b.user_id WHERE username='$username' && password = '$password_encrypt' ORDER BY b.id ASC;";
 $qry = mysqli_query($conn, $cmd);
 $RowCheck = mysqli_num_rows($qry);
 if ($RowCheck > 0) {
