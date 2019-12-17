@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2019 at 12:07 PM
+-- Generation Time: Dec 17, 2019 at 12:08 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -37,6 +37,30 @@ CREATE TABLE `dekhor_category` (
   `category_theme` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'btn-light',
   `category_color` varchar(10) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `dekhor_category`
+--
+
+INSERT INTO `dekhor_category` (`id`, `user_id`, `category_name`, `category_type`, `category_icon`, `category_theme`, `category_color`) VALUES
+(1, 0, 'อาหาร', 'OUT', 'fas fa-utensils', 'yellow', '#ffcc00'),
+(2, 0, 'บิล', 'OUT', 'fas fa-bolt', 'deepskyblue', '#00BFFF'),
+(3, 0, 'เดินทาง', 'OUT', 'fas fa-taxi', 'lime', '#2DDAA6'),
+(4, 0, 'ช้อปปิ้ง', 'OUT', 'fa fa-shopping-cart', 'orange', '#FF792C'),
+(5, 0, 'การศึกษา', 'OUT', 'fas fa-graduation-cap', 'sandybrown', '#F4A460'),
+(6, 0, 'สุขภาพ', 'OUT', 'fas fa-briefcase-medical', 'hotpink', '#FF69B4'),
+(7, 0, 'ท่องเที่ยว', 'OUT', 'fas fa-plane', 'mediumpurple', '#9370DB'),
+(8, 0, 'งาน', 'OUT', 'fas fa-laptop', 'limegreen', '#77DE65'),
+(9, 0, 'หนังสือ', 'OUT', 'fas fa-book', 'thistle', '#D8BFD8'),
+(10, 0, 'ปาร์ตี้', 'OUT', 'fas fa-beer', 'goldenrod', '#DAA520'),
+(11, 0, 'เกม', 'OUT', 'fas fa-gamepad', 'red', '#ff5050'),
+(12, 0, 'อื่น ๆ', 'OUT', 'fas fa-ellipsis-h', 'salmon', '#FA8072'),
+(13, 0, 'เงินเดือน', 'IN', 'fas fa-wallet', 'mediumpurple', '#9370DB'),
+(14, 0, 'เงินสัปดาห์', 'IN', 'fas fa-calendar', 'yellow', '#ffcc00'),
+(15, 0, 'รายได้เสริม', 'IN', 'fas fa-bolt', 'lime', '#2DDAA6'),
+(16, 0, 'ขายของ', 'IN', 'fas fa-hand-holding-usd', 'deepskyblue', '#00BFFF'),
+(17, 0, 'ลงทุน', 'IN', 'fas fa-chart-line', 'limegreen', '#77DE65'),
+(18, 0, 'อื่น ๆ', 'IN', 'fas fa-ellipsis-h', 'salmon', '#FA8072');
 
 -- --------------------------------------------------------
 
@@ -124,7 +148,7 @@ ALTER TABLE `dekhor_wallet`
 -- AUTO_INCREMENT for table `dekhor_category`
 --
 ALTER TABLE `dekhor_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `dekhor_record`
