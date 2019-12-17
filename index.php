@@ -5,6 +5,12 @@ include 'navbar.php';
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
+        <div class="preview-area">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
             <div class="pcoded-content">
                 <div class="pcoded-inner-content">
                     <!-- [ breadcrumb ] start -->
@@ -673,6 +679,11 @@ while ($data = mysqli_fetch_array($qry)) {
     });
     $(".select-in-category").click(function() {
         $("#showupIncome").slideDown("fast");
+    });
+
+    $(document).ready(function(){
+        //loading spinner
+        $('.preview-area').fadeOut("fast");
     });
 
 </script>
