@@ -336,6 +336,11 @@ while ($data = mysqli_fetch_array($qry)) {
                     }
                 }
             });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'กรุณากรอกข้อมูล'
+            });
         }
     }
 
@@ -374,6 +379,11 @@ while ($data = mysqli_fetch_array($qry)) {
                         });
                     }
                 }
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'กรุณากรอกข้อมูล'
             });
         }
     }

@@ -92,6 +92,9 @@ if (!isset($_SESSION["user_id"])) {
         font-size: 1.8vw;
       }
     }
+    .swal2-container {
+      z-index: 1073!important;
+    }
     .form-rounded {
       border-radius: 1rem;
     }
