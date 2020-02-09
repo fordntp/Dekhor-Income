@@ -20,17 +20,17 @@ $DayArr = array();
 WHERE /*a.wallet_id a.user_id = '1' AND Month(a.create_date) = '11'
 ORDER BY Date(a.create_date) DESC;";*/
 
-$cmd = "SELECT * , day(a.create_date) as day FROM dekhor_record a JOIN dekhor_category b ON a.category_id = b.id
+$cmd = "SELECT * , a.id as item_id, day(a.create_date) as day FROM dekhor_record a JOIN dekhor_category b ON a.category_id = b.id
             WHERE a.wallet_id = '$wallet_id' /* a.user_id = */ AND ( month(a.create_date) = '$month' && year(a.create_date)='$year' )
             ORDER BY a.create_date DESC;";
 
 $qry = mysqli_query($conn, $cmd);
 $numRows = mysqli_num_rows($qry);
 
-if($numRows > 0)
-{
+if ($numRows > 0) {
     while ($data = mysqli_fetch_array($qry)) {
         $dayNew = $data['day'];
+        $item_id = $data['item_id'];
         $create_date = $data['create_date'];
         $create_date = date("d/m/y", strtotime($create_date));
         $category_icon = $data['category_icon'];
@@ -41,6 +41,7 @@ if($numRows > 0)
         $value = $data['value'];
 
         $infoArr = array(
+            "item_id" => $item_id,
             "create_date" => $create_date,
             "category_icon" => $category_icon,
             "category_theme" => $category_theme,
@@ -91,7 +92,7 @@ if($numRows > 0)
                 $sum_TRF = $sum_TRF + $value;
             }
 
-        $dayOld = $dayNew;
+            $dayOld = $dayNew;
         }
 
     }
@@ -106,13 +107,13 @@ if($numRows > 0)
     array_push($MonthArr, $DayArr);
 
 // echo "<pre>";
-// print_r($MonthArr);
-// echo "<pre>";
+    // print_r($MonthArr);
+    // echo "<pre>";
 
     $json_arr = json_encode($MonthArr, JSON_UNESCAPED_UNICODE);
     echo $json_arr;
-}
-else
+} else {
     echo 0;
+}
 
 // echo json_encode($MonthArr, JSON_UNESCAPED_UNICODE);

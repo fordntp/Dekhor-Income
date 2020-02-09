@@ -436,6 +436,42 @@ while ($data = mysqli_fetch_array($qry)) {
         }
     }
 
+    function deleteItem(id){
+        console.log(`delete item ${id}`);
+        Swal.fire({
+            title: 'ยืนยันการลบรายการ',
+            text: "รายการที่ถูกลบจะไม่สามารถกู้คืนกลับมาได้",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#fd6b6b',
+            cancelButtonColor: '#858796',
+            confirmButtonText: 'ยืนยัน',
+            cancelButtonText: 'ยกเลิก',
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "include/call_delete.php",
+                        type: "POST",
+                        data: { id: id },
+                        success: function(response) {
+                            if (response == 1) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'ลบรายการแล้ว',
+                                    text: 'รายการถูกลบออกจากกระเป๋าเงิน',
+                                    timer: 5000
+                                });
+                                // load lasted balance data
+                                // load Header & Transactions
+                                loadData(month, year);
+                            }
+                        }
+                    });
+                }
+            })
+        loadData(month, year);
+    }
+
     function loadmainHeader(month, year) {
         // console.log('loadMain'+month+''+year+'');
         $.ajax({
@@ -473,7 +509,7 @@ while ($data = mysqli_fetch_array($qry)) {
                                         <div class="card-block p-4">\
                                         ';
                         for(j = 0; j < Obj[i].length - 1; j++){
-                            card += '<h5 class="text-muted f-w-300 mt-4 mb-4">\
+                            card += '<h5 class="text-muted f-w-300 mt-4 mb-4" onclick="deleteItem('+Obj[i][j]["item_id"]+')">\
                                         <button class="btn '+Obj[i][j]["category_theme"]+' btn-circle btn-circle-sm active"><i class="'+Obj[i][j]["category_icon"]+'"></i></button> '+Obj[i][j]["memo"]+' \
                                         <span class="float-right">'+Obj[i][j]["value"]+'</span>\
                                     </h5>';
