@@ -122,7 +122,7 @@ include 'navbar.php';
                     <div id="showupExpenses" style="display: none">
                         <div class="input-group mb-3">
                             <input type="text" id="expensesMemo" class="form-control col-8" placeholder="บันทึกช่วยจำ">
-                            <input type="text" id="expensesValue" class="form-control col-4 autonumber" placeholder="0.00" aria-label="จำนวนเงิน" aria-describedby="basic-addon2" data-v-min="-99.99" data-v-max="99999999.99">
+                            <input type="text" id="expensesValue" class="form-control col-4 autonumber" placeholder="0.00" aria-label="จำนวนเงิน" aria-describedby="basic-addon2" data-v-min="0" data-v-max="99999999.99">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" id="addExpensesbtn" onclick="addExpenses();"><i class="fas fa-check"></i></button>
                             </div>
@@ -170,7 +170,7 @@ while ($data = mysqli_fetch_array($qry)) {
                     <div id="showupIncome" style="display: none">
                         <div class="input-group mb-3">
                             <input type="text" id="incomeMemo" class="form-control col-8" placeholder="บันทึกช่วยจำ">
-                            <input type="text" id="incomeValue" class="form-control col-4 autonumber" placeholder="0.00" aria-label="จำนวนเงิน" aria-describedby="basic-addon2" data-v-min="-99.99" data-v-max="99999999.99">
+                            <input type="text" id="incomeValue" class="form-control col-4 autonumber" placeholder="0.00" aria-label="จำนวนเงิน" aria-describedby="basic-addon2" data-v-min="0" data-v-max="99999999.99">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" id="addIncomebtn" onclick="addIncome();"><i class="fas fa-check"></i></button>
                             </div>
