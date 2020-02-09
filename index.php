@@ -353,7 +353,7 @@ while ($data = mysqli_fetch_array($qry)) {
         } else {
             Swal.fire({
                 icon: 'error',
-                title: 'กรุณากรอกข้อมูล'
+                title: 'กรุณากรอกข้อมูลให้ถูกต้อง'
             });
         }
     }
@@ -405,7 +405,7 @@ while ($data = mysqli_fetch_array($qry)) {
         } else {
             Swal.fire({
                 icon: 'error',
-                title: 'กรุณากรอกข้อมูล'
+                title: 'กรุณากรอกข้อมูลให้ถูกต้อง'
             });
         }
     }
