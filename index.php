@@ -312,6 +312,11 @@ while ($data = mysqli_fetch_array($qry)) {
         let expensesdate = $("#expensesDate").val();
         let type = "OUT";
         if (expensesMemo != "" && expensesValue != "") {
+
+            // disabled button after submit transaction
+            $('#addExpensesbtn').prop('disabled', true);
+            $('#addExpensesbtn').html('<i class="fas fa-circle-notch fa-spin">');
+
             $.ajax({
                 type: "POST",
                 url: "include/add_transactions.php",
@@ -325,11 +330,11 @@ while ($data = mysqli_fetch_array($qry)) {
                 success: function(result) {
                     if (result == 1) {
                         // load lasted balance data
-                        //load Header & Transactions
+                        // load Header & Transactions
                         loadData(month, year);
                         // unselect category
                         unselectCategory(type);
-                        // close modal dialog
+                        // // close modal dialog
                         $("[data-dismiss=modal]").trigger({
                             type: "click"
                         });
@@ -339,6 +344,9 @@ while ($data = mysqli_fetch_array($qry)) {
                             title: 'เพิ่มรายจ่ายเรียบร้อย',
                             timer: 3000
                         });
+                        // enable button after submit transaction
+                        $('#addExpensesbtn').prop('disabled', false);
+                        $('#addExpensesbtn').html('<i class="fas fa-check">');
                     }
                 }
             });
@@ -356,6 +364,11 @@ while ($data = mysqli_fetch_array($qry)) {
         let incomedate = $("#incomeDate").val();
         let type = "IN";
         if (incomeMemo != "" && incomeValue != "") {
+
+            // disabled button after submit transaction
+            $('#addIncomebtn').prop('disabled', true);
+            $('#addIncomebtn').html('<i class="fas fa-circle-notch fa-spin">');
+
             $.ajax({
                 type: "POST",
                 url: "include/add_transactions.php",
@@ -383,6 +396,9 @@ while ($data = mysqli_fetch_array($qry)) {
                             title: 'เพิ่มรายรับเรียบร้อย',
                             timer: 3000
                         });
+                        // enable button after submit transaction
+                        $('#addIncomebtn').prop('disabled', false);
+                        $('#addIncomebtn').html('<i class="fas fa-check">');
                     }
                 }
             });
