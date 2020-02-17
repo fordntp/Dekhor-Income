@@ -536,6 +536,7 @@ while ($data = mysqli_fetch_array($qry)) {
         });
     }
 
+
     function loadGraph(month, year, type){
 
         $.ajax({
@@ -691,6 +692,35 @@ while ($data = mysqli_fetch_array($qry)) {
         });
     }
 
+    let firstLoad = false, NewtransactionsList, OldtransactionsList;
+    function realtimeData(){
+        setInterval(function(){
+            $.ajax({
+                type: "POST",
+                url: "include/call_main_transactions.php",
+                data: { month: month, year: year },
+                success: function(result) {
+                    if (!firstLoad){
+                        // run once
+                        // set OldtransactionsList = result
+                        OldtransactionsList = result;
+                        firstLoad = true;
+                    } else {
+                        // set NewtransactionsList = lasted result
+                        NewtransactionsList = result;
+                        // if NewtransactionsList != OldtransactionsList run loadData
+                        if ( NewtransactionsList != OldtransactionsList){
+                            loadData(month, year);
+                            // set OldtransactionsList to lasted result
+                            OldtransactionsList = NewtransactionsList;
+                            console.log('Data Updated !');
+                        }
+                    }
+                }
+            });
+        }, 2000);
+    }
+
     function loadData(month, year){
         // console.log('loadData'+month+''+year+'');
         loadTransactions(month, year);
@@ -700,6 +730,9 @@ while ($data = mysqli_fetch_array($qry)) {
 
     //load Header & Transactions
     loadData(month, year);
+
+    //auto reload Header & Transactions
+    realtimeData();
 
     //fix button add transaction at bottom
 
@@ -717,8 +750,8 @@ while ($data = mysqli_fetch_array($qry)) {
 
     function check_scroll_time(){
         now = new Date();
-        if ((now.getTime() - scroll_timer.getTime())/1000 >= 0.2){
-            nav.fadeIn(200);
+        if ((now.getTime() - scroll_timer.getTime())/1000 >= 0.1){
+            nav.fadeIn(100);
         }else{
             nav.fadeOut(100);
         }
