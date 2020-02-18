@@ -300,6 +300,8 @@ while ($data = mysqli_fetch_array($qry)) {
             $("#expensesMemo").val("");
             $("#expensesValue").val("");
             $("#expensesDate").val("<?=date('Y-m-d')?>");
+            //hide expensesMemoOutput
+            $(`#expensesMemoOutput`).css('display', 'none');
         }
         else if (type == 'IN') {
             // loop to remove selected category
@@ -313,6 +315,8 @@ while ($data = mysqli_fetch_array($qry)) {
             $("#incomeMemo").val("");
             $("#incomeValue").val("");
             $("#incomeDate").val("<?=date('Y-m-d')?>");
+            //hide expensesMemoOutput
+            $(`#incomeMemoOutput`).css('display', 'none');
         }
     }
     function addExpenses() {
