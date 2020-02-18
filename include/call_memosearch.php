@@ -7,11 +7,12 @@ $wallet_id = $_SESSION['wallet_id'];
 
 $val = mysqli_real_escape_string($conn, $_REQUEST['val']);
 $type = (mysqli_real_escape_string($conn, $_REQUEST['type']) == "expensesMemo" ? "OUT" : "IN");
+$category = mysqli_real_escape_string($conn, $_REQUEST['category']);
 $suggestion = array();
 
 if (isset($val)) {
 
-    $query = "SELECT * FROM dekhor_record WHERE memo LIKE '%{$val}%' AND type = '$type' AND wallet_id = '$wallet_id' LIMIT 15";
+    $query = "SELECT * FROM dekhor_record WHERE memo LIKE '%{$val}%' AND wallet_id = '$wallet_id' AND category_id = '$category' AND type = '$type' LIMIT 15";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) > 0) {

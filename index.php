@@ -741,7 +741,7 @@ while ($data = mysqli_fetch_array($qry)) {
             $.ajax({
               url: 'include/call_memosearch.php',
               method: 'POST',
-              data: {val:val,type:type},
+              data: {val:val,type:type,category:categoryID},
               success: function(result){
                 let Obj = jQuery.parseJSON(result);
                 let suggestion = "";
