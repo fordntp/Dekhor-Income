@@ -739,7 +739,6 @@ while ($data = mysqli_fetch_array($qry)) {
               method: 'POST',
               data: {val:val,type:type},
               success: function(result){
-
                 let Obj = jQuery.parseJSON(result);
                 let suggestion = "";
                 for (i=0; i<Obj.length; i++){
