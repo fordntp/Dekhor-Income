@@ -1,3 +1,14 @@
+.word {
+    color: #6e6f70;
+    background-color: #f4f7fa;
+    border-color: #dadada;
+}
+.word:hover {
+    color: #6e6f70;
+    background-color: #e8e9ee;
+    border-color: #dadada;
+}
+
 .text-darklight {
     color: #37474f;
 }

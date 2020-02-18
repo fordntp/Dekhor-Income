@@ -121,11 +121,19 @@ include 'navbar.php';
                 <div class="modal-body">
                     <div id="showupExpenses" style="display: none">
                         <div class="input-group mb-3">
-                            <input type="text" id="expensesMemo" class="form-control col-8" placeholder="บันทึกช่วยจำ">
+                            <input type="text" id="expensesMemo" class="memo-input form-control col-8" onkeyup="memoSearch(this.value,'expensesMemo');" placeholder="บันทึกช่วยจำ">
                             <input type="text" id="expensesValue" class="form-control col-4 autonumber" placeholder="0.00" aria-label="จำนวนเงิน" aria-describedby="basic-addon2" data-v-min="0" data-v-max="99999999.99">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" id="addExpensesbtn" onclick="addExpenses();"><i class="fas fa-check"></i></button>
                             </div>
+                        </div>
+                        <div id="expensesMemoOutput" class="memo-output form-group btn-group-sm">
+                            <!-- <a href="#" class="btn btn-sm mr-0 word" onclick="document.getElementById('expensesMemo').value = this.text;">กะเพราหมูกรอบ</a>
+                            <a href="#" class="btn btn-sm mr-0 word" onclick="document.getElementById('expensesMemo').value = this.text;">กะเพราหมูสับ</a>
+                            <a href="#" class="btn btn-sm mr-0 word" onclick="document.getElementById('expensesMemo').value = this.text;">กะเพราหมูสับกุ้ง</a>
+                            <a href="#" class="btn btn-sm mr-0 word" onclick="document.getElementById('expensesMemo').value = this.text;">กะเพราเนื้อสับ</a>
+                            <a href="#" class="btn btn-sm mr-0 word" onclick="document.getElementById('expensesMemo').value = this.text;">กะเพราเครื่องในหมู</a>
+                            <a href="#" class="btn btn-sm mr-0 word" onclick="document.getElementById('expensesMemo').value = this.text;">กะเพราทะเล</a> -->
                         </div>
                         <div class="form-group">
                             <div class="input-group">
@@ -169,12 +177,13 @@ while ($data = mysqli_fetch_array($qry)) {
                 <div class="modal-body">
                     <div id="showupIncome" style="display: none">
                         <div class="input-group mb-3">
-                            <input type="text" id="incomeMemo" class="form-control col-8" placeholder="บันทึกช่วยจำ">
+                            <input type="text" id="incomeMemo" class="form-control col-8" onkeyup="memoSearch(this.value,'incomeMemo');" placeholder="บันทึกช่วยจำ" >
                             <input type="text" id="incomeValue" class="form-control col-4 autonumber" placeholder="0.00" aria-label="จำนวนเงิน" aria-describedby="basic-addon2" data-v-min="0" data-v-max="99999999.99">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" id="addIncomebtn" onclick="addIncome();"><i class="fas fa-check"></i></button>
                             </div>
                         </div>
+                        <div id="incomeMemoOutput" class="memo-output form-group btn-group-sm"></div>
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -706,6 +715,7 @@ while ($data = mysqli_fetch_array($qry)) {
                         OldtransactionsList = result;
                         firstLoad = true;
                     } else {
+                        // now firstLoad = true , so not run that if statement again untill user refresh page
                         // set NewtransactionsList = lasted result
                         NewtransactionsList = result;
                         // if NewtransactionsList != OldtransactionsList run loadData
@@ -718,7 +728,36 @@ while ($data = mysqli_fetch_array($qry)) {
                     }
                 }
             });
-        }, 2000);
+        }, 1500);
+    }
+
+    //ref https://www.tutsmake.com/ajax-php-mysql-search-example/
+    function memoSearch(val,type){
+          if (val != "") {
+            $.ajax({
+              url: 'include/call_memosearch.php',
+              method: 'POST',
+              data: {val:val,type:type},
+              success: function(result){
+
+                let Obj = jQuery.parseJSON(result);
+                let suggestion = "";
+                for (i=0; i<Obj.length; i++){
+                    suggestion += `<a href="#" class="btn btn-sm word mr-1" onclick="document.getElementById('${type}').value = this.text;">${Obj[i]}</a>`;
+                }
+                $(`#${type}Output`).html(suggestion);
+                $(`#${type}Output`).css('display', 'block');
+                // $(`#${type}`).focusout(function(){
+                //     $(`#${type}Output`).css('display', 'none');
+                // });
+                // $(`#${type}`).focusin(function(){
+                //     $(`#${type}Output`).css('display', 'block');
+                // });
+              }
+            });
+          } else {
+          $(`#${type}Output`).css('display', 'none');
+        }
     }
 
     function loadData(month, year){
