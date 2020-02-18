@@ -11,7 +11,7 @@ $suggestion = array();
 
 if (isset($val)) {
 
-    $query = "SELECT * FROM dekhor_record WHERE memo LIKE '{$val}%' AND type = '$type' AND wallet_id = '$wallet_id' LIMIT 15";
+    $query = "SELECT * FROM dekhor_record WHERE memo LIKE '%{$val}%' AND type = '$type' AND wallet_id = '$wallet_id' LIMIT 15";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) > 0) {
