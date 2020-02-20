@@ -534,7 +534,7 @@ while ($data = mysqli_fetch_array($qry)) {
                     }
                 } else {
 
-                    // $("#myTab").fadeOut("fast");
+                    $("#myTab").fadeOut("fast");
 
                     card += '<div class="col-xl-12 p-5">\
                                 <div class="text-center">\
