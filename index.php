@@ -705,34 +705,64 @@ while ($data = mysqli_fetch_array($qry)) {
         });
     }
 
-    let firstLoad = false, NewtransactionsList, OldtransactionsList;
-    function realtimeData(){
+    // let firstLoad = false, NewtransactionsList, OldtransactionsList;
+    // function realtimeData(){
+    //     setInterval(function(){
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "include/call_main_transactions.php",
+    //             data: { month: month, year: year },
+    //             success: function(result) {
+    //                 if (!firstLoad){
+    //                     // run once
+    //                     // set OldtransactionsList = result
+    //                     OldtransactionsList = result;
+    //                     firstLoad = true;
+    //                 } else {
+    //                     // now firstLoad = true , so not run that if statement again untill user refresh page
+    //                     // set NewtransactionsList = lasted result
+    //                     NewtransactionsList = result;
+    //                     // if NewtransactionsList != OldtransactionsList run loadData
+    //                     if ( NewtransactionsList != OldtransactionsList){
+    //                         loadData(month, year);
+    //                         // set OldtransactionsList to lasted result
+    //                         OldtransactionsList = NewtransactionsList;
+    //                         console.log('Data Updated !');
+    //                     }
+    //                 }
+    //             }
+    //         });
+    //     }, 1500);
+    // }
+
+    let firstLoad = false, newUpdateTime, oldUpdateTime;
+    function realTimeData(){
         setInterval(function(){
             $.ajax({
                 type: "POST",
-                url: "include/call_main_transactions.php",
-                data: { month: month, year: year },
+                url: "include/call_realtime.php",
+                data: {},
                 success: function(result) {
                     if (!firstLoad){
                         // run once
-                        // set OldtransactionsList = result
-                        OldtransactionsList = result;
+                        // set oldUpdateTime = result
+                        oldUpdateTime = result;
                         firstLoad = true;
                     } else {
                         // now firstLoad = true , so not run that if statement again untill user refresh page
-                        // set NewtransactionsList = lasted result
-                        NewtransactionsList = result;
-                        // if NewtransactionsList != OldtransactionsList run loadData
-                        if ( NewtransactionsList != OldtransactionsList){
+                        // set newUpdateTime = lasted result
+                        newUpdateTime = result;
+                        // if newUpdateTime != oldUpdateTime run loadData
+                        if ( newUpdateTime != oldUpdateTime){
                             loadData(month, year);
-                            // set OldtransactionsList to lasted result
-                            OldtransactionsList = NewtransactionsList;
+                            // set oldUpdateTime = newUpdateTime
+                            oldUpdateTime = newUpdateTime;
                             console.log('Data Updated !');
                         }
                     }
                 }
             });
-        }, 1500);
+        }, 1000);
     }
 
     //ref https://www.tutsmake.com/ajax-php-mysql-search-example/
@@ -743,19 +773,21 @@ while ($data = mysqli_fetch_array($qry)) {
               method: 'POST',
               data: {val:val,type:type,category:categoryID},
               success: function(result){
-                let Obj = jQuery.parseJSON(result);
-                let suggestion = "";
-                for (i=0; i<Obj.length; i++){
-                    suggestion += `<a href="#" class="btn btn-sm word mr-1" onclick="document.getElementById('${type}').value = this.text;">${Obj[i]}</a>`;
-                }
-                $(`#${type}Output`).html(suggestion);
-                $(`#${type}Output`).css('display', 'block');
-                // $(`#${type}`).focusout(function(){
-                //     $(`#${type}Output`).css('display', 'none');
-                // });
-                // $(`#${type}`).focusin(function(){
-                //     $(`#${type}Output`).css('display', 'block');
-                // });
+                  if (result != '0'){
+                    let Obj = jQuery.parseJSON(result);
+                    let suggestion = "";
+                    for (i=0; i<Obj.length; i++){
+                        suggestion += `<a href="#" class="btn btn-sm word mr-1" onclick="document.getElementById('${type}').value = this.text;">${Obj[i]}</a>`;
+                    }
+                    $(`#${type}Output`).html(suggestion);
+                    $(`#${type}Output`).css('display', 'block');
+                    // $(`#${type}`).focusout(function(){
+                    //     $(`#${type}Output`).css('display', 'none');
+                    // });
+                    // $(`#${type}`).focusin(function(){
+                    //     $(`#${type}Output`).css('display', 'block');
+                    // });
+                  }
               }
             });
           } else {
@@ -774,7 +806,7 @@ while ($data = mysqli_fetch_array($qry)) {
     loadData(month, year);
 
     //auto reload Header & Transactions
-    realtimeData();
+    realTimeData();
 
     //fix button add transaction at bottom
 

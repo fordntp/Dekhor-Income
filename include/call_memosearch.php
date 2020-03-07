@@ -26,5 +26,7 @@ if (isset($val)) {
         $json_arr = json_encode($suggestion, JSON_UNESCAPED_UNICODE);
         echo $json_arr;
 
+    } else {
+        echo 0;
     }
 }
