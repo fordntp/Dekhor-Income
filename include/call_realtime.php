@@ -11,8 +11,8 @@ $qry1 = mysqli_query($conn, $selectRecord);
 while ($data = mysqli_fetch_array($qry1)) {
     $last_update = $data['last_update'];
 }
-$timestamp = strtotime($last_update);
 if ($last_update != '0000-00-00 00:00:00') {
+    $timestamp = strtotime($last_update);
     $json_arr = json_encode($timestamp, JSON_UNESCAPED_UNICODE);
     echo $json_arr;
 } else {
