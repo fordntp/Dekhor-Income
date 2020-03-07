@@ -705,36 +705,6 @@ while ($data = mysqli_fetch_array($qry)) {
         });
     }
 
-    // let firstLoad = false, NewtransactionsList, OldtransactionsList;
-    // function realtimeData(){
-    //     setInterval(function(){
-    //         $.ajax({
-    //             type: "POST",
-    //             url: "include/call_main_transactions.php",
-    //             data: { month: month, year: year },
-    //             success: function(result) {
-    //                 if (!firstLoad){
-    //                     // run once
-    //                     // set OldtransactionsList = result
-    //                     OldtransactionsList = result;
-    //                     firstLoad = true;
-    //                 } else {
-    //                     // now firstLoad = true , so not run that if statement again untill user refresh page
-    //                     // set NewtransactionsList = lasted result
-    //                     NewtransactionsList = result;
-    //                     // if NewtransactionsList != OldtransactionsList run loadData
-    //                     if ( NewtransactionsList != OldtransactionsList){
-    //                         loadData(month, year);
-    //                         // set OldtransactionsList to lasted result
-    //                         OldtransactionsList = NewtransactionsList;
-    //                         console.log('Data Updated !');
-    //                     }
-    //                 }
-    //             }
-    //         });
-    //     }, 1500);
-    // }
-
     let firstLoad = false, newUpdateTime, oldUpdateTime;
     function realTimeData(){
         setInterval(function(){
